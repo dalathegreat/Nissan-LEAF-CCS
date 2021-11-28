@@ -1,0 +1,3048 @@
+
+can-bridge-ccs.elf:     file format elf32-avr
+
+Sections:
+Idx Name          Size      VMA       LMA       File off  Algn
+  0 .text         000010b8  00000000  00000000  00000094  2**1
+                  CONTENTS, ALLOC, LOAD, READONLY, CODE
+  1 .data         00000004  00802000  000010b8  0000114c  2**0
+                  CONTENTS, ALLOC, LOAD, DATA
+  2 .bss          00000498  00802004  00802004  00001150  2**0
+                  ALLOC
+  3 .comment      00000030  00000000  00000000  00001150  2**0
+                  CONTENTS, READONLY
+  4 .note.gnu.avr.deviceinfo 00000040  00000000  00000000  00001180  2**2
+                  CONTENTS, READONLY
+  5 .debug_aranges 00000308  00000000  00000000  000011c0  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  6 .debug_info   0000917b  00000000  00000000  000014c8  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  7 .debug_abbrev 000033d7  00000000  00000000  0000a643  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  8 .debug_line   000026fd  00000000  00000000  0000da1a  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  9 .debug_frame  000009e4  00000000  00000000  00010118  2**2
+                  CONTENTS, READONLY, DEBUGGING
+ 10 .debug_str    00003c95  00000000  00000000  00010afc  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 11 .debug_loc    0000289d  00000000  00000000  00014791  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 12 .debug_ranges 00000308  00000000  00000000  0001702e  2**0
+                  CONTENTS, READONLY, DEBUGGING
+
+Disassembly of section .text:
+
+00000000 <__vectors>:
+       0:	fd c0       	rjmp	.+506    	; 0x1fc <__ctors_end>
+       2:	00 00       	nop
+       4:	16 c1       	rjmp	.+556    	; 0x232 <__bad_interrupt>
+       6:	00 00       	nop
+       8:	e4 c7       	rjmp	.+4040   	; 0xfd2 <__vector_2>
+       a:	00 00       	nop
+       c:	12 c1       	rjmp	.+548    	; 0x232 <__bad_interrupt>
+       e:	00 00       	nop
+      10:	10 c1       	rjmp	.+544    	; 0x232 <__bad_interrupt>
+      12:	00 00       	nop
+      14:	0e c1       	rjmp	.+540    	; 0x232 <__bad_interrupt>
+      16:	00 00       	nop
+      18:	0c c1       	rjmp	.+536    	; 0x232 <__bad_interrupt>
+      1a:	00 00       	nop
+      1c:	0a c1       	rjmp	.+532    	; 0x232 <__bad_interrupt>
+      1e:	00 00       	nop
+      20:	08 c1       	rjmp	.+528    	; 0x232 <__bad_interrupt>
+      22:	00 00       	nop
+      24:	06 c1       	rjmp	.+524    	; 0x232 <__bad_interrupt>
+      26:	00 00       	nop
+      28:	04 c1       	rjmp	.+520    	; 0x232 <__bad_interrupt>
+      2a:	00 00       	nop
+      2c:	02 c1       	rjmp	.+516    	; 0x232 <__bad_interrupt>
+      2e:	00 00       	nop
+      30:	00 c1       	rjmp	.+512    	; 0x232 <__bad_interrupt>
+      32:	00 00       	nop
+      34:	fe c0       	rjmp	.+508    	; 0x232 <__bad_interrupt>
+      36:	00 00       	nop
+      38:	27 c6       	rjmp	.+3150   	; 0xc88 <__vector_14>
+      3a:	00 00       	nop
+      3c:	fa c0       	rjmp	.+500    	; 0x232 <__bad_interrupt>
+      3e:	00 00       	nop
+      40:	f8 c0       	rjmp	.+496    	; 0x232 <__bad_interrupt>
+      42:	00 00       	nop
+      44:	f6 c0       	rjmp	.+492    	; 0x232 <__bad_interrupt>
+      46:	00 00       	nop
+      48:	f4 c0       	rjmp	.+488    	; 0x232 <__bad_interrupt>
+      4a:	00 00       	nop
+      4c:	f2 c0       	rjmp	.+484    	; 0x232 <__bad_interrupt>
+      4e:	00 00       	nop
+      50:	0c 94 35 08 	jmp	0x106a	; 0x106a <__vector_20>
+      54:	ee c0       	rjmp	.+476    	; 0x232 <__bad_interrupt>
+      56:	00 00       	nop
+      58:	ec c0       	rjmp	.+472    	; 0x232 <__bad_interrupt>
+      5a:	00 00       	nop
+      5c:	ea c0       	rjmp	.+468    	; 0x232 <__bad_interrupt>
+      5e:	00 00       	nop
+      60:	e8 c0       	rjmp	.+464    	; 0x232 <__bad_interrupt>
+      62:	00 00       	nop
+      64:	e6 c0       	rjmp	.+460    	; 0x232 <__bad_interrupt>
+      66:	00 00       	nop
+      68:	e4 c0       	rjmp	.+456    	; 0x232 <__bad_interrupt>
+      6a:	00 00       	nop
+      6c:	e2 c0       	rjmp	.+452    	; 0x232 <__bad_interrupt>
+      6e:	00 00       	nop
+      70:	e0 c0       	rjmp	.+448    	; 0x232 <__bad_interrupt>
+      72:	00 00       	nop
+      74:	de c0       	rjmp	.+444    	; 0x232 <__bad_interrupt>
+      76:	00 00       	nop
+      78:	dc c0       	rjmp	.+440    	; 0x232 <__bad_interrupt>
+      7a:	00 00       	nop
+      7c:	da c0       	rjmp	.+436    	; 0x232 <__bad_interrupt>
+      7e:	00 00       	nop
+      80:	d8 c0       	rjmp	.+432    	; 0x232 <__bad_interrupt>
+      82:	00 00       	nop
+      84:	d6 c0       	rjmp	.+428    	; 0x232 <__bad_interrupt>
+      86:	00 00       	nop
+      88:	d4 c0       	rjmp	.+424    	; 0x232 <__bad_interrupt>
+      8a:	00 00       	nop
+      8c:	d2 c0       	rjmp	.+420    	; 0x232 <__bad_interrupt>
+      8e:	00 00       	nop
+      90:	d0 c0       	rjmp	.+416    	; 0x232 <__bad_interrupt>
+      92:	00 00       	nop
+      94:	ce c0       	rjmp	.+412    	; 0x232 <__bad_interrupt>
+      96:	00 00       	nop
+      98:	cc c0       	rjmp	.+408    	; 0x232 <__bad_interrupt>
+      9a:	00 00       	nop
+      9c:	ca c0       	rjmp	.+404    	; 0x232 <__bad_interrupt>
+      9e:	00 00       	nop
+      a0:	c8 c0       	rjmp	.+400    	; 0x232 <__bad_interrupt>
+      a2:	00 00       	nop
+      a4:	c6 c0       	rjmp	.+396    	; 0x232 <__bad_interrupt>
+      a6:	00 00       	nop
+      a8:	c4 c0       	rjmp	.+392    	; 0x232 <__bad_interrupt>
+      aa:	00 00       	nop
+      ac:	c2 c0       	rjmp	.+388    	; 0x232 <__bad_interrupt>
+      ae:	00 00       	nop
+      b0:	c0 c0       	rjmp	.+384    	; 0x232 <__bad_interrupt>
+      b2:	00 00       	nop
+      b4:	be c0       	rjmp	.+380    	; 0x232 <__bad_interrupt>
+      b6:	00 00       	nop
+      b8:	bc c0       	rjmp	.+376    	; 0x232 <__bad_interrupt>
+      ba:	00 00       	nop
+      bc:	ba c0       	rjmp	.+372    	; 0x232 <__bad_interrupt>
+      be:	00 00       	nop
+      c0:	b8 c0       	rjmp	.+368    	; 0x232 <__bad_interrupt>
+      c2:	00 00       	nop
+      c4:	b6 c0       	rjmp	.+364    	; 0x232 <__bad_interrupt>
+      c6:	00 00       	nop
+      c8:	b4 c0       	rjmp	.+360    	; 0x232 <__bad_interrupt>
+      ca:	00 00       	nop
+      cc:	b2 c0       	rjmp	.+356    	; 0x232 <__bad_interrupt>
+      ce:	00 00       	nop
+      d0:	b0 c0       	rjmp	.+352    	; 0x232 <__bad_interrupt>
+      d2:	00 00       	nop
+      d4:	ae c0       	rjmp	.+348    	; 0x232 <__bad_interrupt>
+      d6:	00 00       	nop
+      d8:	ac c0       	rjmp	.+344    	; 0x232 <__bad_interrupt>
+      da:	00 00       	nop
+      dc:	aa c0       	rjmp	.+340    	; 0x232 <__bad_interrupt>
+      de:	00 00       	nop
+      e0:	a8 c0       	rjmp	.+336    	; 0x232 <__bad_interrupt>
+      e2:	00 00       	nop
+      e4:	a6 c0       	rjmp	.+332    	; 0x232 <__bad_interrupt>
+      e6:	00 00       	nop
+      e8:	a4 c0       	rjmp	.+328    	; 0x232 <__bad_interrupt>
+      ea:	00 00       	nop
+      ec:	a2 c0       	rjmp	.+324    	; 0x232 <__bad_interrupt>
+      ee:	00 00       	nop
+      f0:	a0 c0       	rjmp	.+320    	; 0x232 <__bad_interrupt>
+      f2:	00 00       	nop
+      f4:	9e c0       	rjmp	.+316    	; 0x232 <__bad_interrupt>
+      f6:	00 00       	nop
+      f8:	9c c0       	rjmp	.+312    	; 0x232 <__bad_interrupt>
+      fa:	00 00       	nop
+      fc:	9a c0       	rjmp	.+308    	; 0x232 <__bad_interrupt>
+      fe:	00 00       	nop
+     100:	1b c7       	rjmp	.+3638   	; 0xf38 <__vector_64>
+     102:	00 00       	nop
+     104:	3f c7       	rjmp	.+3710   	; 0xf84 <__vector_65>
+     106:	00 00       	nop
+     108:	94 c0       	rjmp	.+296    	; 0x232 <__bad_interrupt>
+     10a:	00 00       	nop
+     10c:	92 c0       	rjmp	.+292    	; 0x232 <__bad_interrupt>
+     10e:	00 00       	nop
+     110:	90 c0       	rjmp	.+288    	; 0x232 <__bad_interrupt>
+     112:	00 00       	nop
+     114:	8e c0       	rjmp	.+284    	; 0x232 <__bad_interrupt>
+     116:	00 00       	nop
+     118:	8c c0       	rjmp	.+280    	; 0x232 <__bad_interrupt>
+     11a:	00 00       	nop
+     11c:	8a c0       	rjmp	.+276    	; 0x232 <__bad_interrupt>
+     11e:	00 00       	nop
+     120:	88 c0       	rjmp	.+272    	; 0x232 <__bad_interrupt>
+     122:	00 00       	nop
+     124:	86 c0       	rjmp	.+268    	; 0x232 <__bad_interrupt>
+     126:	00 00       	nop
+     128:	84 c0       	rjmp	.+264    	; 0x232 <__bad_interrupt>
+     12a:	00 00       	nop
+     12c:	82 c0       	rjmp	.+260    	; 0x232 <__bad_interrupt>
+     12e:	00 00       	nop
+     130:	80 c0       	rjmp	.+256    	; 0x232 <__bad_interrupt>
+     132:	00 00       	nop
+     134:	7e c0       	rjmp	.+252    	; 0x232 <__bad_interrupt>
+     136:	00 00       	nop
+     138:	7c c0       	rjmp	.+248    	; 0x232 <__bad_interrupt>
+     13a:	00 00       	nop
+     13c:	7a c0       	rjmp	.+244    	; 0x232 <__bad_interrupt>
+     13e:	00 00       	nop
+     140:	78 c0       	rjmp	.+240    	; 0x232 <__bad_interrupt>
+     142:	00 00       	nop
+     144:	76 c0       	rjmp	.+236    	; 0x232 <__bad_interrupt>
+     146:	00 00       	nop
+     148:	74 c0       	rjmp	.+232    	; 0x232 <__bad_interrupt>
+     14a:	00 00       	nop
+     14c:	72 c0       	rjmp	.+228    	; 0x232 <__bad_interrupt>
+     14e:	00 00       	nop
+     150:	70 c0       	rjmp	.+224    	; 0x232 <__bad_interrupt>
+     152:	00 00       	nop
+     154:	6e c0       	rjmp	.+220    	; 0x232 <__bad_interrupt>
+     156:	00 00       	nop
+     158:	6c c0       	rjmp	.+216    	; 0x232 <__bad_interrupt>
+     15a:	00 00       	nop
+     15c:	6a c0       	rjmp	.+212    	; 0x232 <__bad_interrupt>
+     15e:	00 00       	nop
+     160:	68 c0       	rjmp	.+208    	; 0x232 <__bad_interrupt>
+     162:	00 00       	nop
+     164:	66 c0       	rjmp	.+204    	; 0x232 <__bad_interrupt>
+     166:	00 00       	nop
+     168:	64 c0       	rjmp	.+200    	; 0x232 <__bad_interrupt>
+     16a:	00 00       	nop
+     16c:	62 c0       	rjmp	.+196    	; 0x232 <__bad_interrupt>
+     16e:	00 00       	nop
+     170:	60 c0       	rjmp	.+192    	; 0x232 <__bad_interrupt>
+     172:	00 00       	nop
+     174:	5e c0       	rjmp	.+188    	; 0x232 <__bad_interrupt>
+     176:	00 00       	nop
+     178:	5c c0       	rjmp	.+184    	; 0x232 <__bad_interrupt>
+     17a:	00 00       	nop
+     17c:	5a c0       	rjmp	.+180    	; 0x232 <__bad_interrupt>
+     17e:	00 00       	nop
+     180:	58 c0       	rjmp	.+176    	; 0x232 <__bad_interrupt>
+     182:	00 00       	nop
+     184:	56 c0       	rjmp	.+172    	; 0x232 <__bad_interrupt>
+     186:	00 00       	nop
+     188:	54 c0       	rjmp	.+168    	; 0x232 <__bad_interrupt>
+     18a:	00 00       	nop
+     18c:	52 c0       	rjmp	.+164    	; 0x232 <__bad_interrupt>
+     18e:	00 00       	nop
+     190:	50 c0       	rjmp	.+160    	; 0x232 <__bad_interrupt>
+     192:	00 00       	nop
+     194:	4e c0       	rjmp	.+156    	; 0x232 <__bad_interrupt>
+     196:	00 00       	nop
+     198:	4c c0       	rjmp	.+152    	; 0x232 <__bad_interrupt>
+     19a:	00 00       	nop
+     19c:	4a c0       	rjmp	.+148    	; 0x232 <__bad_interrupt>
+     19e:	00 00       	nop
+     1a0:	48 c0       	rjmp	.+144    	; 0x232 <__bad_interrupt>
+     1a2:	00 00       	nop
+     1a4:	46 c0       	rjmp	.+140    	; 0x232 <__bad_interrupt>
+     1a6:	00 00       	nop
+     1a8:	44 c0       	rjmp	.+136    	; 0x232 <__bad_interrupt>
+     1aa:	00 00       	nop
+     1ac:	42 c0       	rjmp	.+132    	; 0x232 <__bad_interrupt>
+     1ae:	00 00       	nop
+     1b0:	40 c0       	rjmp	.+128    	; 0x232 <__bad_interrupt>
+     1b2:	00 00       	nop
+     1b4:	3e c0       	rjmp	.+124    	; 0x232 <__bad_interrupt>
+     1b6:	00 00       	nop
+     1b8:	3c c0       	rjmp	.+120    	; 0x232 <__bad_interrupt>
+     1ba:	00 00       	nop
+     1bc:	3a c0       	rjmp	.+116    	; 0x232 <__bad_interrupt>
+     1be:	00 00       	nop
+     1c0:	38 c0       	rjmp	.+112    	; 0x232 <__bad_interrupt>
+     1c2:	00 00       	nop
+     1c4:	36 c0       	rjmp	.+108    	; 0x232 <__bad_interrupt>
+     1c6:	00 00       	nop
+     1c8:	34 c0       	rjmp	.+104    	; 0x232 <__bad_interrupt>
+     1ca:	00 00       	nop
+     1cc:	32 c0       	rjmp	.+100    	; 0x232 <__bad_interrupt>
+     1ce:	00 00       	nop
+     1d0:	30 c0       	rjmp	.+96     	; 0x232 <__bad_interrupt>
+     1d2:	00 00       	nop
+     1d4:	2e c0       	rjmp	.+92     	; 0x232 <__bad_interrupt>
+     1d6:	00 00       	nop
+     1d8:	2c c0       	rjmp	.+88     	; 0x232 <__bad_interrupt>
+     1da:	00 00       	nop
+     1dc:	2a c0       	rjmp	.+84     	; 0x232 <__bad_interrupt>
+     1de:	00 00       	nop
+     1e0:	28 c0       	rjmp	.+80     	; 0x232 <__bad_interrupt>
+     1e2:	00 00       	nop
+     1e4:	26 c0       	rjmp	.+76     	; 0x232 <__bad_interrupt>
+     1e6:	00 00       	nop
+     1e8:	24 c0       	rjmp	.+72     	; 0x232 <__bad_interrupt>
+     1ea:	00 00       	nop
+     1ec:	22 c0       	rjmp	.+68     	; 0x232 <__bad_interrupt>
+     1ee:	00 00       	nop
+     1f0:	20 c0       	rjmp	.+64     	; 0x232 <__bad_interrupt>
+     1f2:	00 00       	nop
+     1f4:	58 c1       	rjmp	.+688    	; 0x4a6 <__vector_125>
+     1f6:	00 00       	nop
+     1f8:	1c c0       	rjmp	.+56     	; 0x232 <__bad_interrupt>
+	...
+
+000001fc <__ctors_end>:
+     1fc:	11 24       	eor	r1, r1
+     1fe:	1f be       	out	0x3f, r1	; 63
+     200:	cf ef       	ldi	r28, 0xFF	; 255
+     202:	cd bf       	out	0x3d, r28	; 61
+     204:	df e2       	ldi	r29, 0x2F	; 47
+     206:	de bf       	out	0x3e, r29	; 62
+
+00000208 <__do_copy_data>:
+     208:	10 e2       	ldi	r17, 0x20	; 32
+     20a:	a0 e0       	ldi	r26, 0x00	; 0
+     20c:	b0 e2       	ldi	r27, 0x20	; 32
+     20e:	e8 eb       	ldi	r30, 0xB8	; 184
+     210:	f0 e1       	ldi	r31, 0x10	; 16
+     212:	02 c0       	rjmp	.+4      	; 0x218 <__do_copy_data+0x10>
+     214:	05 90       	lpm	r0, Z+
+     216:	0d 92       	st	X+, r0
+     218:	a4 30       	cpi	r26, 0x04	; 4
+     21a:	b1 07       	cpc	r27, r17
+     21c:	d9 f7       	brne	.-10     	; 0x214 <__do_copy_data+0xc>
+
+0000021e <__do_clear_bss>:
+     21e:	24 e2       	ldi	r18, 0x24	; 36
+     220:	a4 e0       	ldi	r26, 0x04	; 4
+     222:	b0 e2       	ldi	r27, 0x20	; 32
+     224:	01 c0       	rjmp	.+2      	; 0x228 <.do_clear_bss_start>
+
+00000226 <.do_clear_bss_loop>:
+     226:	1d 92       	st	X+, r1
+
+00000228 <.do_clear_bss_start>:
+     228:	ac 39       	cpi	r26, 0x9C	; 156
+     22a:	b2 07       	cpc	r27, r18
+     22c:	e1 f7       	brne	.-8      	; 0x226 <.do_clear_bss_loop>
+     22e:	28 d5       	rcall	.+2640   	; 0xc80 <main>
+     230:	41 c7       	rjmp	.+3714   	; 0x10b4 <_exit>
+
+00000232 <__bad_interrupt>:
+     232:	e6 ce       	rjmp	.-564    	; 0x0 <__vectors>
+
+00000234 <USB_Event_Stub>:
+#define  __INCLUDE_FROM_EVENTS_C
+#define  __INCLUDE_FROM_USB_DRIVER
+#include "Events.h"
+
+void USB_Event_Stub(void)
+{
+     234:	08 95       	ret
+
+00000236 <Endpoint_SelectEndpoint>:
+			return false;
+		}
+	}
+
+	return true;
+}
+     236:	80 93 1c 20 	sts	0x201C, r24	; 0x80201c <USB_Endpoint_SelectedEndpoint>
+     23a:	28 2f       	mov	r18, r24
+     23c:	2f 70       	andi	r18, 0x0F	; 15
+     23e:	30 e0       	ldi	r19, 0x00	; 0
+     240:	40 91 c6 04 	lds	r20, 0x04C6	; 0x8004c6 <__TEXT_REGION_LENGTH__+0x7004c6>
+     244:	50 91 c7 04 	lds	r21, 0x04C7	; 0x8004c7 <__TEXT_REGION_LENGTH__+0x7004c7>
+     248:	88 23       	and	r24, r24
+     24a:	e4 f4       	brge	.+56     	; 0x284 <Endpoint_SelectEndpoint+0x4e>
+     24c:	64 e8       	ldi	r22, 0x84	; 132
+     24e:	62 9f       	mul	r22, r18
+     250:	c0 01       	movw	r24, r0
+     252:	63 9f       	mul	r22, r19
+     254:	90 0d       	add	r25, r0
+     256:	11 24       	eor	r1, r1
+     258:	81 5a       	subi	r24, 0xA1	; 161
+     25a:	9f 4d       	sbci	r25, 0xDF	; 223
+     25c:	80 93 18 20 	sts	0x2018, r24	; 0x802018 <USB_Endpoint_SelectedFIFO>
+     260:	90 93 19 20 	sts	0x2019, r25	; 0x802019 <USB_Endpoint_SelectedFIFO+0x1>
+     264:	c9 01       	movw	r24, r18
+     266:	82 95       	swap	r24
+     268:	92 95       	swap	r25
+     26a:	90 7f       	andi	r25, 0xF0	; 240
+     26c:	98 27       	eor	r25, r24
+     26e:	80 7f       	andi	r24, 0xF0	; 240
+     270:	98 27       	eor	r25, r24
+     272:	08 96       	adiw	r24, 0x08	; 8
+     274:	9a 01       	movw	r18, r20
+     276:	28 0f       	add	r18, r24
+     278:	39 1f       	adc	r19, r25
+     27a:	20 93 1a 20 	sts	0x201A, r18	; 0x80201a <USB_Endpoint_SelectedHandle>
+     27e:	30 93 1b 20 	sts	0x201B, r19	; 0x80201b <USB_Endpoint_SelectedHandle+0x1>
+     282:	08 95       	ret
+     284:	64 e8       	ldi	r22, 0x84	; 132
+     286:	62 9f       	mul	r22, r18
+     288:	c0 01       	movw	r24, r0
+     28a:	63 9f       	mul	r22, r19
+     28c:	90 0d       	add	r25, r0
+     28e:	11 24       	eor	r1, r1
+     290:	83 5e       	subi	r24, 0xE3	; 227
+     292:	9f 4d       	sbci	r25, 0xDF	; 223
+     294:	80 93 18 20 	sts	0x2018, r24	; 0x802018 <USB_Endpoint_SelectedFIFO>
+     298:	90 93 19 20 	sts	0x2019, r25	; 0x802019 <USB_Endpoint_SelectedFIFO+0x1>
+     29c:	22 95       	swap	r18
+     29e:	32 95       	swap	r19
+     2a0:	30 7f       	andi	r19, 0xF0	; 240
+     2a2:	32 27       	eor	r19, r18
+     2a4:	20 7f       	andi	r18, 0xF0	; 240
+     2a6:	32 27       	eor	r19, r18
+     2a8:	24 0f       	add	r18, r20
+     2aa:	35 1f       	adc	r19, r21
+     2ac:	20 93 1a 20 	sts	0x201A, r18	; 0x80201a <USB_Endpoint_SelectedHandle>
+     2b0:	30 93 1b 20 	sts	0x201B, r19	; 0x80201b <USB_Endpoint_SelectedHandle+0x1>
+     2b4:	08 95       	ret
+
+000002b6 <Endpoint_ConfigureEndpoint_PRV>:
+     2b6:	1f 93       	push	r17
+     2b8:	cf 93       	push	r28
+     2ba:	df 93       	push	r29
+     2bc:	d8 2f       	mov	r29, r24
+     2be:	16 2f       	mov	r17, r22
+     2c0:	c4 2f       	mov	r28, r20
+     2c2:	b9 df       	rcall	.-142    	; 0x236 <Endpoint_SelectEndpoint>
+     2c4:	e0 91 1a 20 	lds	r30, 0x201A	; 0x80201a <USB_Endpoint_SelectedHandle>
+     2c8:	f0 91 1b 20 	lds	r31, 0x201B	; 0x80201b <USB_Endpoint_SelectedHandle+0x1>
+     2cc:	11 82       	std	Z+1, r1	; 0x01
+     2ce:	e0 91 1a 20 	lds	r30, 0x201A	; 0x80201a <USB_Endpoint_SelectedHandle>
+     2d2:	f0 91 1b 20 	lds	r31, 0x201B	; 0x80201b <USB_Endpoint_SelectedHandle+0x1>
+     2d6:	dd 23       	and	r29, r29
+     2d8:	a4 f0       	brlt	.+40     	; 0x302 <Endpoint_ConfigureEndpoint_PRV+0x4c>
+     2da:	10 82       	st	Z, r1
+     2dc:	e0 91 1a 20 	lds	r30, 0x201A	; 0x80201a <USB_Endpoint_SelectedHandle>
+     2e0:	f0 91 1b 20 	lds	r31, 0x201B	; 0x80201b <USB_Endpoint_SelectedHandle+0x1>
+     2e4:	11 83       	std	Z+1, r17	; 0x01
+     2e6:	e0 91 1a 20 	lds	r30, 0x201A	; 0x80201a <USB_Endpoint_SelectedHandle>
+     2ea:	f0 91 1b 20 	lds	r31, 0x201B	; 0x80201b <USB_Endpoint_SelectedHandle+0x1>
+     2ee:	12 82       	std	Z+2, r1	; 0x02
+     2f0:	13 82       	std	Z+3, r1	; 0x03
+     2f2:	80 91 18 20 	lds	r24, 0x2018	; 0x802018 <USB_Endpoint_SelectedFIFO>
+     2f6:	90 91 19 20 	lds	r25, 0x2019	; 0x802019 <USB_Endpoint_SelectedFIFO+0x1>
+     2fa:	84 83       	std	Z+4, r24	; 0x04
+     2fc:	95 83       	std	Z+5, r25	; 0x05
+     2fe:	40 e0       	ldi	r20, 0x00	; 0
+     300:	14 c0       	rjmp	.+40     	; 0x32a <Endpoint_ConfigureEndpoint_PRV+0x74>
+     302:	82 e0       	ldi	r24, 0x02	; 2
+     304:	80 83       	st	Z, r24
+     306:	e0 91 1a 20 	lds	r30, 0x201A	; 0x80201a <USB_Endpoint_SelectedHandle>
+     30a:	f0 91 1b 20 	lds	r31, 0x201B	; 0x80201b <USB_Endpoint_SelectedHandle+0x1>
+     30e:	11 83       	std	Z+1, r17	; 0x01
+     310:	e0 91 1a 20 	lds	r30, 0x201A	; 0x80201a <USB_Endpoint_SelectedHandle>
+     314:	f0 91 1b 20 	lds	r31, 0x201B	; 0x80201b <USB_Endpoint_SelectedHandle+0x1>
+     318:	12 82       	std	Z+2, r1	; 0x02
+     31a:	13 82       	std	Z+3, r1	; 0x03
+     31c:	80 91 18 20 	lds	r24, 0x2018	; 0x802018 <USB_Endpoint_SelectedFIFO>
+     320:	90 91 19 20 	lds	r25, 0x2019	; 0x802019 <USB_Endpoint_SelectedFIFO+0x1>
+     324:	84 83       	std	Z+4, r24	; 0x04
+     326:	95 83       	std	Z+5, r25	; 0x05
+     328:	4c 2f       	mov	r20, r28
+     32a:	fc 01       	movw	r30, r24
+     32c:	e0 5c       	subi	r30, 0xC0	; 192
+     32e:	ff 4f       	sbci	r31, 0xFF	; 255
+     330:	40 83       	st	Z, r20
+     332:	31 96       	adiw	r30, 0x01	; 1
+     334:	10 82       	st	Z, r1
+     336:	81 e0       	ldi	r24, 0x01	; 1
+     338:	df 91       	pop	r29
+     33a:	cf 91       	pop	r28
+     33c:	1f 91       	pop	r17
+     33e:	08 95       	ret
+
+00000340 <Endpoint_ClearEndpoints>:
+
+	return true;
+}
+
+void Endpoint_ClearEndpoints(void)
+{
+     340:	20 e0       	ldi	r18, 0x00	; 0
+     342:	30 e0       	ldi	r19, 0x00	; 0
+	for (uint8_t EPNum = 0; EPNum < ENDPOINT_TOTAL_ENDPOINTS; EPNum++)
+	{
+		((USB_EndpointTable_t*)USB.EPPTR)->Endpoints[EPNum].IN.CTRL  = 0;
+     344:	a0 ec       	ldi	r26, 0xC0	; 192
+     346:	b4 e0       	ldi	r27, 0x04	; 4
+     348:	16 96       	adiw	r26, 0x06	; 6
+     34a:	ed 91       	ld	r30, X+
+     34c:	fc 91       	ld	r31, X
+     34e:	17 97       	sbiw	r26, 0x07	; 7
+     350:	c9 01       	movw	r24, r18
+     352:	82 95       	swap	r24
+     354:	92 95       	swap	r25
+     356:	90 7f       	andi	r25, 0xF0	; 240
+     358:	98 27       	eor	r25, r24
+     35a:	80 7f       	andi	r24, 0xF0	; 240
+     35c:	98 27       	eor	r25, r24
+     35e:	e8 0f       	add	r30, r24
+     360:	f9 1f       	adc	r31, r25
+     362:	11 86       	std	Z+9, r1	; 0x09
+		((USB_EndpointTable_t*)USB.EPPTR)->Endpoints[EPNum].OUT.CTRL = 0;
+     364:	16 96       	adiw	r26, 0x06	; 6
+     366:	4d 91       	ld	r20, X+
+     368:	5c 91       	ld	r21, X
+     36a:	17 97       	sbiw	r26, 0x07	; 7
+     36c:	fa 01       	movw	r30, r20
+     36e:	e8 0f       	add	r30, r24
+     370:	f9 1f       	adc	r31, r25
+     372:	11 82       	std	Z+1, r1	; 0x01
+     374:	2f 5f       	subi	r18, 0xFF	; 255
+     376:	3f 4f       	sbci	r19, 0xFF	; 255
+	return true;
+}
+
+void Endpoint_ClearEndpoints(void)
+{
+	for (uint8_t EPNum = 0; EPNum < ENDPOINT_TOTAL_ENDPOINTS; EPNum++)
+     378:	25 30       	cpi	r18, 0x05	; 5
+     37a:	31 05       	cpc	r19, r1
+     37c:	29 f7       	brne	.-54     	; 0x348 <Endpoint_ClearEndpoints+0x8>
+	{
+		((USB_EndpointTable_t*)USB.EPPTR)->Endpoints[EPNum].IN.CTRL  = 0;
+		((USB_EndpointTable_t*)USB.EPPTR)->Endpoints[EPNum].OUT.CTRL = 0;
+	}
+}
+     37e:	08 95       	ret
+
+00000380 <USB_ResetInterface>:
+}
+
+void USB_ResetInterface(void)
+{
+	#if defined(USB_DEVICE_OPT_FULLSPEED)
+	if (USB_Options & USB_DEVICE_OPT_LOWSPEED)
+     380:	80 91 04 23 	lds	r24, 0x2304	; 0x802304 <USB_Options>
+     384:	80 ff       	sbrs	r24, 0
+     386:	04 c0       	rjmp	.+8      	; 0x390 <USB_ResetInterface+0x10>
+	  CLK.USBCTRL = (((F_USB / 6000000) - 1) << CLK_USBPSDIV_gp);
+     388:	88 e3       	ldi	r24, 0x38	; 56
+     38a:	80 93 44 00 	sts	0x0044, r24	; 0x800044 <__TEXT_REGION_LENGTH__+0x700044>
+     38e:	02 c0       	rjmp	.+4      	; 0x394 <USB_ResetInterface+0x14>
+	else
+	  CLK.USBCTRL = (((F_USB / 48000000) - 1) << CLK_USBPSDIV_gp);
+     390:	10 92 44 00 	sts	0x0044, r1	; 0x800044 <__TEXT_REGION_LENGTH__+0x700044>
+	#else
+	CLK.USBCTRL = (((F_USB / 6000000) - 1) << CLK_USBPSDIV_gp);
+	#endif
+
+	if (USB_Options & USB_OPT_PLLCLKSRC)
+     394:	80 91 04 23 	lds	r24, 0x2304	; 0x802304 <USB_Options>
+     398:	83 ff       	sbrs	r24, 3
+     39a:	06 c0       	rjmp	.+12     	; 0x3a8 <USB_ResetInterface+0x28>
+	  CLK.USBCTRL |= (CLK_USBSRC_PLL_gc   | CLK_USBSEN_bm);
+     39c:	e0 e4       	ldi	r30, 0x40	; 64
+     39e:	f0 e0       	ldi	r31, 0x00	; 0
+     3a0:	84 81       	ldd	r24, Z+4	; 0x04
+     3a2:	81 60       	ori	r24, 0x01	; 1
+     3a4:	84 83       	std	Z+4, r24	; 0x04
+     3a6:	05 c0       	rjmp	.+10     	; 0x3b2 <USB_ResetInterface+0x32>
+	else
+	  CLK.USBCTRL |= (CLK_USBSRC_RC32M_gc | CLK_USBSEN_bm);
+     3a8:	e0 e4       	ldi	r30, 0x40	; 64
+     3aa:	f0 e0       	ldi	r31, 0x00	; 0
+     3ac:	84 81       	ldd	r24, Z+4	; 0x04
+     3ae:	83 60       	ori	r24, 0x03	; 3
+     3b0:	84 83       	std	Z+4, r24	; 0x04
+
+	USB_Device_SetDeviceAddress(0);
+
+	USB_INT_DisableAllInterrupts();
+     3b2:	6c d0       	rcall	.+216    	; 0x48c <USB_INT_DisableAllInterrupts>
+	USB_INT_ClearAllInterrupts();
+     3b4:	72 d0       	rcall	.+228    	; 0x49a <USB_INT_ClearAllInterrupts>
+     3b6:	e0 ec       	ldi	r30, 0xC0	; 192
+			}
+
+			static inline void USB_Controller_Reset(void) ATTR_ALWAYS_INLINE;
+			static inline void USB_Controller_Reset(void)
+			{
+				USB.CTRLA &= ~USB_ENABLE_bm;
+     3b8:	f4 e0       	ldi	r31, 0x04	; 4
+     3ba:	80 81       	ld	r24, Z
+     3bc:	8f 77       	andi	r24, 0x7F	; 127
+     3be:	80 83       	st	Z, r24
+     3c0:	80 81       	ld	r24, Z
+				USB.CTRLA |=  USB_ENABLE_bm;
+     3c2:	80 68       	ori	r24, 0x80	; 128
+     3c4:	80 83       	st	Z, r24
+     3c6:	10 92 0f 20 	sts	0x200F, r1	; 0x80200f <USB_DeviceState>
+}
+
+#if defined(USB_CAN_BE_DEVICE)
+static void USB_Init_Device(void)
+{
+	USB_DeviceState                 = DEVICE_STATE_Unattached;
+     3ca:	10 92 0b 20 	sts	0x200B, r1	; 0x80200b <USB_Device_ConfigurationNumber>
+	USB_Device_ConfigurationNumber  = 0;
+     3ce:	10 92 0d 20 	sts	0x200D, r1	; 0x80200d <USB_Device_RemoteWakeupEnabled>
+
+	#if !defined(NO_DEVICE_REMOTE_WAKEUP)
+	USB_Device_RemoteWakeupEnabled  = false;
+     3d2:	10 92 0c 20 	sts	0x200C, r1	; 0x80200c <USB_Device_CurrentlySelfPowered>
+	#endif
+
+	#if !defined(NO_DEVICE_SELF_POWER)
+	USB_Device_CurrentlySelfPowered = false;
+     3d6:	80 91 04 23 	lds	r24, 0x2304	; 0x802304 <USB_Options>
+		#endif
+	}
+	#endif
+	#endif
+
+	if (USB_Options & USB_DEVICE_OPT_LOWSPEED)
+     3da:	80 ff       	sbrs	r24, 0
+     3dc:	04 c0       	rjmp	.+8      	; 0x3e6 <USB_ResetInterface+0x66>
+     3de:	80 81       	ld	r24, Z
+	#if !defined(__DOXYGEN__)
+		/* Inline Functions: */
+			static inline void USB_Device_SetLowSpeed(void) ATTR_ALWAYS_INLINE;
+			static inline void USB_Device_SetLowSpeed(void)
+			{
+				USB.CTRLA &= ~USB_SPEED_bm;
+     3e0:	8f 7b       	andi	r24, 0xBF	; 191
+     3e2:	80 83       	st	Z, r24
+     3e4:	05 c0       	rjmp	.+10     	; 0x3f0 <USB_ResetInterface+0x70>
+     3e6:	e0 ec       	ldi	r30, 0xC0	; 192
+			}
+
+			static inline void USB_Device_SetFullSpeed(void) ATTR_ALWAYS_INLINE;
+			static inline void USB_Device_SetFullSpeed(void)
+			{
+				USB.CTRLA |=  USB_SPEED_bm;
+     3e8:	f4 e0       	ldi	r31, 0x04	; 4
+     3ea:	80 81       	ld	r24, Z
+     3ec:	80 64       	ori	r24, 0x40	; 64
+     3ee:	80 83       	st	Z, r24
+     3f0:	48 e0       	ldi	r20, 0x08	; 8
+						EPConfigMask |= USB_EP_TYPE_BULK_gc;
+						break;
+				}
+
+				if (Type == EP_TYPE_CONTROL)
+				  Endpoint_ConfigureEndpoint_PRV(Address ^ ENDPOINT_DIR_IN, EPConfigMask, Size);
+     3f2:	68 e4       	ldi	r22, 0x48	; 72
+     3f4:	80 e8       	ldi	r24, 0x80	; 128
+     3f6:	5f df       	rcall	.-322    	; 0x2b6 <Endpoint_ConfigureEndpoint_PRV>
+     3f8:	48 e0       	ldi	r20, 0x08	; 8
+
+				return Endpoint_ConfigureEndpoint_PRV(Address, EPConfigMask, Size);
+     3fa:	68 e4       	ldi	r22, 0x48	; 72
+     3fc:	80 e0       	ldi	r24, 0x00	; 0
+     3fe:	5b df       	rcall	.-330    	; 0x2b6 <Endpoint_ConfigureEndpoint_PRV>
+     400:	e0 ec       	ldi	r30, 0xC0	; 192
+			static inline void USB_INT_Enable(const uint8_t Interrupt)
+			{
+				switch (Interrupt)
+				{
+					case USB_INT_BUSEVENTI:
+						USB.INTCTRLA |= USB_BUSEVIE_bm;
+     402:	f4 e0       	ldi	r31, 0x04	; 4
+     404:	80 85       	ldd	r24, Z+8	; 0x08
+     406:	80 64       	ori	r24, 0x40	; 64
+     408:	80 87       	std	Z+8, r24	; 0x08
+     40a:	81 81       	ldd	r24, Z+1	; 0x01
+			 *  register and despite the datasheet making no mention of its requirement in host mode.
+			 */
+			static inline void USB_Attach(void) ATTR_ALWAYS_INLINE;
+			static inline void USB_Attach(void)
+			{
+				USB.CTRLB |= USB_ATTACH_bm;
+     40c:	81 60       	ori	r24, 0x01	; 1
+     40e:	81 83       	std	Z+1, r24	; 0x01
+     410:	08 95       	ret
+
+00000412 <USB_Init>:
+     412:	cf 93       	push	r28
+
+               #if !defined(USE_STATIC_OPTIONS)
+               const uint8_t Options
+               #endif
+               )
+{
+     414:	df 93       	push	r29
+	#if !defined(USE_STATIC_OPTIONS)
+	USB_Options = Options;
+     416:	80 93 04 23 	sts	0x2304, r24	; 0x802304 <USB_Options>
+				#if (ARCH == ARCH_AVR8)
+				return SREG;
+				#elif (ARCH == ARCH_UC3)
+				return __builtin_mfsr(AVR32_SR);
+				#elif (ARCH == ARCH_XMEGA)
+				return SREG;
+     41a:	2f b7       	in	r18, 0x3f	; 63
+				#if (ARCH == ARCH_AVR8)
+				cli();
+				#elif (ARCH == ARCH_UC3)
+				__builtin_ssrf(AVR32_SR_GM_OFFSET);
+				#elif (ARCH == ARCH_XMEGA)
+				cli();
+     41c:	f8 94       	cli
+	#endif
+
+	uint_reg_t CurrentGlobalInt = GetGlobalInterruptMask();
+	GlobalInterruptDisable();
+
+	NVM.CMD  = NVM_CMD_READ_CALIB_ROW_gc;
+     41e:	c0 ec       	ldi	r28, 0xC0	; 192
+     420:	d1 e0       	ldi	r29, 0x01	; 1
+     422:	82 e0       	ldi	r24, 0x02	; 2
+     424:	8a 87       	std	Y+10, r24	; 0x0a
+	USB.CAL0 = pgm_read_byte(offsetof(NVM_PROD_SIGNATURES_t, USBCAL0));
+     426:	ea e1       	ldi	r30, 0x1A	; 26
+     428:	f0 e0       	ldi	r31, 0x00	; 0
+     42a:	e4 91       	lpm	r30, Z
+     42c:	a0 ec       	ldi	r26, 0xC0	; 192
+     42e:	b4 e0       	ldi	r27, 0x04	; 4
+     430:	da 96       	adiw	r26, 0x3a	; 58
+     432:	ec 93       	st	X, r30
+     434:	da 97       	sbiw	r26, 0x3a	; 58
+	USB.CAL1 = pgm_read_byte(offsetof(NVM_PROD_SIGNATURES_t, USBCAL1));
+     436:	eb e1       	ldi	r30, 0x1B	; 27
+     438:	f0 e0       	ldi	r31, 0x00	; 0
+     43a:	e4 91       	lpm	r30, Z
+     43c:	db 96       	adiw	r26, 0x3b	; 59
+     43e:	ec 93       	st	X, r30
+     440:	db 97       	sbiw	r26, 0x3b	; 59
+	NVM.CMD  = NVM_CMD_NO_OPERATION_gc;
+     442:	1a 86       	std	Y+10, r1	; 0x0a
+
+	/* Ugly workaround to ensure an aligned table, since __BIGGEST_ALIGNMENT__ == 1 for the 8-bit AVR-GCC toolchain */
+	USB.EPPTR = ((intptr_t)&USB_EndpointTable[1] & ~(1 << 0));
+     444:	82 eb       	ldi	r24, 0xB2	; 178
+     446:	92 e2       	ldi	r25, 0x22	; 34
+     448:	8e 7f       	andi	r24, 0xFE	; 254
+     44a:	16 96       	adiw	r26, 0x06	; 6
+     44c:	8d 93       	st	X+, r24
+     44e:	9c 93       	st	X, r25
+     450:	17 97       	sbiw	r26, 0x07	; 7
+	USB.CTRLA = (USB_STFRNUM_bm | ((ENDPOINT_TOTAL_ENDPOINTS - 1) << USB_MAXEP_gp));
+     452:	84 e1       	ldi	r24, 0x14	; 20
+     454:	8c 93       	st	X, r24
+
+	if ((USB_Options & USB_OPT_BUSEVENT_PRIHIGH) == USB_OPT_BUSEVENT_PRIHIGH)
+     456:	80 91 04 23 	lds	r24, 0x2304	; 0x802304 <USB_Options>
+     45a:	82 ff       	sbrs	r24, 2
+     45c:	04 c0       	rjmp	.+8      	; 0x466 <USB_Init+0x54>
+	  USB.INTCTRLA = (3 << USB_INTLVL_gp);
+     45e:	83 e0       	ldi	r24, 0x03	; 3
+     460:	80 93 c8 04 	sts	0x04C8, r24	; 0x8004c8 <__TEXT_REGION_LENGTH__+0x7004c8>
+     464:	0b c0       	rjmp	.+22     	; 0x47c <USB_Init+0x6a>
+	else if ((USB_Options & USB_OPT_BUSEVENT_PRIMED) == USB_OPT_BUSEVENT_PRIMED)
+     466:	80 91 04 23 	lds	r24, 0x2304	; 0x802304 <USB_Options>
+     46a:	81 ff       	sbrs	r24, 1
+     46c:	04 c0       	rjmp	.+8      	; 0x476 <USB_Init+0x64>
+	  USB.INTCTRLA = (2 << USB_INTLVL_gp);
+     46e:	82 e0       	ldi	r24, 0x02	; 2
+     470:	80 93 c8 04 	sts	0x04C8, r24	; 0x8004c8 <__TEXT_REGION_LENGTH__+0x7004c8>
+     474:	03 c0       	rjmp	.+6      	; 0x47c <USB_Init+0x6a>
+	else
+	  USB.INTCTRLA = (1 << USB_INTLVL_gp);
+     476:	81 e0       	ldi	r24, 0x01	; 1
+     478:	80 93 c8 04 	sts	0x04C8, r24	; 0x8004c8 <__TEXT_REGION_LENGTH__+0x7004c8>
+				if (GlobalIntState & AVR32_SR_GM)
+				  __builtin_ssrf(AVR32_SR_GM_OFFSET);
+				else
+				  __builtin_csrf(AVR32_SR_GM_OFFSET);
+				#elif (ARCH == ARCH_XMEGA)
+				SREG = GlobalIntState;
+     47c:	2f bf       	out	0x3f, r18	; 63
+
+	#if defined(USB_CAN_BE_BOTH)
+	USB_CurrentMode = Mode;
+	#endif
+
+	USB_IsInitialized = true;
+     47e:	81 e0       	ldi	r24, 0x01	; 1
+     480:	80 93 0e 20 	sts	0x200E, r24	; 0x80200e <USB_IsInitialized>
+
+	USB_ResetInterface();
+     484:	7d df       	rcall	.-262    	; 0x380 <USB_ResetInterface>
+}
+     486:	df 91       	pop	r29
+     488:	cf 91       	pop	r28
+     48a:	08 95       	ret
+
+0000048c <USB_INT_DisableAllInterrupts>:
+#define  __INCLUDE_FROM_USB_DRIVER
+#include "../USBInterrupt.h"
+
+void USB_INT_DisableAllInterrupts(void)
+{
+	USB.INTCTRLA    &= USB_INTLVL_gm;
+     48c:	e0 ec       	ldi	r30, 0xC0	; 192
+     48e:	f4 e0       	ldi	r31, 0x04	; 4
+     490:	80 85       	ldd	r24, Z+8	; 0x08
+     492:	83 70       	andi	r24, 0x03	; 3
+     494:	80 87       	std	Z+8, r24	; 0x08
+	USB.INTCTRLB     = 0;
+     496:	11 86       	std	Z+9, r1	; 0x09
+     498:	08 95       	ret
+
+0000049a <USB_INT_ClearAllInterrupts>:
+}
+
+void USB_INT_ClearAllInterrupts(void)
+{
+	USB.INTFLAGSACLR = 0xFF;
+     49a:	e0 ec       	ldi	r30, 0xC0	; 192
+     49c:	f4 e0       	ldi	r31, 0x04	; 4
+     49e:	8f ef       	ldi	r24, 0xFF	; 255
+     4a0:	82 87       	std	Z+10, r24	; 0x0a
+	USB.INTFLAGSBCLR = 0xFF;
+     4a2:	84 87       	std	Z+12, r24	; 0x0c
+     4a4:	08 95       	ret
+
+000004a6 <__vector_125>:
+}
+
+ISR(USB_BUSEVENT_vect)
+{
+     4a6:	1f 92       	push	r1
+     4a8:	0f 92       	push	r0
+     4aa:	0f b6       	in	r0, 0x3f	; 63
+     4ac:	0f 92       	push	r0
+     4ae:	11 24       	eor	r1, r1
+     4b0:	2f 93       	push	r18
+     4b2:	3f 93       	push	r19
+     4b4:	4f 93       	push	r20
+     4b6:	5f 93       	push	r21
+     4b8:	6f 93       	push	r22
+     4ba:	7f 93       	push	r23
+     4bc:	8f 93       	push	r24
+     4be:	9f 93       	push	r25
+     4c0:	af 93       	push	r26
+     4c2:	bf 93       	push	r27
+     4c4:	ef 93       	push	r30
+     4c6:	ff 93       	push	r31
+					case USB_INT_BUSEVENTI_Resume:
+						return ((USB.INTFLAGSACLR & USB_RESUMEIF_bm) ? true : false);
+					case USB_INT_BUSEVENTI_Reset:
+						return ((USB.INTFLAGSACLR & USB_RSTIF_bm) ? true : false);
+					case USB_INT_SOFI:
+						return ((USB.INTFLAGSACLR & USB_SOFIF_bm) ? true : false);
+     4c8:	80 91 ca 04 	lds	r24, 0x04CA	; 0x8004ca <__TEXT_REGION_LENGTH__+0x7004ca>
+	#if !defined(NO_SOF_EVENTS)
+	if (USB_INT_HasOccurred(USB_INT_SOFI) && USB_INT_IsEnabled(USB_INT_SOFI))
+     4cc:	88 23       	and	r24, r24
+     4ce:	44 f4       	brge	.+16     	; 0x4e0 <__vector_125+0x3a>
+				switch (Interrupt)
+				{
+					case USB_INT_BUSEVENTI:
+						return ((USB.INTCTRLA & USB_BUSEVIE_bm) ? true : false);
+					case USB_INT_SOFI:
+						return ((USB.INTCTRLA & USB_SOFIE_bm) ? true : false);
+     4d0:	80 91 c8 04 	lds	r24, 0x04C8	; 0x8004c8 <__TEXT_REGION_LENGTH__+0x7004c8>
+     4d4:	88 23       	and	r24, r24
+     4d6:	24 f4       	brge	.+8      	; 0x4e0 <__vector_125+0x3a>
+						break;
+					case USB_INT_BUSEVENTI_Reset:
+						USB.INTFLAGSACLR = USB_RSTIF_bm;
+						break;
+					case USB_INT_SOFI:
+						USB.INTFLAGSACLR = USB_SOFIF_bm;
+     4d8:	80 e8       	ldi	r24, 0x80	; 128
+     4da:	80 93 ca 04 	sts	0x04CA, r24	; 0x8004ca <__TEXT_REGION_LENGTH__+0x7004ca>
+	{
+		USB_INT_Clear(USB_INT_SOFI);
+
+		EVENT_USB_Device_StartOfFrame();
+     4de:	aa de       	rcall	.-684    	; 0x234 <USB_Event_Stub>
+			static inline bool USB_INT_HasOccurred(const uint8_t Interrupt)
+			{
+				switch (Interrupt)
+				{
+					case USB_INT_BUSEVENTI_Suspend:
+						return ((USB.INTFLAGSACLR & USB_SUSPENDIF_bm) ? true : false);
+     4e0:	80 91 ca 04 	lds	r24, 0x04CA	; 0x8004ca <__TEXT_REGION_LENGTH__+0x7004ca>
+	}
+	#endif
+
+	if (USB_INT_HasOccurred(USB_INT_BUSEVENTI_Suspend))
+     4e4:	86 ff       	sbrs	r24, 6
+     4e6:	06 c0       	rjmp	.+12     	; 0x4f4 <__vector_125+0x4e>
+			static inline void USB_INT_Clear(const uint8_t Interrupt)
+			{
+				switch (Interrupt)
+				{
+					case USB_INT_BUSEVENTI_Suspend:
+						USB.INTFLAGSACLR = USB_SUSPENDIF_bm;
+     4e8:	80 e4       	ldi	r24, 0x40	; 64
+     4ea:	80 93 ca 04 	sts	0x04CA, r24	; 0x8004ca <__TEXT_REGION_LENGTH__+0x7004ca>
+	{
+		USB_INT_Clear(USB_INT_BUSEVENTI_Suspend);
+
+		#if !defined(NO_LIMITED_CONTROLLER_CONNECT)
+		USB_DeviceState = DEVICE_STATE_Unattached;
+     4ee:	10 92 0f 20 	sts	0x200F, r1	; 0x80200f <USB_DeviceState>
+		EVENT_USB_Device_Disconnect();
+     4f2:	c8 d3       	rcall	.+1936   	; 0xc84 <EVENT_USB_Device_Disconnect>
+				switch (Interrupt)
+				{
+					case USB_INT_BUSEVENTI_Suspend:
+						return ((USB.INTFLAGSACLR & USB_SUSPENDIF_bm) ? true : false);
+					case USB_INT_BUSEVENTI_Resume:
+						return ((USB.INTFLAGSACLR & USB_RESUMEIF_bm) ? true : false);
+     4f4:	80 91 ca 04 	lds	r24, 0x04CA	; 0x8004ca <__TEXT_REGION_LENGTH__+0x7004ca>
+		USB_DeviceState = DEVICE_STATE_Suspended;
+		EVENT_USB_Device_Suspend();
+		#endif
+	}
+
+	if (USB_INT_HasOccurred(USB_INT_BUSEVENTI_Resume))
+     4f8:	85 ff       	sbrs	r24, 5
+     4fa:	15 c0       	rjmp	.+42     	; 0x526 <__vector_125+0x80>
+				{
+					case USB_INT_BUSEVENTI_Suspend:
+						USB.INTFLAGSACLR = USB_SUSPENDIF_bm;
+						break;
+					case USB_INT_BUSEVENTI_Resume:
+						USB.INTFLAGSACLR = USB_RESUMEIF_bm;
+     4fc:	80 e2       	ldi	r24, 0x20	; 32
+     4fe:	80 93 ca 04 	sts	0x04CA, r24	; 0x8004ca <__TEXT_REGION_LENGTH__+0x7004ca>
+	{
+		
+		USB_INT_Clear(USB_INT_BUSEVENTI_Resume);
+
+		if (USB_Device_ConfigurationNumber)
+     502:	80 91 0b 20 	lds	r24, 0x200B	; 0x80200b <USB_Device_ConfigurationNumber>
+     506:	88 23       	and	r24, r24
+     508:	21 f0       	breq	.+8      	; 0x512 <__vector_125+0x6c>
+		  USB_DeviceState = DEVICE_STATE_Configured;
+     50a:	84 e0       	ldi	r24, 0x04	; 4
+     50c:	80 93 0f 20 	sts	0x200F, r24	; 0x80200f <USB_DeviceState>
+     510:	09 c0       	rjmp	.+18     	; 0x524 <__vector_125+0x7e>
+			}
+
+			static inline bool USB_Device_IsAddressSet(void) ATTR_ALWAYS_INLINE ATTR_WARN_UNUSED_RESULT;
+			static inline bool USB_Device_IsAddressSet(void)
+			{
+				return ((USB.ADDR != 0) ? true : false);
+     512:	80 91 c3 04 	lds	r24, 0x04C3	; 0x8004c3 <__TEXT_REGION_LENGTH__+0x7004c3>
+		else
+		  USB_DeviceState = (USB_Device_IsAddressSet()) ? DEVICE_STATE_Addressed : DEVICE_STATE_Powered;
+     516:	81 11       	cpse	r24, r1
+     518:	02 c0       	rjmp	.+4      	; 0x51e <__vector_125+0x78>
+     51a:	81 e0       	ldi	r24, 0x01	; 1
+     51c:	01 c0       	rjmp	.+2      	; 0x520 <__vector_125+0x7a>
+     51e:	83 e0       	ldi	r24, 0x03	; 3
+     520:	80 93 0f 20 	sts	0x200F, r24	; 0x80200f <USB_DeviceState>
+
+		#if !defined(NO_LIMITED_CONTROLLER_CONNECT)
+		EVENT_USB_Device_Connect();
+     524:	b0 d3       	rcall	.+1888   	; 0xc86 <EVENT_USB_Device_Connect>
+					case USB_INT_BUSEVENTI_Suspend:
+						return ((USB.INTFLAGSACLR & USB_SUSPENDIF_bm) ? true : false);
+					case USB_INT_BUSEVENTI_Resume:
+						return ((USB.INTFLAGSACLR & USB_RESUMEIF_bm) ? true : false);
+					case USB_INT_BUSEVENTI_Reset:
+						return ((USB.INTFLAGSACLR & USB_RSTIF_bm) ? true : false);
+     526:	80 91 ca 04 	lds	r24, 0x04CA	; 0x8004ca <__TEXT_REGION_LENGTH__+0x7004ca>
+		#else
+		EVENT_USB_Device_WakeUp();
+		#endif
+	}
+
+	if (USB_INT_HasOccurred(USB_INT_BUSEVENTI_Reset))
+     52a:	84 ff       	sbrs	r24, 4
+     52c:	14 c0       	rjmp	.+40     	; 0x556 <__vector_125+0xb0>
+						break;
+					case USB_INT_BUSEVENTI_Resume:
+						USB.INTFLAGSACLR = USB_RESUMEIF_bm;
+						break;
+					case USB_INT_BUSEVENTI_Reset:
+						USB.INTFLAGSACLR = USB_RSTIF_bm;
+     52e:	e0 ec       	ldi	r30, 0xC0	; 192
+     530:	f4 e0       	ldi	r31, 0x04	; 4
+     532:	80 e1       	ldi	r24, 0x10	; 16
+     534:	82 87       	std	Z+10, r24	; 0x0a
+	{
+		
+		USB_INT_Clear(USB_INT_BUSEVENTI_Reset);
+
+		USB_DeviceState                = DEVICE_STATE_Default;
+     536:	82 e0       	ldi	r24, 0x02	; 2
+     538:	80 93 0f 20 	sts	0x200F, r24	; 0x80200f <USB_DeviceState>
+		USB_Device_ConfigurationNumber = 0;
+     53c:	10 92 0b 20 	sts	0x200B, r1	; 0x80200b <USB_Device_ConfigurationNumber>
+
+		USB_Device_EnableDeviceAddress(0);
+
+		Endpoint_ClearEndpoints();
+     540:	13 82       	std	Z+3, r1	; 0x03
+						EPConfigMask |= USB_EP_TYPE_BULK_gc;
+						break;
+				}
+
+				if (Type == EP_TYPE_CONTROL)
+				  Endpoint_ConfigureEndpoint_PRV(Address ^ ENDPOINT_DIR_IN, EPConfigMask, Size);
+     542:	fe de       	rcall	.-516    	; 0x340 <Endpoint_ClearEndpoints>
+     544:	48 e0       	ldi	r20, 0x08	; 8
+     546:	68 e4       	ldi	r22, 0x48	; 72
+     548:	80 e8       	ldi	r24, 0x80	; 128
+
+				return Endpoint_ConfigureEndpoint_PRV(Address, EPConfigMask, Size);
+     54a:	b5 de       	rcall	.-662    	; 0x2b6 <Endpoint_ConfigureEndpoint_PRV>
+     54c:	48 e0       	ldi	r20, 0x08	; 8
+     54e:	68 e4       	ldi	r22, 0x48	; 72
+     550:	80 e0       	ldi	r24, 0x00	; 0
+     552:	b1 de       	rcall	.-670    	; 0x2b6 <Endpoint_ConfigureEndpoint_PRV>
+		Endpoint_ConfigureEndpoint(ENDPOINT_CONTROLEP, EP_TYPE_CONTROL,
+		                           USB_Device_ControlEndpointSize, 1);
+
+		EVENT_USB_Device_Reset();
+     554:	6f de       	rcall	.-802    	; 0x234 <USB_Event_Stub>
+     556:	ff 91       	pop	r31
+	}
+}
+     558:	ef 91       	pop	r30
+     55a:	bf 91       	pop	r27
+     55c:	af 91       	pop	r26
+     55e:	9f 91       	pop	r25
+     560:	8f 91       	pop	r24
+     562:	7f 91       	pop	r23
+     564:	6f 91       	pop	r22
+     566:	5f 91       	pop	r21
+     568:	4f 91       	pop	r20
+     56a:	3f 91       	pop	r19
+     56c:	2f 91       	pop	r18
+     56e:	0f 90       	pop	r0
+     570:	0f be       	out	0x3f, r0	; 63
+     572:	0f 90       	pop	r0
+     574:	1f 90       	pop	r1
+     576:	18 95       	reti
+
+00000578 <spi0_write>:
+     578:	e0 ec       	ldi	r30, 0xC0	; 192
+	can3_unstandby();
+	return 1;
+}
+
+//reset
+void all_reset(){	can1_reset();can2_reset();can3_reset();}
+     57a:	f8 e0       	ldi	r31, 0x08	; 8
+     57c:	92 81       	ldd	r25, Z+2	; 0x02
+     57e:	92 83       	std	Z+2, r25	; 0x02
+     580:	83 83       	std	Z+3, r24	; 0x03
+     582:	82 81       	ldd	r24, Z+2	; 0x02
+     584:	88 23       	and	r24, r24
+     586:	ec f7       	brge	.-6      	; 0x582 <spi0_write+0xa>
+     588:	80 91 c3 08 	lds	r24, 0x08C3	; 0x8008c3 <__TEXT_REGION_LENGTH__+0x7008c3>
+     58c:	08 95       	ret
+
+0000058e <can1_reset>:
+     58e:	1f 93       	push	r17
+     590:	cf 93       	push	r28
+     592:	df 93       	push	r29
+     594:	c0 e4       	ldi	r28, 0x40	; 64
+     596:	d6 e0       	ldi	r29, 0x06	; 6
+     598:	10 e1       	ldi	r17, 0x10	; 16
+     59a:	1e 83       	std	Y+6, r17	; 0x06
+     59c:	80 ec       	ldi	r24, 0xC0	; 192
+     59e:	ec df       	rcall	.-40     	; 0x578 <spi0_write>
+     5a0:	1d 83       	std	Y+5, r17	; 0x05
+     5a2:	df 91       	pop	r29
+     5a4:	cf 91       	pop	r28
+     5a6:	1f 91       	pop	r17
+     5a8:	08 95       	ret
+
+000005aa <can2_reset>:
+     5aa:	1f 93       	push	r17
+     5ac:	cf 93       	push	r28
+     5ae:	df 93       	push	r29
+     5b0:	c0 e6       	ldi	r28, 0x60	; 96
+     5b2:	d6 e0       	ldi	r29, 0x06	; 6
+     5b4:	10 e1       	ldi	r17, 0x10	; 16
+     5b6:	1e 83       	std	Y+6, r17	; 0x06
+     5b8:	80 ec       	ldi	r24, 0xC0	; 192
+     5ba:	de df       	rcall	.-68     	; 0x578 <spi0_write>
+     5bc:	1d 83       	std	Y+5, r17	; 0x05
+     5be:	df 91       	pop	r29
+     5c0:	cf 91       	pop	r28
+     5c2:	1f 91       	pop	r17
+     5c4:	08 95       	ret
+
+000005c6 <can3_reset>:
+     5c6:	1f 93       	push	r17
+     5c8:	cf 93       	push	r28
+     5ca:	df 93       	push	r29
+     5cc:	c0 e2       	ldi	r28, 0x20	; 32
+     5ce:	d6 e0       	ldi	r29, 0x06	; 6
+     5d0:	18 e0       	ldi	r17, 0x08	; 8
+     5d2:	1e 83       	std	Y+6, r17	; 0x06
+     5d4:	80 ec       	ldi	r24, 0xC0	; 192
+     5d6:	d0 df       	rcall	.-96     	; 0x578 <spi0_write>
+     5d8:	1d 83       	std	Y+5, r17	; 0x05
+     5da:	df 91       	pop	r29
+     5dc:	cf 91       	pop	r28
+     5de:	1f 91       	pop	r17
+     5e0:	08 95       	ret
+
+000005e2 <can123_bit_modify>:
+																		if(bus == 2){can2_select();can123_bit_modify(reg,mask,val);can2_deselect();}
+																		if(bus == 3){can3_select();can123_bit_modify(reg,mask,val);can3_deselect();}}
+void can1_bit_modify(uint8_t reg, uint8_t mask, uint8_t val){ 	can1_select();can123_bit_modify(reg,mask,val);can1_deselect(); }
+void can2_bit_modify(uint8_t reg, uint8_t mask, uint8_t val){ 	can2_select();can123_bit_modify(reg,mask,val);can2_deselect(); }
+void can3_bit_modify(uint8_t reg, uint8_t mask, uint8_t val){ 	can3_select();can123_bit_modify(reg,mask,val);can3_deselect(); }
+void can123_bit_modify(uint8_t reg, uint8_t mask, uint8_t val){	spi0_write(MCP_BITMOD); spi0_write(reg); spi0_write(mask); spi0_write(val);}
+     5e2:	1f 93       	push	r17
+     5e4:	cf 93       	push	r28
+     5e6:	df 93       	push	r29
+     5e8:	18 2f       	mov	r17, r24
+     5ea:	d6 2f       	mov	r29, r22
+     5ec:	c4 2f       	mov	r28, r20
+     5ee:	85 e0       	ldi	r24, 0x05	; 5
+     5f0:	c3 df       	rcall	.-122    	; 0x578 <spi0_write>
+     5f2:	81 2f       	mov	r24, r17
+     5f4:	c1 df       	rcall	.-126    	; 0x578 <spi0_write>
+     5f6:	8d 2f       	mov	r24, r29
+     5f8:	bf df       	rcall	.-130    	; 0x578 <spi0_write>
+     5fa:	8c 2f       	mov	r24, r28
+     5fc:	bd df       	rcall	.-134    	; 0x578 <spi0_write>
+     5fe:	df 91       	pop	r29
+     600:	cf 91       	pop	r28
+     602:	1f 91       	pop	r17
+     604:	08 95       	ret
+
+00000606 <can_bit_modify>:
+void can1_reset(){ 	can1_select();spi0_write(MCP_RESET);can1_deselect(); }	
+void can2_reset(){ 	can2_select();spi0_write(MCP_RESET);can2_deselect(); }
+void can3_reset(){ 	can3_select();spi0_write(MCP_RESET);can3_deselect(); }
+
+//bit modify
+void can_bit_modify(uint8_t reg, uint8_t mask, uint8_t val, uint8_t bus){if(bus == 1){can1_select();can123_bit_modify(reg,mask,val);can1_deselect();}
+     606:	1f 93       	push	r17
+     608:	cf 93       	push	r28
+     60a:	df 93       	push	r29
+     60c:	21 30       	cpi	r18, 0x01	; 1
+     60e:	39 f4       	brne	.+14     	; 0x61e <can_bit_modify+0x18>
+     610:	c0 e4       	ldi	r28, 0x40	; 64
+     612:	d6 e0       	ldi	r29, 0x06	; 6
+     614:	10 e1       	ldi	r17, 0x10	; 16
+     616:	1e 83       	std	Y+6, r17	; 0x06
+     618:	e4 df       	rcall	.-56     	; 0x5e2 <can123_bit_modify>
+     61a:	1d 83       	std	Y+5, r17	; 0x05
+     61c:	11 c0       	rjmp	.+34     	; 0x640 <can_bit_modify+0x3a>
+																		if(bus == 2){can2_select();can123_bit_modify(reg,mask,val);can2_deselect();}
+     61e:	22 30       	cpi	r18, 0x02	; 2
+     620:	39 f4       	brne	.+14     	; 0x630 <can_bit_modify+0x2a>
+     622:	c0 e6       	ldi	r28, 0x60	; 96
+     624:	d6 e0       	ldi	r29, 0x06	; 6
+     626:	10 e1       	ldi	r17, 0x10	; 16
+     628:	1e 83       	std	Y+6, r17	; 0x06
+     62a:	db df       	rcall	.-74     	; 0x5e2 <can123_bit_modify>
+     62c:	1d 83       	std	Y+5, r17	; 0x05
+     62e:	08 c0       	rjmp	.+16     	; 0x640 <can_bit_modify+0x3a>
+																		if(bus == 3){can3_select();can123_bit_modify(reg,mask,val);can3_deselect();}}
+     630:	23 30       	cpi	r18, 0x03	; 3
+     632:	31 f4       	brne	.+12     	; 0x640 <can_bit_modify+0x3a>
+     634:	c0 e2       	ldi	r28, 0x20	; 32
+     636:	d6 e0       	ldi	r29, 0x06	; 6
+     638:	18 e0       	ldi	r17, 0x08	; 8
+     63a:	1e 83       	std	Y+6, r17	; 0x06
+     63c:	d2 df       	rcall	.-92     	; 0x5e2 <can123_bit_modify>
+     63e:	1d 83       	std	Y+5, r17	; 0x05
+     640:	df 91       	pop	r29
+     642:	cf 91       	pop	r28
+     644:	1f 91       	pop	r17
+     646:	08 95       	ret
+
+00000648 <can1_bit_modify>:
+void can1_bit_modify(uint8_t reg, uint8_t mask, uint8_t val){ 	can1_select();can123_bit_modify(reg,mask,val);can1_deselect(); }
+     648:	1f 93       	push	r17
+     64a:	cf 93       	push	r28
+     64c:	df 93       	push	r29
+     64e:	c0 e4       	ldi	r28, 0x40	; 64
+     650:	d6 e0       	ldi	r29, 0x06	; 6
+     652:	10 e1       	ldi	r17, 0x10	; 16
+     654:	1e 83       	std	Y+6, r17	; 0x06
+     656:	c5 df       	rcall	.-118    	; 0x5e2 <can123_bit_modify>
+     658:	1d 83       	std	Y+5, r17	; 0x05
+     65a:	df 91       	pop	r29
+     65c:	cf 91       	pop	r28
+     65e:	1f 91       	pop	r17
+     660:	08 95       	ret
+
+00000662 <can2_bit_modify>:
+void can2_bit_modify(uint8_t reg, uint8_t mask, uint8_t val){ 	can2_select();can123_bit_modify(reg,mask,val);can2_deselect(); }
+     662:	1f 93       	push	r17
+     664:	cf 93       	push	r28
+     666:	df 93       	push	r29
+     668:	c0 e6       	ldi	r28, 0x60	; 96
+     66a:	d6 e0       	ldi	r29, 0x06	; 6
+     66c:	10 e1       	ldi	r17, 0x10	; 16
+     66e:	1e 83       	std	Y+6, r17	; 0x06
+     670:	b8 df       	rcall	.-144    	; 0x5e2 <can123_bit_modify>
+     672:	1d 83       	std	Y+5, r17	; 0x05
+     674:	df 91       	pop	r29
+     676:	cf 91       	pop	r28
+     678:	1f 91       	pop	r17
+     67a:	08 95       	ret
+
+0000067c <can3_bit_modify>:
+void can3_bit_modify(uint8_t reg, uint8_t mask, uint8_t val){ 	can3_select();can123_bit_modify(reg,mask,val);can3_deselect(); }
+     67c:	1f 93       	push	r17
+     67e:	cf 93       	push	r28
+     680:	df 93       	push	r29
+     682:	c0 e2       	ldi	r28, 0x20	; 32
+     684:	d6 e0       	ldi	r29, 0x06	; 6
+     686:	18 e0       	ldi	r17, 0x08	; 8
+     688:	1e 83       	std	Y+6, r17	; 0x06
+     68a:	ab df       	rcall	.-170    	; 0x5e2 <can123_bit_modify>
+     68c:	1d 83       	std	Y+5, r17	; 0x05
+     68e:	df 91       	pop	r29
+     690:	cf 91       	pop	r28
+     692:	1f 91       	pop	r17
+     694:	08 95       	ret
+
+00000696 <can123_rts>:
+void can1_rts(uint8_t channel){ can1_select(); can123_rts(channel); can1_deselect(); }
+void can2_rts(uint8_t channel){ can2_select(); can123_rts(channel); can2_deselect(); }
+void can3_rts(uint8_t channel){ can3_select(); can123_rts(channel); can3_deselect(); }
+
+void can123_rts(uint8_t channel){
+    switch (channel){
+     696:	81 30       	cpi	r24, 0x01	; 1
+     698:	39 f0       	breq	.+14     	; 0x6a8 <can123_rts+0x12>
+     69a:	18 f0       	brcs	.+6      	; 0x6a2 <can123_rts+0xc>
+     69c:	82 30       	cpi	r24, 0x02	; 2
+     69e:	39 f0       	breq	.+14     	; 0x6ae <can123_rts+0x18>
+     6a0:	08 95       	ret
+    	case MCP_TX_0: spi0_write(MCP_RTS_TXB0); break;
+     6a2:	81 e8       	ldi	r24, 0x81	; 129
+     6a4:	69 cf       	rjmp	.-302    	; 0x578 <spi0_write>
+     6a6:	08 95       	ret
+    	case MCP_TX_1: spi0_write(MCP_RTS_TXB1); break;
+     6a8:	82 e8       	ldi	r24, 0x82	; 130
+     6aa:	66 cf       	rjmp	.-308    	; 0x578 <spi0_write>
+     6ac:	08 95       	ret
+    	case MCP_TX_2: spi0_write(MCP_RTS_TXB2); break;
+     6ae:	84 e8       	ldi	r24, 0x84	; 132
+     6b0:	63 cf       	rjmp	.-314    	; 0x578 <spi0_write>
+     6b2:	08 95       	ret
+
+000006b4 <can1_rts>:
+     6b4:	1f 93       	push	r17
+void can2_bit_modify(uint8_t reg, uint8_t mask, uint8_t val){ 	can2_select();can123_bit_modify(reg,mask,val);can2_deselect(); }
+void can3_bit_modify(uint8_t reg, uint8_t mask, uint8_t val){ 	can3_select();can123_bit_modify(reg,mask,val);can3_deselect(); }
+void can123_bit_modify(uint8_t reg, uint8_t mask, uint8_t val){	spi0_write(MCP_BITMOD); spi0_write(reg); spi0_write(mask); spi0_write(val);}
+
+//RTS from SPI
+void can1_rts(uint8_t channel){ can1_select(); can123_rts(channel); can1_deselect(); }
+     6b6:	cf 93       	push	r28
+     6b8:	df 93       	push	r29
+     6ba:	c0 e4       	ldi	r28, 0x40	; 64
+     6bc:	d6 e0       	ldi	r29, 0x06	; 6
+     6be:	10 e1       	ldi	r17, 0x10	; 16
+     6c0:	1e 83       	std	Y+6, r17	; 0x06
+     6c2:	e9 df       	rcall	.-46     	; 0x696 <can123_rts>
+     6c4:	1d 83       	std	Y+5, r17	; 0x05
+     6c6:	df 91       	pop	r29
+     6c8:	cf 91       	pop	r28
+     6ca:	1f 91       	pop	r17
+     6cc:	08 95       	ret
+
+000006ce <can2_rts>:
+void can2_rts(uint8_t channel){ can2_select(); can123_rts(channel); can2_deselect(); }
+     6ce:	1f 93       	push	r17
+     6d0:	cf 93       	push	r28
+     6d2:	df 93       	push	r29
+     6d4:	c0 e6       	ldi	r28, 0x60	; 96
+     6d6:	d6 e0       	ldi	r29, 0x06	; 6
+     6d8:	10 e1       	ldi	r17, 0x10	; 16
+     6da:	1e 83       	std	Y+6, r17	; 0x06
+     6dc:	dc df       	rcall	.-72     	; 0x696 <can123_rts>
+     6de:	1d 83       	std	Y+5, r17	; 0x05
+     6e0:	df 91       	pop	r29
+     6e2:	cf 91       	pop	r28
+     6e4:	1f 91       	pop	r17
+     6e6:	08 95       	ret
+
+000006e8 <can3_rts>:
+void can3_rts(uint8_t channel){ can3_select(); can123_rts(channel); can3_deselect(); }
+     6e8:	1f 93       	push	r17
+     6ea:	cf 93       	push	r28
+     6ec:	df 93       	push	r29
+     6ee:	c0 e2       	ldi	r28, 0x20	; 32
+     6f0:	d6 e0       	ldi	r29, 0x06	; 6
+     6f2:	18 e0       	ldi	r17, 0x08	; 8
+     6f4:	1e 83       	std	Y+6, r17	; 0x06
+     6f6:	cf df       	rcall	.-98     	; 0x696 <can123_rts>
+     6f8:	1d 83       	std	Y+5, r17	; 0x05
+     6fa:	df 91       	pop	r29
+     6fc:	cf 91       	pop	r28
+     6fe:	1f 91       	pop	r17
+     700:	08 95       	ret
+
+00000702 <can123_load_txbuff>:
+
+void can1_load_txbuff(uint8_t channel, can_frame_t* frame){ can1_select(); can123_load_txbuff(channel, frame); can1_deselect(); }
+void can2_load_txbuff(uint8_t channel, can_frame_t* frame){ can2_select(); can123_load_txbuff(channel, frame); can2_deselect(); }
+void can3_load_txbuff(uint8_t channel, can_frame_t* frame){ can3_select(); can123_load_txbuff(channel, frame); can3_deselect(); }
+
+void can123_load_txbuff(uint8_t channel, can_frame_t* frame){	
+     702:	0f 93       	push	r16
+     704:	1f 93       	push	r17
+     706:	cf 93       	push	r28
+     708:	8b 01       	movw	r16, r22
+    uint8_t tmp = 0;
+	
+	spi0_write(MCP_LOAD_BUF_TXB0SIDH + (channel * 2)); //set buffer
+     70a:	88 0f       	add	r24, r24
+     70c:	80 5c       	subi	r24, 0xC0	; 192
+     70e:	34 df       	rcall	.-408    	; 0x578 <spi0_write>
+		spi0_write((uint8_t)(frame->can_id >> 8));	// send XXXnEID8
+		spi0_write((uint8_t)(frame->can_id));		// send XXXnEID0
+		} else {
+	#endif
+	
+	spi0_write((uint8_t)(frame->can_id>>3));		// send XXXnSIDH
+     710:	f8 01       	movw	r30, r16
+     712:	80 81       	ld	r24, Z
+     714:	91 81       	ldd	r25, Z+1	; 0x01
+     716:	96 95       	lsr	r25
+     718:	87 95       	ror	r24
+     71a:	96 95       	lsr	r25
+     71c:	87 95       	ror	r24
+     71e:	96 95       	lsr	r25
+     720:	87 95       	ror	r24
+     722:	2a df       	rcall	.-428    	; 0x578 <spi0_write>
+	tmp = ((uint8_t)(frame->can_id << 5) ) & 0xe0;
+	tmp |= ((uint8_t)(frame->can_id << 2) ) & 0x03;
+	spi0_write(tmp);				// send XXXnSIDL
+     724:	f8 01       	movw	r30, r16
+     726:	80 81       	ld	r24, Z
+     728:	82 95       	swap	r24
+     72a:	88 0f       	add	r24, r24
+     72c:	80 7e       	andi	r24, 0xE0	; 224
+	spi0_write(0);					// send XXXnEID8
+     72e:	24 df       	rcall	.-440    	; 0x578 <spi0_write>
+     730:	80 e0       	ldi	r24, 0x00	; 0
+	spi0_write(0);					// send XXXnEID0
+     732:	22 df       	rcall	.-444    	; 0x578 <spi0_write>
+     734:	80 e0       	ldi	r24, 0x00	; 0
+	
+	#ifdef TC_CHARGER
+		}
+	#endif
+	
+    spi0_write(frame->can_dlc & 0x0f);
+     736:	20 df       	rcall	.-448    	; 0x578 <spi0_write>
+     738:	f8 01       	movw	r30, r16
+     73a:	82 81       	ldd	r24, Z+2	; 0x02
+     73c:	8f 70       	andi	r24, 0x0F	; 15
+     73e:	1c df       	rcall	.-456    	; 0x578 <spi0_write>
+
+    for(uint8_t i= 0; i<frame->can_dlc; i++){ spi0_write(frame->data[i]); }
+     740:	f8 01       	movw	r30, r16
+     742:	82 81       	ldd	r24, Z+2	; 0x02
+     744:	88 23       	and	r24, r24
+     746:	59 f0       	breq	.+22     	; 0x75e <can123_load_txbuff+0x5c>
+     748:	c0 e0       	ldi	r28, 0x00	; 0
+     74a:	f8 01       	movw	r30, r16
+     74c:	ec 0f       	add	r30, r28
+     74e:	f1 1d       	adc	r31, r1
+     750:	83 81       	ldd	r24, Z+3	; 0x03
+     752:	12 df       	rcall	.-476    	; 0x578 <spi0_write>
+     754:	cf 5f       	subi	r28, 0xFF	; 255
+     756:	f8 01       	movw	r30, r16
+     758:	82 81       	ldd	r24, Z+2	; 0x02
+     75a:	c8 17       	cp	r28, r24
+     75c:	b0 f3       	brcs	.-20     	; 0x74a <can123_load_txbuff+0x48>
+}
+     75e:	cf 91       	pop	r28
+     760:	1f 91       	pop	r17
+     762:	0f 91       	pop	r16
+     764:	08 95       	ret
+
+00000766 <can1_load_txbuff>:
+    	case MCP_TX_1: spi0_write(MCP_RTS_TXB1); break;
+    	case MCP_TX_2: spi0_write(MCP_RTS_TXB2); break;
+    	default: return;
+}	}
+
+void can1_load_txbuff(uint8_t channel, can_frame_t* frame){ can1_select(); can123_load_txbuff(channel, frame); can1_deselect(); }
+     766:	1f 93       	push	r17
+     768:	cf 93       	push	r28
+     76a:	df 93       	push	r29
+     76c:	c0 e4       	ldi	r28, 0x40	; 64
+     76e:	d6 e0       	ldi	r29, 0x06	; 6
+     770:	10 e1       	ldi	r17, 0x10	; 16
+     772:	1e 83       	std	Y+6, r17	; 0x06
+     774:	c6 df       	rcall	.-116    	; 0x702 <can123_load_txbuff>
+     776:	1d 83       	std	Y+5, r17	; 0x05
+     778:	df 91       	pop	r29
+     77a:	cf 91       	pop	r28
+     77c:	1f 91       	pop	r17
+     77e:	08 95       	ret
+
+00000780 <can2_load_txbuff>:
+void can2_load_txbuff(uint8_t channel, can_frame_t* frame){ can2_select(); can123_load_txbuff(channel, frame); can2_deselect(); }
+     780:	1f 93       	push	r17
+     782:	cf 93       	push	r28
+     784:	df 93       	push	r29
+     786:	c0 e6       	ldi	r28, 0x60	; 96
+     788:	d6 e0       	ldi	r29, 0x06	; 6
+     78a:	10 e1       	ldi	r17, 0x10	; 16
+     78c:	1e 83       	std	Y+6, r17	; 0x06
+     78e:	b9 df       	rcall	.-142    	; 0x702 <can123_load_txbuff>
+     790:	1d 83       	std	Y+5, r17	; 0x05
+     792:	df 91       	pop	r29
+     794:	cf 91       	pop	r28
+     796:	1f 91       	pop	r17
+     798:	08 95       	ret
+
+0000079a <can3_load_txbuff>:
+void can3_load_txbuff(uint8_t channel, can_frame_t* frame){ can3_select(); can123_load_txbuff(channel, frame); can3_deselect(); }
+     79a:	1f 93       	push	r17
+     79c:	cf 93       	push	r28
+     79e:	df 93       	push	r29
+     7a0:	c0 e2       	ldi	r28, 0x20	; 32
+     7a2:	d6 e0       	ldi	r29, 0x06	; 6
+     7a4:	18 e0       	ldi	r17, 0x08	; 8
+     7a6:	1e 83       	std	Y+6, r17	; 0x06
+     7a8:	ac df       	rcall	.-168    	; 0x702 <can123_load_txbuff>
+     7aa:	1d 83       	std	Y+5, r17	; 0x05
+     7ac:	df 91       	pop	r29
+     7ae:	cf 91       	pop	r28
+     7b0:	1f 91       	pop	r17
+     7b2:	08 95       	ret
+
+000007b4 <can123_read_rx_buf>:
+uint8_t can_read_rx_buf(uint8_t channel, can_frame_t* frame, uint8_t bus){uint8_t res = 0; if(bus == 1){res = can1_read_rx_buf(channel, frame);} if(bus == 2){res = can2_read_rx_buf(channel, frame);} if(bus == 3){res = can3_read_rx_buf(channel, frame);} return res;}
+uint8_t can1_read_rx_buf(uint8_t channel, can_frame_t* frame){uint8_t res = 0; can1_select(); res = can123_read_rx_buf(channel, frame); can1_deselect(); return res;}
+uint8_t can2_read_rx_buf(uint8_t channel, can_frame_t* frame){uint8_t res = 0; can2_select(); res = can123_read_rx_buf(channel, frame); can2_deselect(); return res;}
+uint8_t can3_read_rx_buf(uint8_t channel, can_frame_t* frame){uint8_t res = 0; can3_select(); res = can123_read_rx_buf(channel, frame); can3_deselect(); return res;}
+
+uint8_t can123_read_rx_buf(uint8_t channel, can_frame_t* frame){
+     7b4:	0f 93       	push	r16
+     7b6:	1f 93       	push	r17
+     7b8:	cf 93       	push	r28
+     7ba:	df 93       	push	r29
+     7bc:	8b 01       	movw	r16, r22
+	uint16_t id = 0;
+	uint8_t data;
+	
+	spi0_write(channel);
+     7be:	dc de       	rcall	.-584    	; 0x578 <spi0_write>
+	
+	data = spi0_write(0); // read XXXnSIDH
+     7c0:	80 e0       	ldi	r24, 0x00	; 0
+     7c2:	da de       	rcall	.-588    	; 0x578 <spi0_write>
+	id = (((uint16_t)data) << 3);
+     7c4:	98 e0       	ldi	r25, 0x08	; 8
+     7c6:	89 9f       	mul	r24, r25
+     7c8:	e0 01       	movw	r28, r0
+
+	data = spi0_write(0); // read XXXnSIDL
+     7ca:	11 24       	eor	r1, r1
+     7cc:	80 e0       	ldi	r24, 0x00	; 0
+     7ce:	d4 de       	rcall	.-600    	; 0x578 <spi0_write>
+	id |= (((uint16_t)(data & 0xe0)) >> 5);
+     7d0:	82 95       	swap	r24
+     7d2:	86 95       	lsr	r24
+     7d4:	87 70       	andi	r24, 0x07	; 7
+
+	spi0_write(0); // read XXXnEID8
+     7d6:	c8 2b       	or	r28, r24
+     7d8:	80 e0       	ldi	r24, 0x00	; 0
+	spi0_write(0); // read XXXnEID0
+     7da:	ce de       	rcall	.-612    	; 0x578 <spi0_write>
+     7dc:	80 e0       	ldi	r24, 0x00	; 0
+
+    frame->can_id = id;
+     7de:	cc de       	rcall	.-616    	; 0x578 <spi0_write>
+     7e0:	f8 01       	movw	r30, r16
+     7e2:	c0 83       	st	Z, r28
+    frame->can_dlc = spi0_write(0); // read length of the frame
+     7e4:	d1 83       	std	Z+1, r29	; 0x01
+     7e6:	80 e0       	ldi	r24, 0x00	; 0
+     7e8:	c7 de       	rcall	.-626    	; 0x578 <spi0_write>
+    frame->can_dlc &= 0x0f;	
+     7ea:	8f 70       	andi	r24, 0x0F	; 15
+     7ec:	f8 01       	movw	r30, r16
+
+    for (uint8_t i=0; i<frame->can_dlc; i++){ frame->data[i] = spi0_write(0); }
+     7ee:	82 83       	std	Z+2, r24	; 0x02
+     7f0:	88 23       	and	r24, r24
+     7f2:	61 f0       	breq	.+24     	; 0x80c <can123_read_rx_buf+0x58>
+     7f4:	c0 e0       	ldi	r28, 0x00	; 0
+     7f6:	80 e0       	ldi	r24, 0x00	; 0
+     7f8:	bf de       	rcall	.-642    	; 0x578 <spi0_write>
+     7fa:	f8 01       	movw	r30, r16
+     7fc:	ec 0f       	add	r30, r28
+     7fe:	f1 1d       	adc	r31, r1
+     800:	83 83       	std	Z+3, r24	; 0x03
+     802:	cf 5f       	subi	r28, 0xFF	; 255
+     804:	f8 01       	movw	r30, r16
+     806:	82 81       	ldd	r24, Z+2	; 0x02
+     808:	c8 17       	cp	r28, r24
+     80a:	a8 f3       	brcs	.-22     	; 0x7f6 <can123_read_rx_buf+0x42>
+	
+    return 1;
+}
+     80c:	81 e0       	ldi	r24, 0x01	; 1
+     80e:	df 91       	pop	r29
+     810:	cf 91       	pop	r28
+     812:	1f 91       	pop	r17
+     814:	0f 91       	pop	r16
+     816:	08 95       	ret
+
+00000818 <can1_read_rx_buf>:
+    for(uint8_t i= 0; i<frame->can_dlc; i++){ spi0_write(frame->data[i]); }
+}
+
+//Read rxbuffer to a frame
+uint8_t can_read_rx_buf(uint8_t channel, can_frame_t* frame, uint8_t bus){uint8_t res = 0; if(bus == 1){res = can1_read_rx_buf(channel, frame);} if(bus == 2){res = can2_read_rx_buf(channel, frame);} if(bus == 3){res = can3_read_rx_buf(channel, frame);} return res;}
+uint8_t can1_read_rx_buf(uint8_t channel, can_frame_t* frame){uint8_t res = 0; can1_select(); res = can123_read_rx_buf(channel, frame); can1_deselect(); return res;}
+     818:	1f 93       	push	r17
+     81a:	cf 93       	push	r28
+     81c:	df 93       	push	r29
+     81e:	c0 e4       	ldi	r28, 0x40	; 64
+     820:	d6 e0       	ldi	r29, 0x06	; 6
+     822:	10 e1       	ldi	r17, 0x10	; 16
+     824:	1e 83       	std	Y+6, r17	; 0x06
+     826:	c6 df       	rcall	.-116    	; 0x7b4 <can123_read_rx_buf>
+     828:	1d 83       	std	Y+5, r17	; 0x05
+     82a:	df 91       	pop	r29
+     82c:	cf 91       	pop	r28
+     82e:	1f 91       	pop	r17
+     830:	08 95       	ret
+
+00000832 <can2_read_rx_buf>:
+uint8_t can2_read_rx_buf(uint8_t channel, can_frame_t* frame){uint8_t res = 0; can2_select(); res = can123_read_rx_buf(channel, frame); can2_deselect(); return res;}
+     832:	1f 93       	push	r17
+     834:	cf 93       	push	r28
+     836:	df 93       	push	r29
+     838:	c0 e6       	ldi	r28, 0x60	; 96
+     83a:	d6 e0       	ldi	r29, 0x06	; 6
+     83c:	10 e1       	ldi	r17, 0x10	; 16
+     83e:	1e 83       	std	Y+6, r17	; 0x06
+     840:	b9 df       	rcall	.-142    	; 0x7b4 <can123_read_rx_buf>
+     842:	1d 83       	std	Y+5, r17	; 0x05
+     844:	df 91       	pop	r29
+     846:	cf 91       	pop	r28
+     848:	1f 91       	pop	r17
+     84a:	08 95       	ret
+
+0000084c <can3_read_rx_buf>:
+uint8_t can3_read_rx_buf(uint8_t channel, can_frame_t* frame){uint8_t res = 0; can3_select(); res = can123_read_rx_buf(channel, frame); can3_deselect(); return res;}
+     84c:	1f 93       	push	r17
+     84e:	cf 93       	push	r28
+     850:	df 93       	push	r29
+     852:	c0 e2       	ldi	r28, 0x20	; 32
+     854:	d6 e0       	ldi	r29, 0x06	; 6
+     856:	18 e0       	ldi	r17, 0x08	; 8
+     858:	1e 83       	std	Y+6, r17	; 0x06
+     85a:	ac df       	rcall	.-168    	; 0x7b4 <can123_read_rx_buf>
+     85c:	1d 83       	std	Y+5, r17	; 0x05
+     85e:	df 91       	pop	r29
+     860:	cf 91       	pop	r28
+     862:	1f 91       	pop	r17
+     864:	08 95       	ret
+
+00000866 <can_read_rx_buf>:
+
+    for(uint8_t i= 0; i<frame->can_dlc; i++){ spi0_write(frame->data[i]); }
+}
+
+//Read rxbuffer to a frame
+uint8_t can_read_rx_buf(uint8_t channel, can_frame_t* frame, uint8_t bus){uint8_t res = 0; if(bus == 1){res = can1_read_rx_buf(channel, frame);} if(bus == 2){res = can2_read_rx_buf(channel, frame);} if(bus == 3){res = can3_read_rx_buf(channel, frame);} return res;}
+     866:	41 30       	cpi	r20, 0x01	; 1
+     868:	11 f4       	brne	.+4      	; 0x86e <can_read_rx_buf+0x8>
+     86a:	d6 cf       	rjmp	.-84     	; 0x818 <can1_read_rx_buf>
+     86c:	08 95       	ret
+     86e:	42 30       	cpi	r20, 0x02	; 2
+     870:	11 f4       	brne	.+4      	; 0x876 <can_read_rx_buf+0x10>
+     872:	df cf       	rjmp	.-66     	; 0x832 <can2_read_rx_buf>
+     874:	08 95       	ret
+     876:	43 30       	cpi	r20, 0x03	; 3
+     878:	11 f4       	brne	.+4      	; 0x87e <can_read_rx_buf+0x18>
+     87a:	e8 cf       	rjmp	.-48     	; 0x84c <can3_read_rx_buf>
+     87c:	08 95       	ret
+     87e:	80 e0       	ldi	r24, 0x00	; 0
+     880:	08 95       	ret
+
+00000882 <can1_read>:
+    return 1;
+}
+
+//read a register
+uint8_t can_read(uint8_t reg, uint8_t bus){if(bus == 1){return can1_read(reg);} else if(bus == 2) {return can2_read(reg);} else {return can3_read(reg);}}
+uint8_t can1_read(uint8_t reg){uint8_t res=0; can1_select(); spi0_write(MCP_READ); spi0_write(reg); res=spi0_write(0); can1_deselect(); return res;}
+     882:	0f 93       	push	r16
+     884:	1f 93       	push	r17
+     886:	cf 93       	push	r28
+     888:	df 93       	push	r29
+     88a:	08 2f       	mov	r16, r24
+     88c:	c0 e4       	ldi	r28, 0x40	; 64
+     88e:	d6 e0       	ldi	r29, 0x06	; 6
+     890:	10 e1       	ldi	r17, 0x10	; 16
+     892:	1e 83       	std	Y+6, r17	; 0x06
+     894:	83 e0       	ldi	r24, 0x03	; 3
+     896:	70 de       	rcall	.-800    	; 0x578 <spi0_write>
+     898:	80 2f       	mov	r24, r16
+     89a:	6e de       	rcall	.-804    	; 0x578 <spi0_write>
+     89c:	80 e0       	ldi	r24, 0x00	; 0
+     89e:	6c de       	rcall	.-808    	; 0x578 <spi0_write>
+     8a0:	1d 83       	std	Y+5, r17	; 0x05
+     8a2:	df 91       	pop	r29
+     8a4:	cf 91       	pop	r28
+     8a6:	1f 91       	pop	r17
+     8a8:	0f 91       	pop	r16
+     8aa:	08 95       	ret
+
+000008ac <can2_read>:
+uint8_t can2_read(uint8_t reg){uint8_t res=0; can2_select(); spi0_write(MCP_READ); spi0_write(reg); res=spi0_write(0); can2_deselect(); return res;}
+     8ac:	0f 93       	push	r16
+     8ae:	1f 93       	push	r17
+     8b0:	cf 93       	push	r28
+     8b2:	df 93       	push	r29
+     8b4:	08 2f       	mov	r16, r24
+     8b6:	c0 e6       	ldi	r28, 0x60	; 96
+     8b8:	d6 e0       	ldi	r29, 0x06	; 6
+     8ba:	10 e1       	ldi	r17, 0x10	; 16
+     8bc:	1e 83       	std	Y+6, r17	; 0x06
+     8be:	83 e0       	ldi	r24, 0x03	; 3
+     8c0:	5b de       	rcall	.-842    	; 0x578 <spi0_write>
+     8c2:	80 2f       	mov	r24, r16
+     8c4:	59 de       	rcall	.-846    	; 0x578 <spi0_write>
+     8c6:	80 e0       	ldi	r24, 0x00	; 0
+     8c8:	57 de       	rcall	.-850    	; 0x578 <spi0_write>
+     8ca:	1d 83       	std	Y+5, r17	; 0x05
+     8cc:	df 91       	pop	r29
+     8ce:	cf 91       	pop	r28
+     8d0:	1f 91       	pop	r17
+     8d2:	0f 91       	pop	r16
+     8d4:	08 95       	ret
+
+000008d6 <can3_read>:
+uint8_t can3_read(uint8_t reg){uint8_t res=0; can3_select(); spi0_write(MCP_READ); spi0_write(reg); res=spi0_write(0); can3_deselect(); return res;}
+     8d6:	0f 93       	push	r16
+     8d8:	1f 93       	push	r17
+     8da:	cf 93       	push	r28
+     8dc:	df 93       	push	r29
+     8de:	08 2f       	mov	r16, r24
+     8e0:	c0 e2       	ldi	r28, 0x20	; 32
+     8e2:	d6 e0       	ldi	r29, 0x06	; 6
+     8e4:	18 e0       	ldi	r17, 0x08	; 8
+     8e6:	1e 83       	std	Y+6, r17	; 0x06
+     8e8:	83 e0       	ldi	r24, 0x03	; 3
+     8ea:	46 de       	rcall	.-884    	; 0x578 <spi0_write>
+     8ec:	80 2f       	mov	r24, r16
+     8ee:	44 de       	rcall	.-888    	; 0x578 <spi0_write>
+     8f0:	80 e0       	ldi	r24, 0x00	; 0
+     8f2:	42 de       	rcall	.-892    	; 0x578 <spi0_write>
+     8f4:	1d 83       	std	Y+5, r17	; 0x05
+     8f6:	df 91       	pop	r29
+     8f8:	cf 91       	pop	r28
+     8fa:	1f 91       	pop	r17
+     8fc:	0f 91       	pop	r16
+     8fe:	08 95       	ret
+
+00000900 <can_read>:
+	
+    return 1;
+}
+
+//read a register
+uint8_t can_read(uint8_t reg, uint8_t bus){if(bus == 1){return can1_read(reg);} else if(bus == 2) {return can2_read(reg);} else {return can3_read(reg);}}
+     900:	61 30       	cpi	r22, 0x01	; 1
+     902:	11 f4       	brne	.+4      	; 0x908 <can_read+0x8>
+     904:	be cf       	rjmp	.-132    	; 0x882 <can1_read>
+     906:	08 95       	ret
+     908:	62 30       	cpi	r22, 0x02	; 2
+     90a:	11 f4       	brne	.+4      	; 0x910 <can_read+0x10>
+     90c:	cf cf       	rjmp	.-98     	; 0x8ac <can2_read>
+     90e:	08 95       	ret
+     910:	e2 cf       	rjmp	.-60     	; 0x8d6 <can3_read>
+     912:	08 95       	ret
+
+00000914 <can1_write>:
+uint8_t can2_read(uint8_t reg){uint8_t res=0; can2_select(); spi0_write(MCP_READ); spi0_write(reg); res=spi0_write(0); can2_deselect(); return res;}
+uint8_t can3_read(uint8_t reg){uint8_t res=0; can3_select(); spi0_write(MCP_READ); spi0_write(reg); res=spi0_write(0); can3_deselect(); return res;}
+
+//write a register.
+void can_write(uint8_t reg, uint8_t value, uint8_t bus){if(bus == 1){can1_write(reg, value);} else if(bus == 2){can2_write(reg, value);} else {can3_write(reg, value);}}
+void can1_write(uint8_t reg, uint8_t value){can1_select(); spi0_write(MCP_WRITE);spi0_write(reg);spi0_write(value); can1_deselect();}
+     914:	ff 92       	push	r15
+     916:	0f 93       	push	r16
+     918:	1f 93       	push	r17
+     91a:	cf 93       	push	r28
+     91c:	df 93       	push	r29
+     91e:	f8 2e       	mov	r15, r24
+     920:	06 2f       	mov	r16, r22
+     922:	c0 e4       	ldi	r28, 0x40	; 64
+     924:	d6 e0       	ldi	r29, 0x06	; 6
+     926:	10 e1       	ldi	r17, 0x10	; 16
+     928:	1e 83       	std	Y+6, r17	; 0x06
+     92a:	82 e0       	ldi	r24, 0x02	; 2
+     92c:	25 de       	rcall	.-950    	; 0x578 <spi0_write>
+     92e:	8f 2d       	mov	r24, r15
+     930:	23 de       	rcall	.-954    	; 0x578 <spi0_write>
+     932:	80 2f       	mov	r24, r16
+     934:	21 de       	rcall	.-958    	; 0x578 <spi0_write>
+     936:	1d 83       	std	Y+5, r17	; 0x05
+     938:	df 91       	pop	r29
+     93a:	cf 91       	pop	r28
+     93c:	1f 91       	pop	r17
+     93e:	0f 91       	pop	r16
+     940:	ff 90       	pop	r15
+     942:	08 95       	ret
+
+00000944 <can2_write>:
+void can2_write(uint8_t reg, uint8_t value){can2_select(); spi0_write(MCP_WRITE);spi0_write(reg);spi0_write(value); can2_deselect();}
+     944:	ff 92       	push	r15
+     946:	0f 93       	push	r16
+     948:	1f 93       	push	r17
+     94a:	cf 93       	push	r28
+     94c:	df 93       	push	r29
+     94e:	f8 2e       	mov	r15, r24
+     950:	06 2f       	mov	r16, r22
+     952:	c0 e6       	ldi	r28, 0x60	; 96
+     954:	d6 e0       	ldi	r29, 0x06	; 6
+     956:	10 e1       	ldi	r17, 0x10	; 16
+     958:	1e 83       	std	Y+6, r17	; 0x06
+     95a:	82 e0       	ldi	r24, 0x02	; 2
+     95c:	0d de       	rcall	.-998    	; 0x578 <spi0_write>
+     95e:	8f 2d       	mov	r24, r15
+     960:	0b de       	rcall	.-1002   	; 0x578 <spi0_write>
+     962:	80 2f       	mov	r24, r16
+     964:	09 de       	rcall	.-1006   	; 0x578 <spi0_write>
+     966:	1d 83       	std	Y+5, r17	; 0x05
+     968:	df 91       	pop	r29
+     96a:	cf 91       	pop	r28
+     96c:	1f 91       	pop	r17
+     96e:	0f 91       	pop	r16
+     970:	ff 90       	pop	r15
+     972:	08 95       	ret
+
+00000974 <can3_write>:
+void can3_write(uint8_t reg, uint8_t value){can3_select(); spi0_write(MCP_WRITE);spi0_write(reg);spi0_write(value); can3_deselect();}
+     974:	ff 92       	push	r15
+     976:	0f 93       	push	r16
+     978:	1f 93       	push	r17
+     97a:	cf 93       	push	r28
+     97c:	df 93       	push	r29
+     97e:	f8 2e       	mov	r15, r24
+     980:	06 2f       	mov	r16, r22
+     982:	c0 e2       	ldi	r28, 0x20	; 32
+     984:	d6 e0       	ldi	r29, 0x06	; 6
+     986:	18 e0       	ldi	r17, 0x08	; 8
+     988:	1e 83       	std	Y+6, r17	; 0x06
+     98a:	82 e0       	ldi	r24, 0x02	; 2
+     98c:	f5 dd       	rcall	.-1046   	; 0x578 <spi0_write>
+     98e:	8f 2d       	mov	r24, r15
+     990:	f3 dd       	rcall	.-1050   	; 0x578 <spi0_write>
+     992:	80 2f       	mov	r24, r16
+     994:	f1 dd       	rcall	.-1054   	; 0x578 <spi0_write>
+     996:	1d 83       	std	Y+5, r17	; 0x05
+     998:	df 91       	pop	r29
+     99a:	cf 91       	pop	r28
+     99c:	1f 91       	pop	r17
+     99e:	0f 91       	pop	r16
+     9a0:	ff 90       	pop	r15
+     9a2:	08 95       	ret
+
+000009a4 <can_init>:
+#define can3_select()			CAN3_CS_PORT.OUTCLR = CAN3_CS
+#define can1_deselect()			CAN1_CS_PORT.OUTSET = CAN1_CS
+#define can2_deselect()			CAN2_CS_PORT.OUTSET = CAN2_CS
+#define can3_deselect()			CAN3_CS_PORT.OUTSET = CAN3_CS
+
+uint8_t can_init(uint8_t opmod, uint8_t reset){
+     9a4:	1f 93       	push	r17
+     9a6:	cf 93       	push	r28
+     9a8:	df 93       	push	r29
+	uint8_t mode1, mode2, mode3;
+	
+	SPI0_PORT.DIRSET		= SPI0_SCK | SPI0_MOSI;
+     9aa:	e0 e4       	ldi	r30, 0x40	; 64
+     9ac:	f6 e0       	ldi	r31, 0x06	; 6
+     9ae:	90 ea       	ldi	r25, 0xA0	; 160
+     9b0:	91 83       	std	Z+1, r25	; 0x01
+	SPI0_PORT.DIRCLR		= SPI0_MISO;
+     9b2:	90 e4       	ldi	r25, 0x40	; 64
+     9b4:	92 83       	std	Z+2, r25	; 0x02
+	CAN1_PORT.DIRSET		= CAN1_STBY;
+     9b6:	a0 e6       	ldi	r26, 0x60	; 96
+     9b8:	b6 e0       	ldi	r27, 0x06	; 6
+     9ba:	92 e0       	ldi	r25, 0x02	; 2
+     9bc:	11 96       	adiw	r26, 0x01	; 1
+     9be:	9c 93       	st	X, r25
+     9c0:	11 97       	sbiw	r26, 0x01	; 1
+	CAN2_PORT.DIRSET		= CAN2_STBY;
+     9c2:	90 93 81 06 	sts	0x0681, r25	; 0x800681 <__TEXT_REGION_LENGTH__+0x700681>
+	CAN3_PORT.DIRSET		= CAN3_STBY;
+     9c6:	98 e0       	ldi	r25, 0x08	; 8
+     9c8:	91 83       	std	Z+1, r25	; 0x01
+	CAN1_CS_PORT.DIRSET		= CAN1_CS;
+     9ca:	20 e1       	ldi	r18, 0x10	; 16
+     9cc:	21 83       	std	Z+1, r18	; 0x01
+	CAN2_CS_PORT.DIRSET		= CAN2_CS;
+     9ce:	11 96       	adiw	r26, 0x01	; 1
+     9d0:	2c 93       	st	X, r18
+	CAN3_CS_PORT.DIRSET		= CAN3_CS;
+     9d2:	90 93 21 06 	sts	0x0621, r25	; 0x800621 <__TEXT_REGION_LENGTH__+0x700621>
+	SPI0.CTRL				= SPI_ENABLE_bm | SPI_MASTER_bm | SPI_CLK2X_bm |	//enable SPI SPI_CLK2X_bm |
+     9d6:	90 ed       	ldi	r25, 0xD0	; 208
+     9d8:	90 93 c0 08 	sts	0x08C0, r25	; 0x8008c0 <__TEXT_REGION_LENGTH__+0x7008c0>
+							  SPI_PRESCALER_DIV4_gc;							//run faster than usual (clkperx2/4=24MHz)
+	
+	if(!reset) return 1;
+     9dc:	66 23       	and	r22, r22
+     9de:	09 f4       	brne	.+2      	; 0x9e2 <can_init+0x3e>
+     9e0:	7e c0       	rjmp	.+252    	; 0xade <can_init+0x13a>
+     9e2:	c8 2f       	mov	r28, r24
+	
+	can1_deselect();
+     9e4:	80 e1       	ldi	r24, 0x10	; 16
+     9e6:	80 93 45 06 	sts	0x0645, r24	; 0x800645 <__TEXT_REGION_LENGTH__+0x700645>
+	can2_deselect();
+     9ea:	80 93 65 06 	sts	0x0665, r24	; 0x800665 <__TEXT_REGION_LENGTH__+0x700665>
+	can3_deselect();
+     9ee:	88 e0       	ldi	r24, 0x08	; 8
+     9f0:	80 93 25 06 	sts	0x0625, r24	; 0x800625 <__TEXT_REGION_LENGTH__+0x700625>
+	#else
+		//round up by default
+		__ticks_dc = (uint32_t)(ceil(fabs(__tmp)));
+	#endif
+
+	__builtin_avr_delay_cycles(__ticks_dc);
+     9f4:	8f e1       	ldi	r24, 0x1F	; 31
+     9f6:	93 e0       	ldi	r25, 0x03	; 3
+     9f8:	01 97       	sbiw	r24, 0x01	; 1
+     9fa:	f1 f7       	brne	.-4      	; 0x9f8 <can_init+0x54>
+     9fc:	00 c0       	rjmp	.+0      	; 0x9fe <can_init+0x5a>
+     9fe:	00 00       	nop
+	
+	_delay_ms(0.1);
+	
+	can1_reset();
+     a00:	c6 dd       	rcall	.-1140   	; 0x58e <can1_reset>
+	can2_reset();
+     a02:	d3 dd       	rcall	.-1114   	; 0x5aa <can2_reset>
+	can3_reset();
+     a04:	e0 dd       	rcall	.-1088   	; 0x5c6 <can3_reset>
+     a06:	8f e3       	ldi	r24, 0x3F	; 63
+     a08:	9f e1       	ldi	r25, 0x1F	; 31
+     a0a:	01 97       	sbiw	r24, 0x01	; 1
+     a0c:	f1 f7       	brne	.-4      	; 0xa0a <can_init+0x66>
+     a0e:	00 c0       	rjmp	.+0      	; 0xa10 <can_init+0x6c>
+     a10:	00 00       	nop
+	
+	_delay_ms(1);												//wait for MCP25625 to be ready
+	
+	mode1 = can1_read(MCP_REG_CANCTRL);							//read opmode
+     a12:	8f e0       	ldi	r24, 0x0F	; 15
+     a14:	36 df       	rcall	.-404    	; 0x882 <can1_read>
+     a16:	d8 2f       	mov	r29, r24
+	mode1 = (mode1 & MCP_MASK_OPMOD)>>5;						//mask with opmode bits	
+	
+	mode2 = can2_read(MCP_REG_CANCTRL);							//read opmode
+     a18:	8f e0       	ldi	r24, 0x0F	; 15
+     a1a:	48 df       	rcall	.-368    	; 0x8ac <can2_read>
+     a1c:	18 2f       	mov	r17, r24
+	mode2 = (mode2 & MCP_MASK_OPMOD)>>5;						//mask with opmode bits	
+
+	mode3 = can3_read(MCP_REG_CANCTRL);							//read opmode
+     a1e:	8f e0       	ldi	r24, 0x0F	; 15
+     a20:	5a df       	rcall	.-332    	; 0x8d6 <can3_read>
+     a22:	d2 95       	swap	r29
+	mode3 = (mode3 & MCP_MASK_OPMOD)>>5;						//mask with opmode bits
+	
+	if(mode1 != MCP_OPMOD_CONFIG) return 0;						//return error if not opmode CONFIG
+     a24:	d6 95       	lsr	r29
+     a26:	d7 70       	andi	r29, 0x07	; 7
+     a28:	d4 30       	cpi	r29, 0x04	; 4
+     a2a:	09 f0       	breq	.+2      	; 0xa2e <can_init+0x8a>
+     a2c:	5a c0       	rjmp	.+180    	; 0xae2 <can_init+0x13e>
+     a2e:	12 95       	swap	r17
+	if(mode2 != MCP_OPMOD_CONFIG) return 0;						//return error if not opmode CONFIG
+     a30:	16 95       	lsr	r17
+     a32:	17 70       	andi	r17, 0x07	; 7
+     a34:	14 30       	cpi	r17, 0x04	; 4
+     a36:	09 f0       	breq	.+2      	; 0xa3a <can_init+0x96>
+     a38:	56 c0       	rjmp	.+172    	; 0xae6 <can_init+0x142>
+     a3a:	82 95       	swap	r24
+	if(mode3 != MCP_OPMOD_CONFIG) return 0;						//return error if not opmode CONFIG
+     a3c:	86 95       	lsr	r24
+     a3e:	87 70       	andi	r24, 0x07	; 7
+     a40:	84 30       	cpi	r24, 0x04	; 4
+     a42:	09 f0       	breq	.+2      	; 0xa46 <can_init+0xa2>
+     a44:	52 c0       	rjmp	.+164    	; 0xaea <can_init+0x146>
+     a46:	8f e1       	ldi	r24, 0x1F	; 31
+     a48:	93 e0       	ldi	r25, 0x03	; 3
+     a4a:	01 97       	sbiw	r24, 0x01	; 1
+     a4c:	f1 f7       	brne	.-4      	; 0xa4a <can_init+0xa6>
+     a4e:	00 c0       	rjmp	.+0      	; 0xa50 <can_init+0xac>
+     a50:	00 00       	nop
+	can1_write(MCP_REG_CNF2,0xF0);								//PHSEG1 is 7xTq, PRSEG = 1xTq, SAM=1
+	can2_write(MCP_REG_CNF2,0xF0);
+	can1_write(MCP_REG_CNF3,0x06);								//PHSEG2 is 7xTq, so total is (7+7+1+1)=16Tq
+	can2_write(MCP_REG_CNF3,0x06);
+	#else
+	can1_write(MCP_REG_CNF1,0b00000000);						//set BRP to 0 so we get Tq = 1/8M, then we need 16xTq to get 500kHz, SJW=1
+     a52:	60 e0       	ldi	r22, 0x00	; 0
+     a54:	8a e2       	ldi	r24, 0x2A	; 42
+     a56:	5e df       	rcall	.-324    	; 0x914 <can1_write>
+	can2_write(MCP_REG_CNF1,0b00000000);
+     a58:	60 e0       	ldi	r22, 0x00	; 0
+     a5a:	8a e2       	ldi	r24, 0x2A	; 42
+     a5c:	73 df       	rcall	.-282    	; 0x944 <can2_write>
+	can3_write(MCP_REG_CNF1,0b00000000);
+     a5e:	60 e0       	ldi	r22, 0x00	; 0
+     a60:	8a e2       	ldi	r24, 0x2A	; 42
+     a62:	88 df       	rcall	.-240    	; 0x974 <can3_write>
+	can1_write(MCP_REG_CNF2,0b11100111);						//PHSEG1 is 5xTq, PRSEG = 8xTq, SAM=1
+     a64:	67 ee       	ldi	r22, 0xE7	; 231
+     a66:	89 e2       	ldi	r24, 0x29	; 41
+     a68:	55 df       	rcall	.-342    	; 0x914 <can1_write>
+	can2_write(MCP_REG_CNF2,0b11100111);
+     a6a:	67 ee       	ldi	r22, 0xE7	; 231
+     a6c:	89 e2       	ldi	r24, 0x29	; 41
+     a6e:	6a df       	rcall	.-300    	; 0x944 <can2_write>
+	can3_write(MCP_REG_CNF2,0b11100111);
+     a70:	67 ee       	ldi	r22, 0xE7	; 231
+     a72:	89 e2       	ldi	r24, 0x29	; 41
+     a74:	7f df       	rcall	.-258    	; 0x974 <can3_write>
+	can1_write(MCP_REG_CNF3,0b00000001);						//PHSEG2 is 2xTq, so total is (5+5+5+1)=16Tq
+     a76:	61 e0       	ldi	r22, 0x01	; 1
+     a78:	88 e2       	ldi	r24, 0x28	; 40
+     a7a:	4c df       	rcall	.-360    	; 0x914 <can1_write>
+	can2_write(MCP_REG_CNF3,0b00000001);
+     a7c:	61 e0       	ldi	r22, 0x01	; 1
+     a7e:	88 e2       	ldi	r24, 0x28	; 40
+     a80:	61 df       	rcall	.-318    	; 0x944 <can2_write>
+	can3_write(MCP_REG_CNF3,0b00000001);
+     a82:	61 e0       	ldi	r22, 0x01	; 1
+     a84:	88 e2       	ldi	r24, 0x28	; 40
+     a86:	76 df       	rcall	.-276    	; 0x974 <can3_write>
+
+	
+	//we leave RXM to 0 and set acceptance filters to 0 to avoid bogus data from error frames
+	//ending up in the data stream
+
+	can1_bit_modify(MCP_REG_RXB0CTRL, MCP_RXB_BUKT_MASK, MCP_RXB_BUKT_MASK);//configure message rollover
+     a88:	44 e0       	ldi	r20, 0x04	; 4
+     a8a:	64 e0       	ldi	r22, 0x04	; 4
+     a8c:	80 e6       	ldi	r24, 0x60	; 96
+     a8e:	dc dd       	rcall	.-1096   	; 0x648 <can1_bit_modify>
+	can2_bit_modify(MCP_REG_RXB0CTRL, MCP_RXB_BUKT_MASK, MCP_RXB_BUKT_MASK);
+     a90:	44 e0       	ldi	r20, 0x04	; 4
+     a92:	64 e0       	ldi	r22, 0x04	; 4
+     a94:	80 e6       	ldi	r24, 0x60	; 96
+     a96:	e5 dd       	rcall	.-1078   	; 0x662 <can2_bit_modify>
+	can3_bit_modify(MCP_REG_RXB0CTRL, MCP_RXB_BUKT_MASK, MCP_RXB_BUKT_MASK);
+     a98:	44 e0       	ldi	r20, 0x04	; 4
+     a9a:	64 e0       	ldi	r22, 0x04	; 4
+     a9c:	80 e6       	ldi	r24, 0x60	; 96
+     a9e:	ee dd       	rcall	.-1060   	; 0x67c <can3_bit_modify>
+	can1_write(MCP_REG_CANINTE, 0xA3);							//enable both RX interrupts and the error interrupt
+     aa0:	63 ea       	ldi	r22, 0xA3	; 163
+     aa2:	8b e2       	ldi	r24, 0x2B	; 43
+     aa4:	37 df       	rcall	.-402    	; 0x914 <can1_write>
+	can2_write(MCP_REG_CANINTE, 0xA3);
+     aa6:	63 ea       	ldi	r22, 0xA3	; 163
+     aa8:	8b e2       	ldi	r24, 0x2B	; 43
+     aaa:	4c df       	rcall	.-360    	; 0x944 <can2_write>
+     aac:	63 ea       	ldi	r22, 0xA3	; 163
+	can3_write(MCP_REG_CANINTE, 0xA3);
+     aae:	8b e2       	ldi	r24, 0x2B	; 43
+     ab0:	61 df       	rcall	.-318    	; 0x974 <can3_write>
+     ab2:	4c 2f       	mov	r20, r28
+     ab4:	60 ee       	ldi	r22, 0xE0	; 224
+	can1_bit_modify(MCP_REG_CANCTRL, MCP_MASK_OPMOD, opmod);	//Set device mode per argument
+     ab6:	8f e0       	ldi	r24, 0x0F	; 15
+     ab8:	c7 dd       	rcall	.-1138   	; 0x648 <can1_bit_modify>
+     aba:	4c 2f       	mov	r20, r28
+     abc:	60 ee       	ldi	r22, 0xE0	; 224
+     abe:	8f e0       	ldi	r24, 0x0F	; 15
+	can2_bit_modify(MCP_REG_CANCTRL, MCP_MASK_OPMOD, opmod);
+     ac0:	d0 dd       	rcall	.-1120   	; 0x662 <can2_bit_modify>
+     ac2:	4c 2f       	mov	r20, r28
+     ac4:	60 ee       	ldi	r22, 0xE0	; 224
+     ac6:	8f e0       	ldi	r24, 0x0F	; 15
+     ac8:	d9 dd       	rcall	.-1102   	; 0x67c <can3_bit_modify>
+	can3_bit_modify(MCP_REG_CANCTRL, MCP_MASK_OPMOD, opmod);
+     aca:	82 e0       	ldi	r24, 0x02	; 2
+     acc:	80 93 66 06 	sts	0x0666, r24	; 0x800666 <__TEXT_REGION_LENGTH__+0x700666>
+     ad0:	80 93 86 06 	sts	0x0686, r24	; 0x800686 <__TEXT_REGION_LENGTH__+0x700686>
+	can1_unstandby();											//set to active	
+     ad4:	88 e0       	ldi	r24, 0x08	; 8
+     ad6:	80 93 46 06 	sts	0x0646, r24	; 0x800646 <__TEXT_REGION_LENGTH__+0x700646>
+	can2_unstandby();
+     ada:	81 e0       	ldi	r24, 0x01	; 1
+     adc:	07 c0       	rjmp	.+14     	; 0xaec <can_init+0x148>
+	can3_unstandby();
+     ade:	81 e0       	ldi	r24, 0x01	; 1
+     ae0:	05 c0       	rjmp	.+10     	; 0xaec <can_init+0x148>
+     ae2:	80 e0       	ldi	r24, 0x00	; 0
+	return 1;
+     ae4:	03 c0       	rjmp	.+6      	; 0xaec <can_init+0x148>
+     ae6:	80 e0       	ldi	r24, 0x00	; 0
+	CAN2_CS_PORT.DIRSET		= CAN2_CS;
+	CAN3_CS_PORT.DIRSET		= CAN3_CS;
+	SPI0.CTRL				= SPI_ENABLE_bm | SPI_MASTER_bm | SPI_CLK2X_bm |	//enable SPI SPI_CLK2X_bm |
+							  SPI_PRESCALER_DIV4_gc;							//run faster than usual (clkperx2/4=24MHz)
+	
+	if(!reset) return 1;
+     ae8:	01 c0       	rjmp	.+2      	; 0xaec <can_init+0x148>
+     aea:	80 e0       	ldi	r24, 0x00	; 0
+	mode2 = (mode2 & MCP_MASK_OPMOD)>>5;						//mask with opmode bits	
+
+	mode3 = can3_read(MCP_REG_CANCTRL);							//read opmode
+	mode3 = (mode3 & MCP_MASK_OPMOD)>>5;						//mask with opmode bits
+	
+	if(mode1 != MCP_OPMOD_CONFIG) return 0;						//return error if not opmode CONFIG
+     aec:	df 91       	pop	r29
+     aee:	cf 91       	pop	r28
+	if(mode2 != MCP_OPMOD_CONFIG) return 0;						//return error if not opmode CONFIG
+     af0:	1f 91       	pop	r17
+     af2:	08 95       	ret
+
+00000af4 <can_write>:
+	if(mode3 != MCP_OPMOD_CONFIG) return 0;						//return error if not opmode CONFIG
+     af4:	41 30       	cpi	r20, 0x01	; 1
+	can3_bit_modify(MCP_REG_CANCTRL, MCP_MASK_OPMOD, opmod);
+	can1_unstandby();											//set to active	
+	can2_unstandby();
+	can3_unstandby();
+	return 1;
+}
+     af6:	11 f4       	brne	.+4      	; 0xafc <can_write+0x8>
+     af8:	0d cf       	rjmp	.-486    	; 0x914 <can1_write>
+     afa:	08 95       	ret
+     afc:	42 30       	cpi	r20, 0x02	; 2
+uint8_t can1_read(uint8_t reg){uint8_t res=0; can1_select(); spi0_write(MCP_READ); spi0_write(reg); res=spi0_write(0); can1_deselect(); return res;}
+uint8_t can2_read(uint8_t reg){uint8_t res=0; can2_select(); spi0_write(MCP_READ); spi0_write(reg); res=spi0_write(0); can2_deselect(); return res;}
+uint8_t can3_read(uint8_t reg){uint8_t res=0; can3_select(); spi0_write(MCP_READ); spi0_write(reg); res=spi0_write(0); can3_deselect(); return res;}
+
+//write a register.
+void can_write(uint8_t reg, uint8_t value, uint8_t bus){if(bus == 1){can1_write(reg, value);} else if(bus == 2){can2_write(reg, value);} else {can3_write(reg, value);}}
+     afe:	11 f4       	brne	.+4      	; 0xb04 <can_write+0x10>
+     b00:	21 cf       	rjmp	.-446    	; 0x944 <can2_write>
+     b02:	08 95       	ret
+     b04:	37 cf       	rjmp	.-402    	; 0x974 <can3_write>
+     b06:	08 95       	ret
+
+00000b08 <hw_init>:
+uint8_t		signature[11];								//signature bytes
+//print variables
+volatile	uint8_t		print_char_limit		= 0;
+#endif
+
+void hw_init(void){
+     b08:	cf 93       	push	r28
+     b0a:	df 93       	push	r29
+					case CLOCK_SRC_INT_RC2MHZ:
+						OSC.CTRL |= OSC_RC2MEN_bm;
+						while (!(OSC.STATUS & OSC_RC2MRDY_bm));
+						return true;
+					case CLOCK_SRC_INT_RC32MHZ:
+						OSC.CTRL |= OSC_RC32MEN_bm;
+     b0c:	e0 e5       	ldi	r30, 0x50	; 80
+     b0e:	f0 e0       	ldi	r31, 0x00	; 0
+     b10:	80 81       	ld	r24, Z
+     b12:	82 60       	ori	r24, 0x02	; 2
+     b14:	80 83       	st	Z, r24
+						while (!(OSC.STATUS & OSC_RC32MRDY_bm));
+     b16:	81 81       	ldd	r24, Z+1	; 0x01
+     b18:	81 ff       	sbrs	r24, 1
+     b1a:	fd cf       	rjmp	.-6      	; 0xb16 <hw_init+0xe>
+						DFLLRC2M.COMP1  = (DFLLCompare & 0xFF);
+						DFLLRC2M.COMP2  = (DFLLCompare >> 8);
+						DFLLRC2M.CTRL   = DFLL_ENABLE_bm;
+						break;
+					case CLOCK_SRC_INT_RC32MHZ:
+						OSC.DFLLCTRL   |= (Reference << OSC_RC32MCREF_gp);
+     b1c:	a0 e5       	ldi	r26, 0x50	; 80
+     b1e:	b0 e0       	ldi	r27, 0x00	; 0
+     b20:	16 96       	adiw	r26, 0x06	; 6
+     b22:	8c 91       	ld	r24, X
+     b24:	16 97       	sbiw	r26, 0x06	; 6
+     b26:	84 60       	ori	r24, 0x04	; 4
+     b28:	16 96       	adiw	r26, 0x06	; 6
+     b2a:	8c 93       	st	X, r24
+     b2c:	16 97       	sbiw	r26, 0x06	; 6
+						DFLLRC32M.COMP1 = (DFLLCompare & 0xFF);
+     b2e:	c0 e6       	ldi	r28, 0x60	; 96
+     b30:	d0 e0       	ldi	r29, 0x00	; 0
+     b32:	80 e8       	ldi	r24, 0x80	; 128
+     b34:	8d 83       	std	Y+5, r24	; 0x05
+						DFLLRC32M.COMP2 = (DFLLCompare >> 8);
+     b36:	8b eb       	ldi	r24, 0xBB	; 187
+     b38:	8e 83       	std	Y+6, r24	; 0x06
+
+						if (Reference == DFLL_REF_INT_USBSOF)
+						{
+							NVM.CMD        = NVM_CMD_READ_CALIB_ROW_gc;
+     b3a:	80 ec       	ldi	r24, 0xC0	; 192
+     b3c:	91 e0       	ldi	r25, 0x01	; 1
+     b3e:	22 e0       	ldi	r18, 0x02	; 2
+     b40:	fc 01       	movw	r30, r24
+     b42:	22 87       	std	Z+10, r18	; 0x0a
+							DFLLRC32M.CALA = pgm_read_byte(offsetof(NVM_PROD_SIGNATURES_t, USBRCOSCA));
+     b44:	ed e1       	ldi	r30, 0x1D	; 29
+     b46:	f0 e0       	ldi	r31, 0x00	; 0
+     b48:	e4 91       	lpm	r30, Z
+     b4a:	ea 83       	std	Y+2, r30	; 0x02
+							DFLLRC32M.CALB = pgm_read_byte(offsetof(NVM_PROD_SIGNATURES_t, USBRCOSC));
+     b4c:	ec e1       	ldi	r30, 0x1C	; 28
+     b4e:	f0 e0       	ldi	r31, 0x00	; 0
+     b50:	e4 91       	lpm	r30, Z
+     b52:	eb 83       	std	Y+3, r30	; 0x03
+							NVM.CMD        = 0;
+     b54:	fc 01       	movw	r30, r24
+     b56:	12 86       	std	Z+10, r1	; 0x0a
+						}
+
+						DFLLRC32M.CTRL  = DFLL_ENABLE_bm;
+     b58:	81 e0       	ldi	r24, 0x01	; 1
+     b5a:	88 83       	st	Y, r24
+	/* Start the 32MHz internal RC oscillator and start the DFLL to increase it to 48MHz using the USB SOF as a reference */
+	XMEGACLK_StartInternalOscillator(CLOCK_SRC_INT_RC32MHZ);
+	XMEGACLK_StartDFLL(CLOCK_SRC_INT_RC32MHZ, DFLL_REF_INT_USBSOF, 48000000);		
+	
+	//turn off everything we don' t use
+	PR.PRGEN		= PR_AES_bm | PR_RTC_bm | PR_DMA_bm;
+     b5c:	e0 e7       	ldi	r30, 0x70	; 112
+     b5e:	f0 e0       	ldi	r31, 0x00	; 0
+     b60:	85 e1       	ldi	r24, 0x15	; 21
+     b62:	80 83       	st	Z, r24
+	PR.PRPA			= PR_ADC_bm | PR_AC_bm;
+     b64:	83 e0       	ldi	r24, 0x03	; 3
+     b66:	81 83       	std	Z+1, r24	; 0x01
+	PR.PRPC			= PR_TWI_bm | PR_USART0_bm | PR_HIRES_bm;
+     b68:	94 e5       	ldi	r25, 0x54	; 84
+     b6a:	93 83       	std	Z+3, r25	; 0x03
+	PR.PRPD			= PR_TWI_bm | PR_USART0_bm | PR_TC0_bm | PR_TC1_bm;
+     b6c:	93 e5       	ldi	r25, 0x53	; 83
+     b6e:	94 83       	std	Z+4, r25	; 0x04
+	PR.PRPE			= PR_TWI_bm | PR_USART0_bm;
+     b70:	90 e5       	ldi	r25, 0x50	; 80
+     b72:	95 83       	std	Z+5, r25	; 0x05
+	
+	//blink output
+	PORTB.DIRSET	= 3;
+     b74:	80 93 21 06 	sts	0x0621, r24	; 0x800621 <__TEXT_REGION_LENGTH__+0x700621>
+	
+	//start 16MHz crystal and PLL it up to 48MHz
+	OSC.XOSCCTRL	= OSC_FRQRANGE_12TO16_gc |		//16MHz crystal
+     b78:	8b ec       	ldi	r24, 0xCB	; 203
+     b7a:	12 96       	adiw	r26, 0x02	; 2
+     b7c:	8c 93       	st	X, r24
+     b7e:	12 97       	sbiw	r26, 0x02	; 2
+	OSC_XOSCSEL_XTAL_16KCLK_gc;						//16kclk startup
+	OSC.CTRL	   |= OSC_XOSCEN_bm;				//enable crystal
+     b80:	8c 91       	ld	r24, X
+     b82:	88 60       	ori	r24, 0x08	; 8
+     b84:	8c 93       	st	X, r24
+	while(!(OSC.STATUS & OSC_XOSCRDY_bm));			//wait until ready
+     b86:	e0 e5       	ldi	r30, 0x50	; 80
+     b88:	f0 e0       	ldi	r31, 0x00	; 0
+     b8a:	81 81       	ldd	r24, Z+1	; 0x01
+     b8c:	83 ff       	sbrs	r24, 3
+     b8e:	fd cf       	rjmp	.-6      	; 0xb8a <hw_init+0x82>
+	OSC.PLLCTRL		= OSC_PLLSRC_XOSC_gc | 2;		//XTAL->PLL, 2x multiplier (32MHz)
+     b90:	e0 e5       	ldi	r30, 0x50	; 80
+     b92:	f0 e0       	ldi	r31, 0x00	; 0
+     b94:	82 ec       	ldi	r24, 0xC2	; 194
+     b96:	85 83       	std	Z+5, r24	; 0x05
+	OSC.CTRL	   |= OSC_PLLEN_bm;					//start PLL
+     b98:	80 81       	ld	r24, Z
+     b9a:	80 61       	ori	r24, 0x10	; 16
+     b9c:	80 83       	st	Z, r24
+	while (!(OSC.STATUS & OSC_PLLRDY_bm));			//wait until ready
+     b9e:	81 81       	ldd	r24, Z+1	; 0x01
+     ba0:	84 ff       	sbrs	r24, 4
+     ba2:	fd cf       	rjmp	.-6      	; 0xb9e <hw_init+0x96>
+	CCP				= CCP_IOREG_gc;					//allow changing CLK.CTRL
+     ba4:	88 ed       	ldi	r24, 0xD8	; 216
+     ba6:	84 bf       	out	0x34, r24	; 52
+	CLK.CTRL		= CLK_SCLKSEL_PLL_gc;			//use PLL output as system clock	
+     ba8:	34 e0       	ldi	r19, 0x04	; 4
+     baa:	30 93 40 00 	sts	0x0040, r19	; 0x800040 <__TEXT_REGION_LENGTH__+0x700040>
+	
+	//output 16MHz clock to MCP25625 chips (PE0)
+	//next iteration: put this on some other port, pin  4 or 7, so we can use the event system
+	TCE0.CTRLA		= TC0_CLKSEL_DIV1_gc;						//clkper/1
+     bae:	e0 e0       	ldi	r30, 0x00	; 0
+     bb0:	fa e0       	ldi	r31, 0x0A	; 10
+     bb2:	81 e0       	ldi	r24, 0x01	; 1
+     bb4:	80 83       	st	Z, r24
+	TCE0.CTRLB		= TC0_CCAEN_bm | TC0_WGMODE_SINGLESLOPE_bm;	//enable CCA, single-slope PWM
+     bb6:	93 e1       	ldi	r25, 0x13	; 19
+     bb8:	91 83       	std	Z+1, r25	; 0x01
+	TCE0.CCA		= 1;										//compare value
+     bba:	41 e0       	ldi	r20, 0x01	; 1
+     bbc:	50 e0       	ldi	r21, 0x00	; 0
+     bbe:	40 a7       	std	Z+40, r20	; 0x28
+     bc0:	51 a7       	std	Z+41, r21	; 0x29
+	TCE0.PER		= 1;										//period of 1, generates 24MHz output
+     bc2:	46 a3       	std	Z+38, r20	; 0x26
+     bc4:	57 a3       	std	Z+39, r21	; 0x27
+	
+	PORTE.DIRSET	= PIN0_bm;									//set CLKOUT pin to output
+     bc6:	80 93 81 06 	sts	0x0681, r24	; 0x800681 <__TEXT_REGION_LENGTH__+0x700681>
+	
+	//setup CAN pin interrupts
+	PORTC.INTCTRL	= PORT_INT0LVL_HI_gc;
+     bca:	a0 e4       	ldi	r26, 0x40	; 64
+     bcc:	b6 e0       	ldi	r27, 0x06	; 6
+     bce:	93 e0       	ldi	r25, 0x03	; 3
+     bd0:	19 96       	adiw	r26, 0x09	; 9
+     bd2:	9c 93       	st	X, r25
+     bd4:	19 97       	sbiw	r26, 0x09	; 9
+	PORTD.INTCTRL	= PORT_INT0LVL_HI_gc | PORT_INT1LVL_HI_gc;	
+     bd6:	e0 e6       	ldi	r30, 0x60	; 96
+     bd8:	f6 e0       	ldi	r31, 0x06	; 6
+     bda:	2f e0       	ldi	r18, 0x0F	; 15
+     bdc:	21 87       	std	Z+9, r18	; 0x09
+	
+	PORTD.INT0MASK	= PIN0_bm;						//PORTD0 has can1 interrupt
+     bde:	82 87       	std	Z+10, r24	; 0x0a
+	PORTD.PIN0CTRL	= PORT_OPC_PULLUP_gc | PORT_ISC_LEVEL_gc;
+     be0:	2b e1       	ldi	r18, 0x1B	; 27
+     be2:	20 8b       	std	Z+16, r18	; 0x10
+	
+	PORTD.INT1MASK	= PIN5_bm;						//PORTD5 has can2 interrupt
+     be4:	40 e2       	ldi	r20, 0x20	; 32
+     be6:	43 87       	std	Z+11, r20	; 0x0b
+	PORTD.PIN5CTRL	= PORT_OPC_PULLUP_gc | PORT_ISC_LEVEL_gc;
+     be8:	25 8b       	std	Z+21, r18	; 0x15
+	
+	#ifdef ENABLE_CAN3
+	PORTC.INT0MASK	= PIN2_bm;						//PORTC2 has can3 interrupt
+     bea:	1a 96       	adiw	r26, 0x0a	; 10
+     bec:	3c 93       	st	X, r19
+     bee:	1a 97       	sbiw	r26, 0x0a	; 10
+	PORTC.PIN0CTRL	= PORT_OPC_PULLUP_gc | PORT_ISC_LEVEL_gc;
+     bf0:	50 96       	adiw	r26, 0x10	; 16
+     bf2:	2c 93       	st	X, r18
+	#endif
+	
+	//buffer checking interrupt
+	TCC1.CTRLA		= TC0_CLKSEL_DIV1_gc;			//32M/1/3200 ~ 100usec
+     bf4:	e0 e4       	ldi	r30, 0x40	; 64
+     bf6:	f8 e0       	ldi	r31, 0x08	; 8
+     bf8:	80 83       	st	Z, r24
+	TCC1.PER		= 3200;
+     bfa:	20 e8       	ldi	r18, 0x80	; 128
+     bfc:	3c e0       	ldi	r19, 0x0C	; 12
+     bfe:	26 a3       	std	Z+38, r18	; 0x26
+     c00:	37 a3       	std	Z+39, r19	; 0x27
+	TCC1.INTCTRLA	= TC0_OVFINTLVL_HI_gc;			//same priority as can interrupts
+     c02:	96 83       	std	Z+6, r25	; 0x06
+	
+	//we want to optimize performance, so we're going to time stuff
+	//48MHz/48=1us timer, which we just freerun and reset whenever we want to start timing something
+	//frame time timer
+	TCC0.CTRLA		= TC0_CLKSEL_DIV1_gc;
+     c04:	e0 e0       	ldi	r30, 0x00	; 0
+     c06:	f8 e0       	ldi	r31, 0x08	; 8
+     c08:	80 83       	st	Z, r24
+	TCC0.PER		= 32000;						//32MHz/32000=1ms
+     c0a:	20 e0       	ldi	r18, 0x00	; 0
+     c0c:	3d e7       	ldi	r19, 0x7D	; 125
+     c0e:	26 a3       	std	Z+38, r18	; 0x26
+     c10:	37 a3       	std	Z+39, r19	; 0x27
+	TCC0.INTCTRLA	= TC0_OVFINTLVL_HI_gc;			//interrupt on overflow
+     c12:	96 83       	std	Z+6, r25	; 0x06
+	
+	PORTB.OUTCLR	= (1 << 0);
+     c14:	80 93 26 06 	sts	0x0626, r24	; 0x800626 <__TEXT_REGION_LENGTH__+0x700626>
+	
+	can_system_init:
+			
+	//Init SPI and CAN interface:
+	if(RST.STATUS & RST_WDRF_bm){ //if we come from a watchdog reset, we don't need to setup CAN
+     c18:	c8 e7       	ldi	r28, 0x78	; 120
+     c1a:	d0 e0       	ldi	r29, 0x00	; 0
+     c1c:	88 81       	ld	r24, Y
+     c1e:	83 ff       	sbrs	r24, 3
+     c20:	04 c0       	rjmp	.+8      	; 0xc2a <hw_init+0x122>
+		caninit = can_init(MCP_OPMOD_NORMAL, 1); //on second thought, we do
+     c22:	61 e0       	ldi	r22, 0x01	; 1
+     c24:	80 e0       	ldi	r24, 0x00	; 0
+     c26:	be de       	rcall	.-644    	; 0x9a4 <can_init>
+     c28:	03 c0       	rjmp	.+6      	; 0xc30 <hw_init+0x128>
+	} else {
+		caninit = can_init(MCP_OPMOD_NORMAL, 1);
+     c2a:	61 e0       	ldi	r22, 0x01	; 1
+     c2c:	80 e0       	ldi	r24, 0x00	; 0
+     c2e:	ba de       	rcall	.-652    	; 0x9a4 <can_init>
+	}
+	
+	if(caninit){		
+     c30:	81 11       	cpse	r24, r1
+     c32:	0a c0       	rjmp	.+20     	; 0xc48 <hw_init+0x140>
+     c34:	ff ef       	ldi	r31, 0xFF	; 255
+     c36:	29 ef       	ldi	r18, 0xF9	; 249
+     c38:	80 e0       	ldi	r24, 0x00	; 0
+     c3a:	f1 50       	subi	r31, 0x01	; 1
+     c3c:	20 40       	sbci	r18, 0x00	; 0
+     c3e:	80 40       	sbci	r24, 0x00	; 0
+     c40:	e1 f7       	brne	.-8      	; 0xc3a <hw_init+0x132>
+     c42:	00 c0       	rjmp	.+0      	; 0xc44 <hw_init+0x13c>
+     c44:	00 00       	nop
+     c46:	ea cf       	rjmp	.-44     	; 0xc1c <hw_init+0x114>
+			 *  \param[in] Value    Value to write to the protected location
+			 */
+			static inline void XMEGACLK_CCP_Write(volatile void* Address, const uint8_t Value) ATTR_NON_NULL_PTR_ARG(1) ATTR_ALWAYS_INLINE;
+			static inline void XMEGACLK_CCP_Write(volatile void* Address, const uint8_t Value)
+			{
+				__asm__ __volatile__ (
+     c48:	25 e8       	ldi	r18, 0x85	; 133
+     c4a:	88 ed       	ldi	r24, 0xD8	; 216
+     c4c:	90 e0       	ldi	r25, 0x00	; 0
+     c4e:	a2 ea       	ldi	r26, 0xA2	; 162
+     c50:	b0 e0       	ldi	r27, 0x00	; 0
+     c52:	1b be       	out	0x3b, r1	; 59
+     c54:	fd 01       	movw	r30, r26
+     c56:	84 bf       	out	0x34, r24	; 52
+     c58:	20 83       	st	Z, r18
+	}
+	
+	//Set and enable interrupts with round-robin
+	XMEGACLK_CCP_Write((void * ) &PMIC.CTRL, PMIC_RREN_bm | PMIC_LOLVLEN_bm | PMIC_HILVLEN_bm);//PMIC.CTRL = PMIC_LOLVLEN_bm | PMIC_MEDLVLEN_bm| PMIC_HILVLEN_bm;
+	
+	USB_Init(USB_OPT_RC32MCLKSRC | USB_OPT_BUSEVENT_PRILOW);
+     c5a:	2b be       	out	0x3b, r2	; 59
+     c5c:	80 e0       	ldi	r24, 0x00	; 0
+     c5e:	d9 db       	rcall	.-2126   	; 0x412 <USB_Init>
+	#ifdef USB_SERIAL
+	CDC_Device_CreateStream(&VirtualSerial_CDC_Interface, &USBSerialStream);
+	#endif
+	
+	wdt_enable(WDTO_15MS);
+     c60:	93 e0       	ldi	r25, 0x03	; 3
+     c62:	88 ed       	ldi	r24, 0xD8	; 216
+     c64:	08 b6       	in	r0, 0x38	; 56
+     c66:	18 be       	out	0x38, r1	; 56
+     c68:	84 bf       	out	0x34, r24	; 52
+     c6a:	90 93 80 00 	sts	0x0080, r25	; 0x800080 <__TEXT_REGION_LENGTH__+0x700080>
+     c6e:	80 91 82 00 	lds	r24, 0x0082	; 0x800082 <__TEXT_REGION_LENGTH__+0x700082>
+     c72:	81 fd       	sbrc	r24, 1
+     c74:	fc cf       	rjmp	.-8      	; 0xc6e <hw_init+0x166>
+     c76:	08 be       	out	0x38, r0	; 56
+	
+	sei();
+     c78:	78 94       	sei
+}
+     c7a:	df 91       	pop	r29
+     c7c:	cf 91       	pop	r28
+     c7e:	08 95       	ret
+
+00000c80 <main>:
+int main(void){
+	#ifdef USB_SERIAL
+	char * str = "";
+	#endif
+	
+	hw_init();
+     c80:	43 df       	rcall	.-378    	; 0xb08 <hw_init>
+     c82:	ff cf       	rjmp	.-2      	; 0xc82 <main+0x2>
+
+00000c84 <EVENT_USB_Device_Disconnect>:
+		
+	}
+}
+#endif
+// Event handler for the LUFA library USB Disconnection event.
+void EVENT_USB_Device_Disconnect(void){}
+     c84:	08 95       	ret
+
+00000c86 <EVENT_USB_Device_Connect>:
+
+void EVENT_USB_Device_Connect(void){}
+     c86:	08 95       	ret
+
+00000c88 <__vector_14>:
+	}
+}
+#endif
+
+//fires every 1ms
+ISR(TCC0_OVF_vect){	
+     c88:	1f 92       	push	r1
+     c8a:	0f 92       	push	r0
+     c8c:	0f b6       	in	r0, 0x3f	; 63
+     c8e:	0f 92       	push	r0
+     c90:	11 24       	eor	r1, r1
+     c92:	8f 93       	push	r24
+     c94:	9f 93       	push	r25
+	wdt_reset(); //Reset the watchdog
+     c96:	a8 95       	wdr
+	sec_timer--; //Increment the 1000ms timer
+     c98:	80 91 02 20 	lds	r24, 0x2002	; 0x802002 <sec_timer>
+     c9c:	90 91 03 20 	lds	r25, 0x2003	; 0x802003 <sec_timer+0x1>
+     ca0:	01 97       	sbiw	r24, 0x01	; 1
+     ca2:	80 93 02 20 	sts	0x2002, r24	; 0x802002 <sec_timer>
+     ca6:	90 93 03 20 	sts	0x2003, r25	; 0x802003 <sec_timer+0x1>
+	if(print_char_limit <= 64) { print_char_limit = 0; }
+	else { print_char_limit -= 64; }
+	#endif
+	
+	//fires every 100ms
+	if(ms_timer_100 == 100) //Task that need to be performed each 100ms go here
+     caa:	80 91 00 20 	lds	r24, 0x2000	; 0x802000 <__data_start>
+     cae:	90 91 01 20 	lds	r25, 0x2001	; 0x802001 <__data_start+0x1>
+     cb2:	84 36       	cpi	r24, 0x64	; 100
+     cb4:	91 05       	cpc	r25, r1
+     cb6:	21 f4       	brne	.+8      	; 0xcc0 <__vector_14+0x38>
+	{
+		ms_timer_100 = 0; //reset the timer
+     cb8:	10 92 00 20 	sts	0x2000, r1	; 0x802000 <__data_start>
+     cbc:	10 92 01 20 	sts	0x2001, r1	; 0x802001 <__data_start+0x1>
+	}
+	
+	//fires every second (1000ms tasks go here)
+	if(sec_timer == 0){
+     cc0:	80 91 02 20 	lds	r24, 0x2002	; 0x802002 <sec_timer>
+     cc4:	90 91 03 20 	lds	r25, 0x2003	; 0x802003 <sec_timer+0x1>
+     cc8:	89 2b       	or	r24, r25
+     cca:	19 f4       	brne	.+6      	; 0xcd2 <__vector_14+0x4a>
+		PORTB.OUTCLR = (1 << 1);
+     ccc:	82 e0       	ldi	r24, 0x02	; 2
+     cce:	80 93 26 06 	sts	0x0626, r24	; 0x800626 <__TEXT_REGION_LENGTH__+0x700626>
+		
+	}
+}
+     cd2:	9f 91       	pop	r25
+     cd4:	8f 91       	pop	r24
+     cd6:	0f 90       	pop	r0
+     cd8:	0f be       	out	0x3f, r0	; 63
+     cda:	0f 90       	pop	r0
+     cdc:	1f 90       	pop	r1
+     cde:	18 95       	reti
+
+00000ce0 <check_can1>:
+
+
+void check_can1(void){
+	uint8_t reg;
+	
+	if(tx0_buffer_end != tx0_buffer_pos){
+     ce0:	90 91 08 20 	lds	r25, 0x2008	; 0x802008 <tx0_buffer_end>
+     ce4:	80 91 09 20 	lds	r24, 0x2009	; 0x802009 <tx0_buffer_pos>
+     ce8:	98 17       	cp	r25, r24
+     cea:	f1 f0       	breq	.+60     	; 0xd28 <check_can1+0x48>
+		//check if TXB0 is free use
+		reg = can1_read(MCP_REG_TXB0CTRL);
+     cec:	80 e3       	ldi	r24, 0x30	; 48
+     cee:	c9 dd       	rcall	.-1134   	; 0x882 <can1_read>
+	
+		if(!(reg & MCP_TXREQ_bm)){ //we're free to send
+     cf0:	83 fd       	sbrc	r24, 3
+     cf2:	1a c0       	rjmp	.+52     	; 0xd28 <check_can1+0x48>
+			can1_load_txbuff(0, (can_frame_t *) &tx0_buffer[tx0_buffer_pos++]);
+     cf4:	60 91 09 20 	lds	r22, 0x2009	; 0x802009 <tx0_buffer_pos>
+     cf8:	81 e0       	ldi	r24, 0x01	; 1
+     cfa:	86 0f       	add	r24, r22
+     cfc:	80 93 09 20 	sts	0x2009, r24	; 0x802009 <tx0_buffer_pos>
+     d00:	8b e0       	ldi	r24, 0x0B	; 11
+     d02:	68 9f       	mul	r22, r24
+     d04:	b0 01       	movw	r22, r0
+     d06:	11 24       	eor	r1, r1
+     d08:	64 51       	subi	r22, 0x14	; 20
+     d0a:	7c 4d       	sbci	r23, 0xDC	; 220
+     d0c:	80 e0       	ldi	r24, 0x00	; 0
+     d0e:	2b dd       	rcall	.-1450   	; 0x766 <can1_load_txbuff>
+			can1_rts(0);
+     d10:	80 e0       	ldi	r24, 0x00	; 0
+     d12:	d0 dc       	rcall	.-1632   	; 0x6b4 <can1_rts>
+     d14:	90 91 09 20 	lds	r25, 0x2009	; 0x802009 <tx0_buffer_pos>
+			if(tx0_buffer_pos == tx0_buffer_end){ //end of buffer, reset
+     d18:	80 91 08 20 	lds	r24, 0x2008	; 0x802008 <tx0_buffer_end>
+     d1c:	98 13       	cpse	r25, r24
+     d1e:	04 c0       	rjmp	.+8      	; 0xd28 <check_can1+0x48>
+     d20:	10 92 08 20 	sts	0x2008, r1	; 0x802008 <tx0_buffer_end>
+				tx0_buffer_end = 0;
+     d24:	10 92 09 20 	sts	0x2009, r1	; 0x802009 <tx0_buffer_pos>
+				tx0_buffer_pos = 0;
+     d28:	08 95       	ret
+
+00000d2a <send_can1>:
+     d2a:	ef 92       	push	r14
+	if(can_bus == 1) send_can1(frame);
+	if(can_bus == 2) send_can2(frame);
+	if(can_bus == 3) send_can3(frame);
+}
+
+void send_can1(can_frame_t frame){	
+     d2c:	ff 92       	push	r15
+     d2e:	0f 93       	push	r16
+     d30:	1f 93       	push	r17
+     d32:	cf 93       	push	r28
+     d34:	df 93       	push	r29
+     d36:	cd b7       	in	r28, 0x3d	; 61
+     d38:	de b7       	in	r29, 0x3e	; 62
+     d3a:	2b 97       	sbiw	r28, 0x0b	; 11
+     d3c:	cd bf       	out	0x3d, r28	; 61
+     d3e:	de bf       	out	0x3e, r29	; 62
+     d40:	e9 82       	std	Y+1, r14	; 0x01
+     d42:	fa 82       	std	Y+2, r15	; 0x02
+     d44:	0b 83       	std	Y+3, r16	; 0x03
+     d46:	1c 83       	std	Y+4, r17	; 0x04
+     d48:	2d 83       	std	Y+5, r18	; 0x05
+     d4a:	3e 83       	std	Y+6, r19	; 0x06
+     d4c:	4f 83       	std	Y+7, r20	; 0x07
+     d4e:	58 87       	std	Y+8, r21	; 0x08
+     d50:	69 87       	std	Y+9, r22	; 0x09
+     d52:	7a 87       	std	Y+10, r23	; 0x0a
+     d54:	8b 87       	std	Y+11, r24	; 0x0b
+	//put in the buffer
+	memcpy(&tx0_buffer[tx0_buffer_end++], &frame, sizeof(frame));
+     d56:	a0 91 08 20 	lds	r26, 0x2008	; 0x802008 <tx0_buffer_end>
+     d5a:	81 e0       	ldi	r24, 0x01	; 1
+     d5c:	8a 0f       	add	r24, r26
+     d5e:	80 93 08 20 	sts	0x2008, r24	; 0x802008 <tx0_buffer_end>
+     d62:	9b e0       	ldi	r25, 0x0B	; 11
+     d64:	a9 9f       	mul	r26, r25
+     d66:	d0 01       	movw	r26, r0
+     d68:	11 24       	eor	r1, r1
+     d6a:	a4 51       	subi	r26, 0x14	; 20
+     d6c:	bc 4d       	sbci	r27, 0xDC	; 220
+     d6e:	9b e0       	ldi	r25, 0x0B	; 11
+     d70:	fe 01       	movw	r30, r28
+     d72:	31 96       	adiw	r30, 0x01	; 1
+     d74:	01 90       	ld	r0, Z+
+     d76:	0d 92       	st	X+, r0
+     d78:	9a 95       	dec	r25
+     d7a:	e1 f7       	brne	.-8      	; 0xd74 <send_can1+0x4a>
+	
+	if(tx0_buffer_end >= TXBUFFER_SIZE){ //silently handle buffer overflows
+     d7c:	80 31       	cpi	r24, 0x10	; 16
+     d7e:	18 f0       	brcs	.+6      	; 0xd86 <send_can1+0x5c>
+		tx0_buffer_end = TXBUFFER_SIZE - 1;
+     d80:	8f e0       	ldi	r24, 0x0F	; 15
+     d82:	80 93 08 20 	sts	0x2008, r24	; 0x802008 <tx0_buffer_end>
+	}
+	
+	check_can1();
+     d86:	ac df       	rcall	.-168    	; 0xce0 <check_can1>
+}
+     d88:	2b 96       	adiw	r28, 0x0b	; 11
+     d8a:	cd bf       	out	0x3d, r28	; 61
+     d8c:	de bf       	out	0x3e, r29	; 62
+     d8e:	df 91       	pop	r29
+     d90:	cf 91       	pop	r28
+     d92:	1f 91       	pop	r17
+     d94:	0f 91       	pop	r16
+     d96:	ff 90       	pop	r15
+     d98:	ef 90       	pop	r14
+     d9a:	08 95       	ret
+
+00000d9c <check_can2>:
+}
+
+void check_can2(void){
+	uint8_t reg;
+	
+	if(tx2_buffer_end != tx2_buffer_pos){
+     d9c:	90 91 06 20 	lds	r25, 0x2006	; 0x802006 <tx2_buffer_end>
+     da0:	80 91 07 20 	lds	r24, 0x2007	; 0x802007 <tx2_buffer_pos>
+     da4:	98 17       	cp	r25, r24
+     da6:	f1 f0       	breq	.+60     	; 0xde4 <check_can2+0x48>
+		//check if TXB0 is free use
+		reg = can2_read(MCP_REG_TXB0CTRL);
+     da8:	80 e3       	ldi	r24, 0x30	; 48
+     daa:	80 dd       	rcall	.-1280   	; 0x8ac <can2_read>
+		
+		if(!(reg & MCP_TXREQ_bm)){ //we're free to send
+     dac:	83 fd       	sbrc	r24, 3
+     dae:	1a c0       	rjmp	.+52     	; 0xde4 <check_can2+0x48>
+			can2_load_txbuff(0, (can_frame_t *) &tx2_buffer[tx2_buffer_pos++]);
+     db0:	60 91 07 20 	lds	r22, 0x2007	; 0x802007 <tx2_buffer_pos>
+     db4:	81 e0       	ldi	r24, 0x01	; 1
+     db6:	86 0f       	add	r24, r22
+     db8:	80 93 07 20 	sts	0x2007, r24	; 0x802007 <tx2_buffer_pos>
+     dbc:	8b e0       	ldi	r24, 0x0B	; 11
+     dbe:	68 9f       	mul	r22, r24
+     dc0:	b0 01       	movw	r22, r0
+     dc2:	11 24       	eor	r1, r1
+     dc4:	64 5c       	subi	r22, 0xC4	; 196
+     dc6:	7c 4d       	sbci	r23, 0xDC	; 220
+     dc8:	80 e0       	ldi	r24, 0x00	; 0
+     dca:	da dc       	rcall	.-1612   	; 0x780 <can2_load_txbuff>
+			can2_rts(0);
+     dcc:	80 e0       	ldi	r24, 0x00	; 0
+     dce:	7f dc       	rcall	.-1794   	; 0x6ce <can2_rts>
+     dd0:	90 91 07 20 	lds	r25, 0x2007	; 0x802007 <tx2_buffer_pos>
+			if(tx2_buffer_pos == tx2_buffer_end){ //end of buffer, reset
+     dd4:	80 91 06 20 	lds	r24, 0x2006	; 0x802006 <tx2_buffer_end>
+     dd8:	98 13       	cpse	r25, r24
+     dda:	04 c0       	rjmp	.+8      	; 0xde4 <check_can2+0x48>
+     ddc:	10 92 06 20 	sts	0x2006, r1	; 0x802006 <tx2_buffer_end>
+				tx2_buffer_end = 0;
+     de0:	10 92 07 20 	sts	0x2007, r1	; 0x802007 <tx2_buffer_pos>
+				tx2_buffer_pos = 0;
+     de4:	08 95       	ret
+
+00000de6 <send_can2>:
+     de6:	ef 92       	push	r14
+			}
+		}
+	}
+}
+
+void send_can2(can_frame_t frame){
+     de8:	ff 92       	push	r15
+     dea:	0f 93       	push	r16
+     dec:	1f 93       	push	r17
+     dee:	cf 93       	push	r28
+     df0:	df 93       	push	r29
+     df2:	cd b7       	in	r28, 0x3d	; 61
+     df4:	de b7       	in	r29, 0x3e	; 62
+     df6:	2b 97       	sbiw	r28, 0x0b	; 11
+     df8:	cd bf       	out	0x3d, r28	; 61
+     dfa:	de bf       	out	0x3e, r29	; 62
+     dfc:	e9 82       	std	Y+1, r14	; 0x01
+     dfe:	fa 82       	std	Y+2, r15	; 0x02
+     e00:	0b 83       	std	Y+3, r16	; 0x03
+     e02:	1c 83       	std	Y+4, r17	; 0x04
+     e04:	2d 83       	std	Y+5, r18	; 0x05
+     e06:	3e 83       	std	Y+6, r19	; 0x06
+     e08:	4f 83       	std	Y+7, r20	; 0x07
+     e0a:	58 87       	std	Y+8, r21	; 0x08
+     e0c:	69 87       	std	Y+9, r22	; 0x09
+     e0e:	7a 87       	std	Y+10, r23	; 0x0a
+     e10:	8b 87       	std	Y+11, r24	; 0x0b
+	//put in the buffer
+	memcpy(&tx2_buffer[tx2_buffer_end++], &frame, sizeof(frame));
+     e12:	a0 91 06 20 	lds	r26, 0x2006	; 0x802006 <tx2_buffer_end>
+     e16:	81 e0       	ldi	r24, 0x01	; 1
+     e18:	8a 0f       	add	r24, r26
+     e1a:	80 93 06 20 	sts	0x2006, r24	; 0x802006 <tx2_buffer_end>
+     e1e:	9b e0       	ldi	r25, 0x0B	; 11
+     e20:	a9 9f       	mul	r26, r25
+     e22:	d0 01       	movw	r26, r0
+     e24:	11 24       	eor	r1, r1
+     e26:	a4 5c       	subi	r26, 0xC4	; 196
+     e28:	bc 4d       	sbci	r27, 0xDC	; 220
+     e2a:	9b e0       	ldi	r25, 0x0B	; 11
+     e2c:	fe 01       	movw	r30, r28
+     e2e:	31 96       	adiw	r30, 0x01	; 1
+     e30:	01 90       	ld	r0, Z+
+     e32:	0d 92       	st	X+, r0
+     e34:	9a 95       	dec	r25
+     e36:	e1 f7       	brne	.-8      	; 0xe30 <send_can2+0x4a>
+	
+	if(tx2_buffer_end >= TXBUFFER_SIZE){ //silently handle buffer overflows
+     e38:	80 31       	cpi	r24, 0x10	; 16
+     e3a:	18 f0       	brcs	.+6      	; 0xe42 <send_can2+0x5c>
+		tx2_buffer_end = TXBUFFER_SIZE - 1;
+     e3c:	8f e0       	ldi	r24, 0x0F	; 15
+     e3e:	80 93 06 20 	sts	0x2006, r24	; 0x802006 <tx2_buffer_end>
+	}
+	
+	check_can2();
+     e42:	ac df       	rcall	.-168    	; 0xd9c <check_can2>
+}
+     e44:	2b 96       	adiw	r28, 0x0b	; 11
+     e46:	cd bf       	out	0x3d, r28	; 61
+     e48:	de bf       	out	0x3e, r29	; 62
+     e4a:	df 91       	pop	r29
+     e4c:	cf 91       	pop	r28
+     e4e:	1f 91       	pop	r17
+     e50:	0f 91       	pop	r16
+     e52:	ff 90       	pop	r15
+     e54:	ef 90       	pop	r14
+     e56:	08 95       	ret
+
+00000e58 <can_handler>:
+	can_busy = 1;
+	can_handler(3);
+}
+
+//VCM side of the CAN bus (in Muxsan)
+void can_handler(uint8_t can_bus){
+     e58:	cf 92       	push	r12
+     e5a:	df 92       	push	r13
+     e5c:	ef 92       	push	r14
+     e5e:	ff 92       	push	r15
+     e60:	0f 93       	push	r16
+     e62:	1f 93       	push	r17
+     e64:	cf 93       	push	r28
+     e66:	df 93       	push	r29
+     e68:	cd b7       	in	r28, 0x3d	; 61
+     e6a:	de b7       	in	r29, 0x3e	; 62
+     e6c:	2b 97       	sbiw	r28, 0x0b	; 11
+     e6e:	cd bf       	out	0x3d, r28	; 61
+     e70:	de bf       	out	0x3e, r29	; 62
+     e72:	c8 2e       	mov	r12, r24
+	can_frame_t frame;
+	uint8_t flag = can_read(MCP_REG_CANINTF, can_bus);
+     e74:	68 2f       	mov	r22, r24
+     e76:	8c e2       	ldi	r24, 0x2C	; 44
+     e78:	43 dd       	rcall	.-1402   	; 0x900 <can_read>
+     e7a:	d8 2e       	mov	r13, r24
+		
+	if (flag & (MCP_RX0IF | MCP_RX1IF)){
+     e7c:	83 70       	andi	r24, 0x03	; 3
+     e7e:	a9 f1       	breq	.+106    	; 0xeea <can_handler+0x92>
+
+		if(flag & MCP_RX1IF){ //prioritize the rollover buffer
+     e80:	d1 fe       	sbrs	r13, 1
+     e82:	0c c0       	rjmp	.+24     	; 0xe9c <can_handler+0x44>
+			can_read_rx_buf(MCP_RX_1, &frame, can_bus);
+     e84:	4c 2d       	mov	r20, r12
+     e86:	be 01       	movw	r22, r28
+     e88:	6f 5f       	subi	r22, 0xFF	; 255
+     e8a:	7f 4f       	sbci	r23, 0xFF	; 255
+     e8c:	84 e9       	ldi	r24, 0x94	; 148
+     e8e:	eb dc       	rcall	.-1578   	; 0x866 <can_read_rx_buf>
+			can_bit_modify(MCP_REG_CANINTF, MCP_RX1IF, 0x00, can_bus);
+     e90:	2c 2d       	mov	r18, r12
+     e92:	40 e0       	ldi	r20, 0x00	; 0
+     e94:	62 e0       	ldi	r22, 0x02	; 2
+     e96:	8c e2       	ldi	r24, 0x2C	; 44
+     e98:	b6 db       	rcall	.-2196   	; 0x606 <can_bit_modify>
+     e9a:	0b c0       	rjmp	.+22     	; 0xeb2 <can_handler+0x5a>
+			} else {
+			can_read_rx_buf(MCP_RX_0, &frame, can_bus);
+     e9c:	4c 2d       	mov	r20, r12
+     e9e:	be 01       	movw	r22, r28
+     ea0:	6f 5f       	subi	r22, 0xFF	; 255
+     ea2:	7f 4f       	sbci	r23, 0xFF	; 255
+     ea4:	80 e9       	ldi	r24, 0x90	; 144
+     ea6:	df dc       	rcall	.-1602   	; 0x866 <can_read_rx_buf>
+			can_bit_modify(MCP_REG_CANINTF, MCP_RX0IF, 0x00, can_bus);
+     ea8:	2c 2d       	mov	r18, r12
+     eaa:	40 e0       	ldi	r20, 0x00	; 0
+     eac:	61 e0       	ldi	r22, 0x01	; 1
+     eae:	8c e2       	ldi	r24, 0x2C	; 44
+     eb0:	aa db       	rcall	.-2220   	; 0x606 <can_bit_modify>
+				default:
+					block = 0;
+					break;
+			}
+			if(!block){
+				if(can_bus == 1){send_can2(frame);} else {send_can1(frame);
+     eb2:	81 e0       	ldi	r24, 0x01	; 1
+     eb4:	c8 12       	cpse	r12, r24
+     eb6:	0d c0       	rjmp	.+26     	; 0xed2 <can_handler+0x7a>
+     eb8:	e9 80       	ldd	r14, Y+1	; 0x01
+     eba:	fa 80       	ldd	r15, Y+2	; 0x02
+     ebc:	0b 81       	ldd	r16, Y+3	; 0x03
+     ebe:	1c 81       	ldd	r17, Y+4	; 0x04
+     ec0:	2d 81       	ldd	r18, Y+5	; 0x05
+     ec2:	3e 81       	ldd	r19, Y+6	; 0x06
+     ec4:	4f 81       	ldd	r20, Y+7	; 0x07
+     ec6:	58 85       	ldd	r21, Y+8	; 0x08
+     ec8:	69 85       	ldd	r22, Y+9	; 0x09
+     eca:	7a 85       	ldd	r23, Y+10	; 0x0a
+     ecc:	8b 85       	ldd	r24, Y+11	; 0x0b
+     ece:	8b df       	rcall	.-234    	; 0xde6 <send_can2>
+     ed0:	0c c0       	rjmp	.+24     	; 0xeea <can_handler+0x92>
+     ed2:	e9 80       	ldd	r14, Y+1	; 0x01
+     ed4:	fa 80       	ldd	r15, Y+2	; 0x02
+     ed6:	0b 81       	ldd	r16, Y+3	; 0x03
+     ed8:	1c 81       	ldd	r17, Y+4	; 0x04
+     eda:	2d 81       	ldd	r18, Y+5	; 0x05
+     edc:	3e 81       	ldd	r19, Y+6	; 0x06
+     ede:	4f 81       	ldd	r20, Y+7	; 0x07
+     ee0:	58 85       	ldd	r21, Y+8	; 0x08
+     ee2:	69 85       	ldd	r22, Y+9	; 0x09
+     ee4:	7a 85       	ldd	r23, Y+10	; 0x0a
+     ee6:	8b 85       	ldd	r24, Y+11	; 0x0b
+				}
+			}
+		}		
+			
+	
+	if(flag & 0xA0){
+     ee8:	20 df       	rcall	.-448    	; 0xd2a <send_can1>
+     eea:	8d 2d       	mov	r24, r13
+     eec:	80 7a       	andi	r24, 0xA0	; 160
+		uint8_t flag2 = can_read(MCP_REG_EFLG, can_bus);
+     eee:	b1 f0       	breq	.+44     	; 0xf1c <can_handler+0xc4>
+     ef0:	6c 2d       	mov	r22, r12
+     ef2:	8d e2       	ldi	r24, 0x2D	; 45
+     ef4:	05 dd       	rcall	.-1526   	; 0x900 <can_read>
+		if(flag2 & 0xC0){
+     ef6:	18 2f       	mov	r17, r24
+     ef8:	80 7c       	andi	r24, 0xC0	; 192
+			can_write(MCP_REG_EFLG, 0, can_bus); //reset all errors
+     efa:	21 f0       	breq	.+8      	; 0xf04 <can_handler+0xac>
+     efc:	4c 2d       	mov	r20, r12
+     efe:	60 e0       	ldi	r22, 0x00	; 0
+     f00:	8d e2       	ldi	r24, 0x2D	; 45
+     f02:	f8 dd       	rcall	.-1040   	; 0xaf4 <can_write>
+			//ReportString = "CANX RX OVF\n";
+			//ReportString[3] = 48 + can_bus;
+			//print(ReportString,12);
+		}
+		if(flag2 > 0){ PORTB.OUTSET = (1 << 1); }
+     f04:	11 23       	and	r17, r17
+     f06:	19 f0       	breq	.+6      	; 0xf0e <can_handler+0xb6>
+     f08:	82 e0       	ldi	r24, 0x02	; 2
+     f0a:	80 93 25 06 	sts	0x0625, r24	; 0x800625 <__TEXT_REGION_LENGTH__+0x700625>
+     f0e:	6d 2d       	mov	r22, r13
+		if(flag & 0xE0){ can_bit_modify(MCP_REG_CANINTF, (flag & 0xE0), 0x00, can_bus);	}
+     f10:	60 7e       	andi	r22, 0xE0	; 224
+     f12:	21 f0       	breq	.+8      	; 0xf1c <can_handler+0xc4>
+     f14:	2c 2d       	mov	r18, r12
+     f16:	40 e0       	ldi	r20, 0x00	; 0
+     f18:	8c e2       	ldi	r24, 0x2C	; 44
+     f1a:	75 db       	rcall	.-2326   	; 0x606 <can_bit_modify>
+	}
+	can_busy = 0;
+     f1c:	10 92 0a 20 	sts	0x200A, r1	; 0x80200a <can_busy>
+}
+     f20:	2b 96       	adiw	r28, 0x0b	; 11
+     f22:	cd bf       	out	0x3d, r28	; 61
+     f24:	de bf       	out	0x3e, r29	; 62
+     f26:	df 91       	pop	r29
+     f28:	cf 91       	pop	r28
+     f2a:	1f 91       	pop	r17
+     f2c:	0f 91       	pop	r16
+     f2e:	ff 90       	pop	r15
+     f30:	ef 90       	pop	r14
+     f32:	df 90       	pop	r13
+     f34:	cf 90       	pop	r12
+     f36:	08 95       	ret
+
+00000f38 <__vector_64>:
+	check_can2();
+	check_can3();
+}
+
+//can1 interrupt
+ISR(PORTD_INT0_vect){
+     f38:	1f 92       	push	r1
+     f3a:	0f 92       	push	r0
+     f3c:	0f b6       	in	r0, 0x3f	; 63
+     f3e:	0f 92       	push	r0
+     f40:	11 24       	eor	r1, r1
+     f42:	2f 93       	push	r18
+     f44:	3f 93       	push	r19
+     f46:	4f 93       	push	r20
+     f48:	5f 93       	push	r21
+     f4a:	6f 93       	push	r22
+     f4c:	7f 93       	push	r23
+     f4e:	8f 93       	push	r24
+     f50:	9f 93       	push	r25
+     f52:	af 93       	push	r26
+     f54:	bf 93       	push	r27
+     f56:	ef 93       	push	r30
+     f58:	ff 93       	push	r31
+	can_busy = 1;
+     f5a:	81 e0       	ldi	r24, 0x01	; 1
+     f5c:	80 93 0a 20 	sts	0x200A, r24	; 0x80200a <can_busy>
+	can_handler(1);
+     f60:	7b df       	rcall	.-266    	; 0xe58 <can_handler>
+}
+     f62:	ff 91       	pop	r31
+     f64:	ef 91       	pop	r30
+     f66:	bf 91       	pop	r27
+     f68:	af 91       	pop	r26
+     f6a:	9f 91       	pop	r25
+     f6c:	8f 91       	pop	r24
+     f6e:	7f 91       	pop	r23
+     f70:	6f 91       	pop	r22
+     f72:	5f 91       	pop	r21
+     f74:	4f 91       	pop	r20
+     f76:	3f 91       	pop	r19
+     f78:	2f 91       	pop	r18
+     f7a:	0f 90       	pop	r0
+     f7c:	0f be       	out	0x3f, r0	; 63
+     f7e:	0f 90       	pop	r0
+     f80:	1f 90       	pop	r1
+     f82:	18 95       	reti
+
+00000f84 <__vector_65>:
+
+//can2 interrupt
+ISR(PORTD_INT1_vect){
+     f84:	1f 92       	push	r1
+     f86:	0f 92       	push	r0
+     f88:	0f b6       	in	r0, 0x3f	; 63
+     f8a:	0f 92       	push	r0
+     f8c:	11 24       	eor	r1, r1
+     f8e:	2f 93       	push	r18
+     f90:	3f 93       	push	r19
+     f92:	4f 93       	push	r20
+     f94:	5f 93       	push	r21
+     f96:	6f 93       	push	r22
+     f98:	7f 93       	push	r23
+     f9a:	8f 93       	push	r24
+     f9c:	9f 93       	push	r25
+     f9e:	af 93       	push	r26
+     fa0:	bf 93       	push	r27
+     fa2:	ef 93       	push	r30
+     fa4:	ff 93       	push	r31
+	can_busy = 1;
+     fa6:	81 e0       	ldi	r24, 0x01	; 1
+     fa8:	80 93 0a 20 	sts	0x200A, r24	; 0x80200a <can_busy>
+	can_handler(2);
+     fac:	82 e0       	ldi	r24, 0x02	; 2
+     fae:	54 df       	rcall	.-344    	; 0xe58 <can_handler>
+}
+     fb0:	ff 91       	pop	r31
+     fb2:	ef 91       	pop	r30
+     fb4:	bf 91       	pop	r27
+     fb6:	af 91       	pop	r26
+     fb8:	9f 91       	pop	r25
+     fba:	8f 91       	pop	r24
+     fbc:	7f 91       	pop	r23
+     fbe:	6f 91       	pop	r22
+     fc0:	5f 91       	pop	r21
+     fc2:	4f 91       	pop	r20
+     fc4:	3f 91       	pop	r19
+     fc6:	2f 91       	pop	r18
+     fc8:	0f 90       	pop	r0
+     fca:	0f be       	out	0x3f, r0	; 63
+     fcc:	0f 90       	pop	r0
+     fce:	1f 90       	pop	r1
+     fd0:	18 95       	reti
+
+00000fd2 <__vector_2>:
+
+//can3 receive interrupt
+ISR(PORTC_INT0_vect){
+     fd2:	1f 92       	push	r1
+     fd4:	0f 92       	push	r0
+     fd6:	0f b6       	in	r0, 0x3f	; 63
+     fd8:	0f 92       	push	r0
+     fda:	11 24       	eor	r1, r1
+     fdc:	2f 93       	push	r18
+     fde:	3f 93       	push	r19
+     fe0:	4f 93       	push	r20
+     fe2:	5f 93       	push	r21
+     fe4:	6f 93       	push	r22
+     fe6:	7f 93       	push	r23
+     fe8:	8f 93       	push	r24
+     fea:	9f 93       	push	r25
+     fec:	af 93       	push	r26
+     fee:	bf 93       	push	r27
+     ff0:	ef 93       	push	r30
+     ff2:	ff 93       	push	r31
+	can_busy = 1;
+     ff4:	81 e0       	ldi	r24, 0x01	; 1
+     ff6:	80 93 0a 20 	sts	0x200A, r24	; 0x80200a <can_busy>
+	can_handler(3);
+     ffa:	83 e0       	ldi	r24, 0x03	; 3
+     ffc:	2d df       	rcall	.-422    	; 0xe58 <can_handler>
+}
+     ffe:	ff 91       	pop	r31
+    1000:	ef 91       	pop	r30
+    1002:	bf 91       	pop	r27
+    1004:	af 91       	pop	r26
+    1006:	9f 91       	pop	r25
+    1008:	8f 91       	pop	r24
+    100a:	7f 91       	pop	r23
+    100c:	6f 91       	pop	r22
+    100e:	5f 91       	pop	r21
+    1010:	4f 91       	pop	r20
+    1012:	3f 91       	pop	r19
+    1014:	2f 91       	pop	r18
+    1016:	0f 90       	pop	r0
+    1018:	0f be       	out	0x3f, r0	; 63
+    101a:	0f 90       	pop	r0
+    101c:	1f 90       	pop	r1
+    101e:	18 95       	reti
+
+00001020 <check_can3>:
+}
+
+void check_can3(void){
+	uint8_t reg;
+	
+	if(tx3_buffer_end != tx3_buffer_pos){
+    1020:	90 91 04 20 	lds	r25, 0x2004	; 0x802004 <__data_end>
+    1024:	80 91 05 20 	lds	r24, 0x2005	; 0x802005 <tx3_buffer_pos>
+    1028:	98 17       	cp	r25, r24
+    102a:	f1 f0       	breq	.+60     	; 0x1068 <check_can3+0x48>
+		//check if TXB0 is free use
+		reg = can3_read(MCP_REG_TXB0CTRL);
+    102c:	80 e3       	ldi	r24, 0x30	; 48
+    102e:	53 dc       	rcall	.-1882   	; 0x8d6 <can3_read>
+		
+		if(!(reg & MCP_TXREQ_bm)){ //we're free to send
+    1030:	83 fd       	sbrc	r24, 3
+    1032:	1a c0       	rjmp	.+52     	; 0x1068 <check_can3+0x48>
+			can3_load_txbuff(0, (can_frame_t *) &tx3_buffer[tx3_buffer_pos++]);
+    1034:	60 91 05 20 	lds	r22, 0x2005	; 0x802005 <tx3_buffer_pos>
+    1038:	81 e0       	ldi	r24, 0x01	; 1
+    103a:	86 0f       	add	r24, r22
+    103c:	80 93 05 20 	sts	0x2005, r24	; 0x802005 <tx3_buffer_pos>
+    1040:	8b e0       	ldi	r24, 0x0B	; 11
+    1042:	68 9f       	mul	r22, r24
+    1044:	b0 01       	movw	r22, r0
+    1046:	11 24       	eor	r1, r1
+    1048:	6b 5f       	subi	r22, 0xFB	; 251
+    104a:	7c 4d       	sbci	r23, 0xDC	; 220
+    104c:	80 e0       	ldi	r24, 0x00	; 0
+    104e:	a5 db       	rcall	.-2230   	; 0x79a <can3_load_txbuff>
+			can3_rts(0);
+    1050:	80 e0       	ldi	r24, 0x00	; 0
+    1052:	4a db       	rcall	.-2412   	; 0x6e8 <can3_rts>
+    1054:	90 91 05 20 	lds	r25, 0x2005	; 0x802005 <tx3_buffer_pos>
+			if(tx3_buffer_pos == tx3_buffer_end){ //end of buffer, reset
+    1058:	80 91 04 20 	lds	r24, 0x2004	; 0x802004 <__data_end>
+    105c:	98 13       	cpse	r25, r24
+    105e:	04 c0       	rjmp	.+8      	; 0x1068 <check_can3+0x48>
+    1060:	10 92 04 20 	sts	0x2004, r1	; 0x802004 <__data_end>
+				tx3_buffer_end = 0;
+    1064:	10 92 05 20 	sts	0x2005, r1	; 0x802005 <tx3_buffer_pos>
+				tx3_buffer_pos = 0;
+    1068:	08 95       	ret
+
+0000106a <__vector_20>:
+    106a:	1f 92       	push	r1
+		
+	}
+}
+
+//fires approx. every 100us
+ISR(TCC1_OVF_vect){
+    106c:	0f 92       	push	r0
+    106e:	0f b6       	in	r0, 0x3f	; 63
+    1070:	0f 92       	push	r0
+    1072:	11 24       	eor	r1, r1
+    1074:	2f 93       	push	r18
+    1076:	3f 93       	push	r19
+    1078:	4f 93       	push	r20
+    107a:	5f 93       	push	r21
+    107c:	6f 93       	push	r22
+    107e:	7f 93       	push	r23
+    1080:	8f 93       	push	r24
+    1082:	9f 93       	push	r25
+    1084:	af 93       	push	r26
+    1086:	bf 93       	push	r27
+    1088:	ef 93       	push	r30
+    108a:	ff 93       	push	r31
+	check_can1();
+    108c:	29 de       	rcall	.-942    	; 0xce0 <check_can1>
+	check_can2();
+    108e:	86 de       	rcall	.-756    	; 0xd9c <check_can2>
+	check_can3();
+    1090:	c7 df       	rcall	.-114    	; 0x1020 <check_can3>
+    1092:	ff 91       	pop	r31
+}
+    1094:	ef 91       	pop	r30
+    1096:	bf 91       	pop	r27
+    1098:	af 91       	pop	r26
+    109a:	9f 91       	pop	r25
+    109c:	8f 91       	pop	r24
+    109e:	7f 91       	pop	r23
+    10a0:	6f 91       	pop	r22
+    10a2:	5f 91       	pop	r21
+    10a4:	4f 91       	pop	r20
+    10a6:	3f 91       	pop	r19
+    10a8:	2f 91       	pop	r18
+    10aa:	0f 90       	pop	r0
+    10ac:	0f be       	out	0x3f, r0	; 63
+    10ae:	0f 90       	pop	r0
+    10b0:	1f 90       	pop	r1
+    10b2:	18 95       	reti
+
+000010b4 <_exit>:
+    10b4:	f8 94       	cli
+
+000010b6 <__stop_program>:
+    10b6:	ff cf       	rjmp	.-2      	; 0x10b6 <__stop_program>
