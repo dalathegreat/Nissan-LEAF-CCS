@@ -105,7 +105,7 @@ LUFA/Drivers/USB/Core/XMEGA/Device_XMEGA.o \
 LUFA/Drivers/USB/Core/XMEGA/EndpointStream_XMEGA.o \
 LUFA/Drivers/USB/Core/XMEGA/Endpoint_XMEGA.o \
 LUFA/Drivers/USB/Core/XMEGA/Host_XMEGA.o \
-LUFA/Drivers/USB/Core/XMEGA/PipeStream_XMEGAs.o \
+LUFA/Drivers/USB/Core/XMEGA/PipeStream_XMEGA.o \
 LUFA/Drivers/USB/Core/XMEGA/Pipe_XMEGA.o \
 LUFA/Drivers/USB/Core/XMEGA/Template/Template_Endpoint_Control_R.o \
 LUFA/Drivers/USB/Core/XMEGA/Template/Template_Endpoint_Control_W.o \
