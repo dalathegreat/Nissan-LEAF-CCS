@@ -1,12 +1,14 @@
 
 /*
 CCS ADD-ON FIRMWARE
-When fitted between the LIM, QC-CAN and EV-CAN, this CAN-bridge firmware allows for CCS charging.
+When fitted between the LIM, QC-CAN (and EV-CAN?), this firmware allows for CCS charging.
+ - Connect LIM to CAN1
+ - Connect QC-CAN to CAN2
 */
 
 /* Optional functionality */
 //#define USB_SERIAL
-#define ENABLE_CAN3 //Used for EV-CAN (Might be unecessary)
+#define ENABLE_CAN3 //Used for EV-CAN (Might be unnecessary)
 
 #include "can-bridge-ccs.h"
 
@@ -16,7 +18,64 @@ volatile	uint8_t		can_QC				= 2;	//Define QC-CAN-bus channel
 volatile	uint8_t		can_EV				= 3;	//Define EV-CAN-bus channel
 volatile	uint8_t		can_busy			= 0;	//Tracks whether the can_handler() subroutine is running
 volatile	uint16_t	sec_timer			= 1;	//Counts down from 1000
-volatile	uint16_t	ms_timer_100		= 1;	//Increments on every TCC0 overflow (ever ms)
+volatile	uint8_t		ms_10_timer			= 0;	//Increments on every TCC0 overflow (every ms)
+volatile	uint16_t	ms_100_timer		= 0;	//Increments on every TCC0 overflow (every ms)
+volatile	uint16_t	ms_200_timer		= 0;	//Increments on every TCC0 overflow (every ms)
+volatile	uint16_t	ms_600_timer		= 0;	//Increments on every TCC0 overflow (every ms)
+volatile	uint8_t		message_10			= 0;	//time to send 100ms messages
+volatile	uint8_t		message_100			= 0;	//time to send 100ms messages
+volatile	uint8_t		message_200			= 0;	//time to send 200ms messages
+volatile	uint8_t		message_600			= 0;	//time to send 600ms messages
+
+//Data variables from LIM
+volatile	uint16_t		Pilot_AC_Current			= 0;
+volatile	uint16_t		Cable_Current				= 0;
+volatile	uint8_t			PP_Status					= 0;
+volatile	uint8_t			Pilot_Status				= 0;
+volatile	uint8_t			Hook_Pos					= 0;
+volatile	uint8_t			Hook_Lock					= 0;
+volatile	uint16_t		FC_Contactor_State			= 0;
+volatile	uint8_t			FC_Contactor_Test			= 0;
+volatile	uint8_t			ChargeFlap_Status			= 0;
+volatile	uint8_t			Weld_Det_Enabled			= 0;
+volatile	uint8_t			Internal_Charger_Status		= 0;
+volatile	uint8_t			Isolation_Status			= 0;
+volatile	uint16_t		V_Avail						= 0;
+volatile	uint16_t		I_Available					= 0;
+volatile	uint16_t		Thresh_V					= 0;
+volatile	uint8_t			CCS_Protocol				= 0;
+volatile	uint16_t		CHG_Volts					= 0;
+volatile	uint16_t		CHG_Amps					= 0;
+volatile	uint8_t			Battery_Compatability		= 0;
+volatile	uint8_t			CCS_Malf					= 0;
+volatile	uint8_t			Charge_Status				= 0;
+volatile	uint8_t			V_Limit						= 0;
+volatile	uint8_t			I_Limit						= 0;
+volatile	uint8_t			DC_Chg_Stop					= 0;
+volatile	uint8_t			Batt_Malf					= 0;
+volatile	uint16_t		Min_V_Avail					= 0;
+volatile	uint16_t		Min_I_Avail					= 0;
+volatile	uint8_t			Power_Limit					= 0;
+volatile	uint8_t			Energy_Transmitted			= 0;
+
+//CAN messages for LIM
+volatile	can_frame_t		BMS_112_message	= {.can_id = 0x112, .can_dlc = 8, .data = {0xF9,0x1F,0x8B,0x0E,0xA6,0x71,0x65,0x5D}};
+volatile	can_frame_t		VCU_12F_message	= {.can_id = 0x12F, .can_dlc = 8, .data = {0xF5,0x28,0x88,0x1D,0xF1,0x35,0x30,0x80}};
+volatile	can_frame_t		VCU_2FC_message	= {.can_id = 0x2FC, .can_dlc = 8, .data = {0x81,0x00,0x04,0xFF,0xFF,0xFF,0xFF,0xFF}};
+static		can_frame_t		VCU_431_message	= {.can_id = 0x431, .can_dlc = 8, .data = {0xCA,0xFF,0x0B,0x02,0x69,0x26,0xF3,0x4B}};
+volatile	VCU_3E9			VCU_3E9_message	= {.Batt_Wh = 23000, .CHG_Status = 0, .CHG_Req = 0, .CHG_Power_LSB = 0, .DCFC_I_Diff = 0, .CHG_Readiness = 0, .CHG_Power_MSB = 0, .FC_Current_Command_LSB = 0, .Contactor_Con = 0, .DCFC_V_Diff = 0, .FC_Current_Command_MSB = 0, .EOC_Time = 0};
+volatile	VCU_2F1			VCU_2F1_message	= {.CHG_V_Limit_LSB = 0xA2, .BLANK = 0, .CHG_V_Limit_MSB = 0x0F, .CHG_I_Lim = 0, .Time_to_SOC = 0x181B, .Time_to_FC_SOC = 0xFB06, .FC_SOC = 0xA0};
+volatile	VCU_2FA			VCU_2FA_message	= {.Time2Go = 0x8404, .Target_CHG_Ph = 0, .Chg_End = 0, .FC_End = 0, .Target_Volts_LSB = 0xFF, .BLANK = 0, .Target_Volts_MSB = 0x3F, .BLANK2 = 0, .BLANK3 = 0};
+
+//CAN messages for LEAF QC-CAN (emulates QC-station)
+static	can_frame_t		h108MsgStopped	= {.can_id = 0x108, .can_dlc = 8, .data = {0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00}}; 
+static	can_frame_t		h108MsgActive	= {.can_id = 0x108, .can_dlc = 8, .data = {0x01,0x01,0xF4,0x7D,0x01,0xB3,0x00,0x00}}; 
+			//h108MsgActive set to: EVContactorWeldingDetection = 1, AvailableOutputVoltage = 500V,  AvailableOutputCurrent = 125A, ThresholdVoltage = 435V
+static	can_frame_t		h109MsgStopped	= {.can_id = 0x109, .can_dlc = 8, .data = {0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00}};
+static	can_frame_t		h109MsgActive	= {.can_id = 0x109, .can_dlc = 8, .data = {0x02,0x01,0x90,0x00,0x00,0x05,0x00,0x00}};
+			//h109MsgActive set to: ControlProtocolNumberQC = 2, OutputVoltage = 400V, OutputCurrent = 0 A, StatusVehicleConnectorLock = 1(Locked), StatusStation = 1(Charging)
+			//TODO, this 0x109 message needs to be dynamic according to CCS station voltage/current AND stop requests
+
 
 //Because the MCP25625 transmit buffers seem to be able to corrupt messages (see errata), we're implementing
 //our own buffering. This is an array of frames-to-be-sent, FIFO. Messages are appended to buffer_end++ as they
@@ -150,7 +209,32 @@ int main(void){
 	hw_init();
 
 	while(1){
-		//Setup complete, wait for can messages to trigger interrupts
+		//Setup complete, wait for CAN messages to trigger interrupts OR check if it is time to send CAN-messages
+		if(message_10){ //Send 10ms CAN-messages
+			send_can(can_LIM, BMS_112_message);
+		}
+		if(message_100){
+			send_can(can_LIM, VCU_12F_message);
+			send_can(can_LIM, VCU_2FC_message);
+			//send_can(can_LIM, VCU_2F1_message);
+			//send_can(can_LIM, VCU_2FA_message);
+			
+			//Add logic here to start sending CAN-messages to QC-CAN once charging should start.
+			/*
+			if(PP_Status) //TODO: How to trigger start? PP_Status?
+			{
+				send_can(can_QC, h108MsgStopped)
+				send_can(can_QC, h109MsgStopped)
+			}
+			*/
+		}
+		if(message_200){
+			//send_can(can_LIM, VCU_3E9_message);
+			send_can(can_LIM, VCU_431_message);
+		}
+		if(message_600){
+			
+		}
 		#ifdef USB_SERIAL
 		//when USB is essentially unused, we output general status info
 		if(!output_can_to_serial){
@@ -229,7 +313,10 @@ void print(char * str, uint8_t len){
 ISR(TCC0_OVF_vect){	
 	wdt_reset(); //Reset the watchdog
 	sec_timer--; //Increment the 1000ms timer
-	
+	ms_10_timer++;
+	ms_100_timer++;
+	ms_200_timer++;
+	ms_600_timer++;
 	#ifdef USB_SERIAL
 	if(!can_busy) ProcessCDCCommand();
 	CDC_Device_USBTask(&VirtualSerial_CDC_Interface);
@@ -239,16 +326,30 @@ ISR(TCC0_OVF_vect){
 	else { print_char_limit -= 64; }
 	#endif
 	
-	//fires every 100ms
-	if(ms_timer_100 == 100) //Task that need to be performed each 100ms go here
+	if(ms_10_timer == 10) 
 	{
-		ms_timer_100 = 0; //reset the timer
+		message_10 = 1;
+		ms_10_timer = 0;
+	}
+	if(ms_100_timer == 100)
+	{
+		message_100 = 1;
+		ms_100_timer = 0;
+	}
+	if(ms_200_timer == 200)
+	{
+		message_200 = 1;
+		ms_200_timer = 0;
+	}
+	if(ms_600_timer == 600)
+	{
+		message_200 = 1;
+		ms_600_timer = 0;
 	}
 	
 	//fires every second (1000ms tasks go here)
 	if(sec_timer == 0){
 		PORTB.OUTCLR = (1 << 1);
-		
 	}
 }
 
@@ -277,7 +378,7 @@ ISR(PORTC_INT0_vect){
 	can_handler(3);
 }
 
-//VCM side of the CAN bus (in Muxsan)
+//CAN handler, manages reading data from received CAN messages 
 void can_handler(uint8_t can_bus){
 	can_frame_t frame;
 	uint8_t flag = can_read(MCP_REG_CANINTF, can_bus);
@@ -293,27 +394,49 @@ void can_handler(uint8_t can_bus){
 		}
 		
 		switch(frame.can_id){
-			case 0xABC: //Example
-				//Code
+			case 0x3B4: //LIM message
+				Pilot_AC_Current = frame.data[0];
+				Cable_Current = frame.data[1];
+				PP_Status = (frame.data[2] & 0x01);
+				Pilot_Status = (frame.data[4] & 0x0F);
+				break;
+			case 0x337: //LIM message
+				Hook_Pos = (frame.data[0] & 0x03);
+				Hook_Lock = (frame.data[0] & 0x0C);
+				break;
+			case 0x272: //LIM message
+				FC_Contactor_Test = (frame.data[2] & 0x08);
+				FC_Contactor_State = (frame.data[2] & 0xFC);
+				ChargeFlap_Status = (frame.data[2] & 0x03);
+			break;
+			case 0x29E: //LIM message (only during fastcharging)
+				Weld_Det_Enabled = (frame.data[0] & 0x03);
+				Internal_Charger_Status = (frame.data[0] & 0x3C);
+				Isolation_Status = (frame.data[0] & 0xC0);
+				V_Avail = (frame.data[1] | frame.data[2]);
+				I_Available = (frame.data[3] | frame.data[4]);
+				Thresh_V = (frame.data[5] | frame.data[6]);
+				CCS_Protocol = frame.data[7];
+				break;
+			case 0x2B2: //LIM message (only during fastcharging)
+				CHG_Volts = (frame.data[0] & 0x03);
+				CHG_Amps = (frame.data[0] & 0x3C);
+				Battery_Compatability = (frame.data[0] & 0xC0);
+				CCS_Malf = (frame.data[1] | frame.data[2]);
+				Charge_Status = (frame.data[3] | frame.data[4]);
+				V_Limit = (frame.data[5] | frame.data[6]);
+				I_Limit = frame.data[7];
+				DC_Chg_Stop = (frame.data[5] | frame.data[6]);
+				Batt_Malf = frame.data[7];
+				break;
+			case 0x2EF: //LIM message
+				Min_V_Avail = (frame.data[0] | frame.data[1]);
+				Min_I_Avail = (frame.data[2] | (frame.data[3] & 0x0F)); //Did bits go correct here?
+				Power_Limit = (frame.data[6] & 0x30);
+				Energy_Transmitted = frame.data[7];
 				break;
 			default:
 			break;
-			}
-		
-		
-		//block unwanted messages
-			uint8_t block = 0;
-			switch(frame.can_id){
-				case 0xABC:
-					//block = 1;
-					break;
-				default:
-					block = 0;
-					break;
-			}
-			if(!block){
-				if(can_bus == 1){send_can2(frame);} else {send_can1(frame);
-				}
 			}
 		}		
 			
