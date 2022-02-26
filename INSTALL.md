@@ -11,7 +11,7 @@ This document describe how to build firmware and burn on MUXSAN can bridge
 
 ### Burn
 
-#> avrdude -c avrispmkII -p ATMega32c4 -P usb -e -U flash:w:<your hex file>
+#> avrdude -c avrispmkII -p x32c4 -P usb -e -U flash:w:<your hex file>
 
 NOTE: You should use the correct -c option depending on avr flasher
 
