@@ -21,15 +21,19 @@ volatile	uint8_t		ms_10_timer			= 0;	//Increments on every TCC0 overflow (every 
 volatile	uint16_t	ms_100_timer		= 0;	//Increments on every TCC0 overflow (every ms)
 volatile	uint16_t	ms_200_timer		= 0;	//Increments on every TCC0 overflow (every ms)
 volatile	uint16_t	ms_600_timer		= 0;	//Increments on every TCC0 overflow (every ms)
+volatile	uint16_t	ms_1000_timer		= 0;	//Increments on every TCC0 overflow (every ms)
 volatile	uint8_t		message_10			= 0;	//time to send 100ms messages
 volatile	uint8_t		message_100			= 0;	//time to send 100ms messages
 volatile	uint8_t		message_200			= 0;	//time to send 200ms messages
 volatile	uint8_t		message_600			= 0;	//time to send 600ms messages
+volatile	uint8_t		message_1000		= 0;	//time to send 1000ms messages
 
 volatile	uint32_t	LBC_voltage		= 0;
-volatile	int16_t		current			= 0;
+volatile	int16_t		LBC_current		= 0;
 volatile	uint16_t	stateOfCharge	= 0;
 volatile	uint16_t	Voltspnt		= 435;
+volatile	uint8_t		shifter_state	= SHIFT_N;
+volatile	uint16_t	LB_Full_Capacity_for_QC = 23000; //Default 24kWh LEAF, if we are on a 2013+ we autodetect capacity from 59E
 
 //Data variables from LIM
 volatile	uint16_t		Pilot_AC_Current			= 0;
@@ -41,13 +45,11 @@ volatile	uint8_t			Hook_Lock					= 0;
 volatile	uint16_t		FC_Contactor_State			= 0;
 volatile	uint8_t			FC_Contactor_Test			= 0;
 volatile	uint8_t			ChargeFlap_Status			= 0;
-volatile	uint16_t		I_Available					= 0;
 volatile	uint8_t			CCS_Protocol				= 0;
 volatile	uint16_t		CHG_Volts					= 0;
 volatile	uint16_t		CHG_Amps					= 0;
 volatile	uint16_t		Min_V_Avail					= 0;
 volatile	uint16_t		Min_I_Avail					= 0;
-volatile	uint8_t			Power_Limit					= 0;
 volatile	uint8_t			Energy_Transmitted			= 0;
 
 
@@ -110,22 +112,26 @@ volatile	uint16_t		CCS_I_Avail = 0;
 
 //CAN messages for LIM
 volatile	can_frame_t		BMS_112_message	= {.can_id = 0x112, .can_dlc = 8, .data = {0xF9,0x1F,0x8B,0x0E,0xA6,0x71,0x65,0x5D}};
-volatile	can_frame_t		VCU_12F_message	= {.can_id = 0x12F, .can_dlc = 8, .data = {0xF5,0x28,0x88,0x1D,0xF1,0x35,0x30,0x80}};
 volatile	can_frame_t		VCU_2FC_message	= {.can_id = 0x2FC, .can_dlc = 8, .data = {0x81,0x00,0x04,0xFF,0xFF,0xFF,0xFF,0xFF}};
-static		can_frame_t		VCU_431_message	= {.can_id = 0x431, .can_dlc = 8, .data = {0xCA,0xFF,0x0B,0x02,0x69,0x26,0xF3,0x4B}};
-volatile	VCU_3E9			VCU_3E9_message	= {.Batt_Wh = 23000, .CHG_Status = 0, .CHG_Req = 0, .CHG_Power_LSB = 0, .DCFC_I_Diff = 0, .CHG_Readiness = 0, .CHG_Power_MSB = 0, .FC_Current_Command_LSB = 0, .Contactor_Con = 0, .DCFC_V_Diff = 0, .FC_Current_Command_MSB = 0, .EOC_Time = 0};
-volatile	VCU_2F1			VCU_2F1_message	= {.CHG_V_Limit_LSB = 0xA2, .BLANK = 0, .CHG_V_Limit_MSB = 0x0F, .CHG_I_Lim = 0, .Time_to_SOC = 0x181B, .Time_to_FC_SOC = 0xFB06, .FC_SOC = 0xA0};
-volatile	VCU_2FA			VCU_2FA_message	= {.Time2Go = 0x8404, .Target_CHG_Ph = 0, .Chg_End = 0, .FC_End = 0, .Target_Volts_LSB = 0xFF, .BLANK = 0, .Target_Volts_MSB = 0x3F, .BLANK2 = 0, .BLANK3 = 0};
+static		can_frame_t		VCU_1A1_message = {.can_id = 0x1A1, .can_dlc = 5, .data = {0x7C,0xCB,0x00,0x00,0x8A}}; //Vehicle speed msg
+volatile	can_frame_t		VCU_3E9_message	= {.can_id = 0x3E9, .can_dlc = 8, .data = {0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF}};
+volatile	can_frame_t		VCU_2F1_message	= {.can_id = 0x2F1, .can_dlc = 8, .data = {0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xA0}};
+volatile	can_frame_t		VCU_2FA_message	= {.can_id = 0x2FA, .can_dlc = 8, .data = {0xFF,0xFF,0xFF,0xFF,0x00,0x00,0x00,0x00}};
+volatile	can_frame_t		VCU_432_message	= {.can_id = 0x432, .can_dlc = 8, .data = {0xFF,0xFF,0xFF,0xFF,0xFF,0x00,0x00,0x00}};
+volatile	can_frame_t		VCU_51A_message	= {.can_id = 0x51A, .can_dlc = 8, .data = {0x00,0x00,0x00,0x00,0x50,0x00,0x00,0x1A}};
+volatile	can_frame_t		VCU_540_message	= {.can_id = 0x540, .can_dlc = 8, .data = {0x00,0x00,0x00,0x00,0xFD,0x3C,0xFF,0x40}};
+volatile	can_frame_t		VCU_510_message	= {.can_id = 0x510, .can_dlc = 8, .data = {0x40,0x10,0x20,0x00,0x00,0x00,0x00,0x00}};
+volatile	can_frame_t		VCU_328_message	= {.can_id = 0x328, .can_dlc = 6, .data = {0x00,0x00,0x00,0x00,0x87,0x1e}};
+volatile	can_frame_t		VCU_3E8_message	= {.can_id = 0x3E8, .can_dlc = 2, .data = {0xF1,0xFF}};
+volatile	can_frame_t		VCU_3F9_message	= {.can_id = 0x3F9, .can_dlc = 8, .data = {0xC0,0xF9,0x80,0xE0,0x43,0x3C,0xC3,0xFF}};	
+volatile	can_frame_t		VCU_03C_message	= {.can_id = 0x03C, .can_dlc = 8, .data = {0xFF,0x5F,0x00,0x00,0x00,0x00,0xFF,0xFF}};
+volatile	can_frame_t		VCU_431_message	= {.can_id = 0x431, .can_dlc = 8, .data = {0xca,0xff,0x0b,0x02,0x69,0x26,0xF3,0x4B}};	
+volatile	can_frame_t		VCU_12f_message	= {.can_id = 0x12f, .can_dlc = 8, .data = {0xf5,0x28,0x8a,0x1d,0xf1,0x35,0x30,0x80}};	
 
-// CAN messages for LEAF QC-CAN (emulates QC-station)
-// static	can_frame_t		h108MsgStopped	= {.can_id = 0x108, .can_dlc = 8, .data = {0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00}}; 
-// static	can_frame_t		h108MsgActive	= {.can_id = 0x108, .can_dlc = 8, .data = {0x01,0x01,0xF4,0x7D,0x01,0xB3,0x00,0x00}}; 
-// 			//h108MsgActive set to: EVContactorWeldingDetection = 1, AvailableOutputVoltage = 500V,  AvailableOutputCurrent = 125A, ThresholdVoltage = 435V
-// static	can_frame_t		h109MsgStopped	= {.can_id = 0x109, .can_dlc = 8, .data = {0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00}};
-// static	can_frame_t		h109MsgActive	= {.can_id = 0x109, .can_dlc = 8, .data = {0x02,0x01,0x90,0x00,0x00,0x05,0x00,0x00}};
-// 			//h109MsgActive set to: ControlProtocolNumberQC = 2, OutputVoltage = 400V, OutputCurrent = 0 A, StatusVehicleConnectorLock = 1(Locked), StatusStation = 1(Charging)
-// 			//TODO, this 0x109 message needs to be dynamic according to CCS station voltage/current AND stop requests
-// 
+
+
+
+
 
 //Because the MCP25625 transmit buffers seem to be able to corrupt messages (see errata), we're implementing
 //our own buffering. This is an array of frames-to-be-sent, FIFO. Messages are appended to buffer_end++ as they
@@ -261,14 +267,70 @@ int main(void){
 	while(1){
 		//Setup complete, wait for CAN messages to trigger interrupts OR check if it is time to send CAN-messages
 		if(message_10){ //Send 10ms CAN-messages
+			int16_t V_Batt = LBC_voltage * 10;
+			uint8_t V_Batt2= LBC_voltage / 4;
+			int32_t I_Batt= (LBC_current+819)*10; //dala todo, did the conversion go right from LBC -> LIM?
+			uint16_t SOC_Local=stateOfCharge*10;
+			BMS_112_message.data[0] = I_Batt & 0xFF; //Battery current LSB. Scale 0.1 offset 819.2. 16 bit unsigned int
+			BMS_112_message.data[1] = I_Batt >> 8;	 //Battery current MSB. Scale 0.1 offset 819.2.  16 bit unsigned int
+			BMS_112_message.data[2] = V_Batt & 0xFF; //Battery voltage LSB. Scale 0.1. 16 bit unsigned int.
+			BMS_112_message.data[3] = V_Batt >> 8;   //Battery voltage MSB. Scale 0.1. 16 bit unsigned int.
+			BMS_112_message.data[4] = SOC_Local & 0xFF; //Battery SOC LSB. 12 bit unsigned int. Scale 0.1. 0-100%
+			BMS_112_message.data[5] = SOC_Local >> 8; //Battery SOC MSB. 12 bit unsigned int. Scale 0.1. 0-100%
+			BMS_112_message.data[6] = 0x65;			 //Low nibble battery status. Seem to need to be 0x5.
+			BMS_112_message.data[7] = V_Batt2;		 //DC-link voltage. (set to Battery voltage). Scale 4. 8 bit unsigned int.
 			send_can(can_LIM, BMS_112_message);
 			message_10 = 0;
+			
+			
+			ctr_20ms++;
+			if(ctr_20ms==2)
+			{
+				ctr_20ms=0;
+				send_can(can_LIM, VCU_1A1_message); //Vehicle speed msg should be sent every 20ms
+			}
+			
 		}
 		if(message_100){
-			send_can(can_LIM, VCU_12F_message); //Send wakeup message
-			send_can(can_LIM, VCU_2FC_message);
-			//send_can(can_LIM, VCU_2F1_message);
-			//send_can(can_LIM, VCU_2FA_message);
+			send_can(can_LIM, VCU_03C_message);
+
+			uint16_t Wh_Local = LB_Full_Capacity_for_QC;
+			CHG_Pwr=(CHG_Pwr & 0xFFF);
+			VCU_3E9_message.data[0] = Wh_Local & 0xFF;  //Battery Wh lowbyte
+			VCU_3E9_message.data[1] = Wh_Local >> 8;  //BAttery Wh high byte
+			VCU_3E9_message.data[2] = (((uint8_t)CHG_Status<<4)|((uint8_t)CHG_Req));  //charge status in bits 4-7.goes to 1 then 2.8 secs later to 2. Plug locking???. Charge request in lower nibble. 1 when charging. 0 when not charging.
+			VCU_3E9_message.data[3] = (((CHG_Pwr)<<4)|(uint8_t)CHG_Ready);  //charge readiness in bits 0 and 1. 1 = ready to charge.upper nibble is LSB of charge power.Charge power forecast not actual power!
+			VCU_3E9_message.data[4] = CHG_Pwr>>4;   //MSB of charge power.in this case 0x28 = 40x25 = 1000W. Probably net DC power into the Batt.
+			VCU_3E9_message.data[5] = FC_Cur & 0xff;   //LSB of the DC ccs current command
+			VCU_3E9_message.data[6] = ((CONT_Ctrl<<4)|(FC_Cur>>12));   //bits 0 and 1 MSB of the DC ccs current command.Upper nibble is DC ccs contactor control. Observed in DC fc logs only.
+			//transitions from 0 to 2 and start of charge but 2 to 1 to 0 at end. Status and Ready operate the same as in AC logs.
+			VCU_3E9_message.data[7] = EOC_Time;    // end of charge timer.
+			send_can(can_LIM, VCU_3E9_message); //average 128ms? well its gonna be 100ms now
+
+			//LIM needs to see this but doesnt control anything...
+			send_can(can_LIM, VCU_431_message); // average 197ms but as low as 49ms.
+
+			//if(Param::GetInt(Param::opmode)==MOD_RUN) bytes[2] = 0x8a;//ignition on
+			//if(Param::GetInt(Param::opmode)!=MOD_RUN) bytes[2] = 0x86;//ignition off 86
+			//We are always in ignition ON on this device (for future revisions, consider turning off the LIM if its gonna be on much)
+			send_can(can_LIM, VCU_12f_message); // average 100ms
+
+			//Lim command 2. Used in DC mode
+			uint16_t V_limit=0;
+			//if(lim_state==6) V_limit=401*10;//set to 400v in energy transfer state
+			//if(lim_state!=6) V_limit=Param::GetInt(Param::udc)*10;
+			if(lim_state==4) V_limit=LBC_voltage*10;// drop vlim only during precharge
+			else V_limit=415*10;//set to 415v in all other states
+			uint8_t I_limit=125;//125A limit. may not work
+			VCU_2F1_message.data[0] = V_limit & 0xFF;  //Charge voltage limit LSB. 14 bit signed int.scale 0.1 0xfa2=4002*.1=400.2Volts
+			VCU_2F1_message.data[1] = V_limit >> 8;  //Charge voltage limit MSB. 14 bit signed int.scale 0.1
+			VCU_2F1_message.data[2] = I_limit;  //Fast charge current limit. Not used in logs from 2014-15 vehicle so far. 8 bit unsigned int. scale 1.so max 254amps in theory...
+			VCU_2F1_message.data[3] = Full_SOCt & 0xFF;  //time remaining in seconds to hit soc target from byte 7 in AC mode. LSB. 16 bit unsigned int. scale 10.Full SOC.
+			VCU_2F1_message.data[4] = Full_SOCt >> 8;  //time remaining in seconds to hit soc target from byte 7 in AC mode. MSB. 16 bit unsigned int. scale 10.Full SOC.
+			VCU_2F1_message.data[5] = Bulk_SOCt & 0xFF;  //time remaining in seconds to hit soc target from byte 7 in ccs mode. LSB. 16 bit unsigned int. scale 10.Bulk SOC.
+			VCU_2F1_message.data[6] = Bulk_SOCt >> 8;  //time remaining in seconds to hit soc target from byte 7 in ccs mode. MSB. 16 bit unsigned int. scale 10.Bulk SOC.
+			VCU_2F1_message.data[7] = 0xA0;  //Fast charge SOC target. 8 bit unsigned int. scale 0.5. 0xA0=160*0.5=80%
+			send_can(can_LIM, VCU_2F1_message); // average 100ms
 
 			message_100 = 0;
 		}
@@ -276,10 +338,59 @@ int main(void){
 			//send_can(can_LIM, VCU_3E9_message);
 			send_can(can_LIM, VCU_431_message);
 			ControlCharge(); //Control the LIM
+			
+			if(CP_Mode==0x4||CP_Mode==0x5)
+			{
+				VCU_2FA_message.data[0] = 0xFC; //change to FC on 5% pilot. Change back to FD during energy transfer
+			}			    
+			else
+			{
+				VCU_2FA_message.data[0] = 0xFD; //FD at standby
+			}
+
+			VCU_2FA_message.data[1] = 0xFF;//these bytes are used as a timer during energy transfer but not at setup
+			VCU_2FA_message.data[2] = (uint8_t)Chg_Phase<<4;  //upper nibble seems to be a mode command to the ccs station. 0 when off, 9 when in constant current phase of cycle.
+			//more investigation needed here...
+			//Lower nibble seems to be intended for two end charge commands each of 2 bits.
+			VCU_2FA_message.data[4] = 0xff;
+			VCU_2FA_message.data[5] = 0xff;
+			VCU_2FA_message.data[6] = 0xff;
+			VCU_2FA_message.data[7] = 0xff;
+			send_can(can_LIM, VCU_2FA_message); //Lim command 3. Used in DC mode.
+			// this msg varies from 82ms to 1s intervals. Sending it at 200ms as compromise, seems to work on Damiens VCU.
+			
+			uint16_t SOC_Local2=stateOfCharge*2;
+			VCU_432_message.data[0] = 0x2c;//BMS SOC msg. May need to be dynamic
+			VCU_432_message.data[1] = 0xe2;
+			VCU_432_message.data[2] = 0x10;
+			VCU_432_message.data[3] = 0xa3;
+			VCU_432_message.data[4] = SOC_Local2;    //display soc. scale 0.5.
+			VCU_432_message.data[5] = 0xff;
+			VCU_432_message.data[6] = 0x02;
+			VCU_432_message.data[7] = 0xff;
+			send_can(can_LIM, VCU_432_message); 
+			
 			message_200 = 0;
 		}
 		if(message_600){
+			send_can(can_LIM, VCU_51A_message); //network management
+			send_can(can_LIM, VCU_540_message); //average 640ms
+			send_can(can_LIM, VCU_510_message); //average 640ms
 			message_600 = 0;
+		}
+		if(message_1000){
+			sec_328++; //increment seconds counter. We don't care about overruns, since we reset the hardware after each charge
+			VCU_328_message.data[0] = sec_328;//rtc msg. needs to be every 1 sec. first 32 bits are 1 second wrap counter
+			VCU_328_message.data[1] = sec_328<<8;
+			VCU_328_message.data[2] = sec_328<<16;
+			VCU_328_message.data[3] = sec_328<<24;
+			send_can(can_LIM, VCU_328_message);
+			
+			send_can(can_LIM, VCU_3E8_message);
+			
+			send_can(can_LIM, VCU_3F9_message);
+			
+			message_1000 = 0;
 		}
 		#ifdef USB_SERIAL
 		//when USB is essentially unused, we output general status info
@@ -456,7 +567,7 @@ void ControlCharge(void)
 			CCSI_Spnt = 0;        //No current
 
 			// Once the contactors report as closed we're OK to proceed to energy transfer
-			if (FC_Contactor_State) //Dala, note, sketchy rewrite of original code
+			if (FC_Contactor_State == 1) 
 			{
 				lim_state++;
 			}
@@ -545,7 +656,7 @@ void ControlCharge(void)
 
 
 
-    if (!PP_Status)  //if we remove plug, shut down
+    if (!PP_Status | !(shifter_state == SHIFT_P))  //if we remove plug OR vehicle is no longer in park , shut down
     {
         lim_state=0;//return to state 0
         //Param::SetInt(Param::CCS_State,lim_state);
@@ -669,6 +780,7 @@ ISR(TCC0_OVF_vect){
 	ms_100_timer++;
 	ms_200_timer++;
 	ms_600_timer++;
+	ms_1000_timer++;
 	#ifdef USB_SERIAL
 	if(!can_busy) ProcessCDCCommand();
 	CDC_Device_USBTask(&VirtualSerial_CDC_Interface);
@@ -695,8 +807,13 @@ ISR(TCC0_OVF_vect){
 	}
 	if(ms_600_timer == 600)
 	{
-		message_200 = 1;
+		message_600 = 1;
 		ms_600_timer = 0;
+	}
+	if(ms_1000_timer == 1000)
+	{
+		message_1000 = 1;
+		ms_1000_timer = 0;
 	}
 	
 	//fires every second (1000ms tasks go here)
@@ -747,18 +864,28 @@ void can_handler(uint8_t can_bus){
 		}
 		
 		switch(frame.can_id){
+			case 0x59E:
+				//We can take battcap from here on 2013+ LEAFs
+				LB_Full_Capacity_for_QC = ((frame.data[2] & 0x1F) | (frame.data[3] & 0xF0));
+
+			break;
+			case 0x11A:
+				shifter_state = (frame.data[0] & 0xF0);
+				// What happens when PP is grounded while car is ON? Can we prevent car from moving that way?
+				// can we send 0x60# PLUG inserted?
+			break;
 			case 0x1DB:
 				LBC_voltage = (frame.data[2] << 2) | ((frame.data[3] & 0xC0) >> 6);	//extract voltage
 				LBC_voltage = (LBC_voltage/2);
 				
-				temp_amps = ((frame.data[2] & 0x07) << 8) + frame.data[3];		//extract motor current from frame data
+				temp_amps = ((frame.data[2] & 0x07) << 8) + frame.data[3];		//extract battery current from frame data
 				if(temp_amps > 1024)
 				{
-					current = (int16_t) -2048 + (int16_t) temp_amps;			//convert from twos complement to native signed
+					LBC_current = (int16_t) -2048 + (int16_t) temp_amps;			//convert from twos complement to native signed
 				}		
 				else
 				{ 
-					current = (int16_t) temp_amps;
+					LBC_current = (int16_t) temp_amps;
 				}				
 			break;
 			case 0x55B:
@@ -766,27 +893,25 @@ void can_handler(uint8_t can_bus){
 				stateOfCharge /= 10; //Remove decimals
 			break;
 			case 0x3B4: //LIM message
-				Pilot_AC_Current = frame.data[0]; //PilotLim in CCS code
-				Cable_Current = frame.data[1];	//CalbeLim in CCS code
-				PP_Status = (frame.data[2] & 0x01);
-				ChargeType = frame.data[6];
+				Pilot_AC_Current = frame.data[0]; //PilotLim in CCS code (used for AC?)
+				Cable_Current = frame.data[1];	//CalbeLim in CCS code (used for AC?)
+				PP_Status = (frame.data[2] & 0x01); //PlugDet in CCS code
 				CP_Mode = (frame.data[4] & 0x07); //Pilot_Status in DBC file
+				ChargeType = frame.data[6];
 				Cont_Volts = (frame.data[7] * 2);
-				
 				break;
 			case 0x337: //LIM message
 				Hook_Pos = (frame.data[0] & 0x03);
 				Hook_Lock = (frame.data[0] & 0x0C);
 				break;
 			case 0x272: //LIM message
-				FC_Contactor_Test = (frame.data[2] & 0x08);
-				FC_Contactor_State = (frame.data[2] & 0xFC);
-				ChargeFlap_Status = (frame.data[2] & 0x03);
-			break;
+				FC_Contactor_Test = (frame.data[2] & 0xF0);
+				FC_Contactor_State = ((frame.data[2] & 0x0C) >> 2); //0open, 1closed, 2error, 3invalid
+				ChargeFlap_Status = (frame.data[2] & 0x03); //CP_DOOR
+				break;
 			case 0x29E: //LIM message (only during fastcharging)
-// 				I_Available = (frame.data[3] | frame.data[4]);
-				CCS_V_Avail = ((frame.data[1] << 8) | frame.data[2]); //V_Avail in DBC
-				CCS_I_Avail = ((frame.data[3] << 8) | frame.data[4]); //I_Available in dbc
+				//CCS_V_Avail = ((frame.data[1] << 8) | frame.data[2]); //V_Avail in DBC (not used in code?)
+				CCS_I_Avail = ((frame.data[4] << 8) | frame.data[3]); //I_Available in dbc
 				CCS_Iso = ((frame.data[0] & 0xC0) >> 6); //Iso_Status in dbc
 				CCS_IntStat = ((frame.data[0] & 0x3C) >> 2); //Internal_Charger_Status in dbc
 				break;
@@ -804,7 +929,7 @@ void can_handler(uint8_t can_bus){
 			case 0x2EF: //LIM message
 				Min_V_Avail = (frame.data[0] | frame.data[1]);
 				Min_I_Avail = (frame.data[2] | (frame.data[3] & 0x0F)); //Did bits go correct here?
-				Power_Limit = ((frame.data[6] & 0x30)) >> 4;
+				CCS_Plim = ((frame.data[6] & 0x30) >> 4); //Power_Limit in dbc 
 				Energy_Transmitted = frame.data[7];
 				break;
 			default:
