@@ -26,9 +26,10 @@ volatile	uint8_t		message_100			= 0;	//time to send 100ms messages
 volatile	uint8_t		message_200			= 0;	//time to send 200ms messages
 volatile	uint8_t		message_600			= 0;	//time to send 600ms messages
 
-volatile	uint32_t	voltage			= 0;
+volatile	uint32_t	LBC_voltage		= 0;
 volatile	int16_t		current			= 0;
 volatile	uint16_t	stateOfCharge	= 0;
+volatile	uint16_t	Voltspnt		= 435;
 
 //Data variables from LIM
 volatile	uint16_t		Pilot_AC_Current			= 0;
@@ -40,65 +41,39 @@ volatile	uint8_t			Hook_Lock					= 0;
 volatile	uint16_t		FC_Contactor_State			= 0;
 volatile	uint8_t			FC_Contactor_Test			= 0;
 volatile	uint8_t			ChargeFlap_Status			= 0;
-volatile	uint8_t			Weld_Det_Enabled			= 0;
-volatile	uint8_t			Internal_Charger_Status		= 0;
-volatile	uint8_t			Isolation_Status			= 0;
-volatile	uint16_t		V_Avail						= 0;
 volatile	uint16_t		I_Available					= 0;
-volatile	uint16_t		Thresh_V					= 0;
 volatile	uint8_t			CCS_Protocol				= 0;
 volatile	uint16_t		CHG_Volts					= 0;
 volatile	uint16_t		CHG_Amps					= 0;
-volatile	uint8_t			Battery_Compatability		= 0;
-volatile	uint8_t			CCS_Malf					= 0;
-volatile	uint8_t			Charge_Status				= 0;
-volatile	uint8_t			V_Limit						= 0;
-volatile	uint8_t			I_Limit						= 0;
-volatile	uint8_t			DC_Chg_Stop					= 0;
-volatile	uint8_t			Batt_Malf					= 0;
 volatile	uint16_t		Min_V_Avail					= 0;
 volatile	uint16_t		Min_I_Avail					= 0;
 volatile	uint8_t			Power_Limit					= 0;
 volatile	uint8_t			Energy_Transmitted			= 0;
 
+
 //Data variables for LIM control
-enum class ChargePhase : uint8_t
+enum LIMstates
 {
-   Standby = 0x0,
-   Initialisation = 0x1,
-   Subpoena = 0x2,
-   EnergyTransfer = 0x3,
-   Shutdown = 0x4,
-   CableTest = 0x9,
-   Reserved = 0xE,
-   InvalidSignal = 0xF
-};
-
-enum class ChargeStatus : uint8_t
-{
-	// no led
-	NotRdy = 0x0,
-
-	// DC CCS mode
-	Init = 0x1,
-
-	Rdy = 0x2
-};
-
-enum class ChargeRequest : uint8_t
-{
+	Standby = 0x0,
+	Initialisation = 0x1,
+	Subpoena = 0x2,
+	EnergyTransfer = 0x3,
+	Shutdown = 0x4,
+	CableTest = 0x9,
+	Reserved = 0xE,
+	InvalidSignal = 0xF,
+	NotRdy=0x0,
+	Init=0x1,
+	Rdy=0x2,
 	EndCharge = 0x0,
-	Charge = 0x1
+	Charge = 0x1,
+	ChargeNotRdy = 0x0,
+	ChargeRdy = 0x1
 };
 
-enum class ChargeReady : uint8_t
-{
-	NotRdy = 0x0,
-	Rdy = 0x1
-};
 
 volatile	uint8_t			CP_Mode=0;
-static ChargePhase Chg_Phase=ChargePhase::Standby;
+volatile	uint8_t			Chg_Phase=Standby;
 volatile	uint8_t			lim_state=0;
 volatile	uint8_t			lim_stateCnt=0;
 volatile	uint8_t			ctr_1second=0;
@@ -124,12 +99,14 @@ volatile	uint16_t		Full_SOCt=0;//Time to full SOC target.
 volatile	uint32_t		CHG_Pwr=0; //calculated charge power. 12 bit value scale x25. Values based on 50kw DC fc and 1kw and 3kw ac logs. From bms???
 volatile	int16_t			FC_Cur=0; //10 bit signed int with the ccs dc current command.scale of 1.
 volatile	uint8_t			EOC_Time=0x00; //end of charge time in minutes.
-volatile	ChargeStatus CHG_Status=ChargeStatus::NotRdy;  //observed values 0 when not charging , 1 and transition to 2 when commanded to charge. only 4 bits used.
-//seems to control led colour.
-volatile	ChargeRequest CHG_Req=ChargeRequest::EndCharge;  //observed values 0 when not charging , 1 when requested to charge. only 1 bit used in logs so far.
-volatile	ChargeReady CHG_Ready=ChargeReady::NotRdy;  //indicator to the LIM that we are ready to charge. observed values 0 when not charging , 1 when commanded to charge. only 2 bits used.
-volatile	uint8_t CONT_Ctrl=0;  //4 bits with DC ccs contactor command.
-volatile	uint8_t CCSI_Spnt=0;
+volatile	uint8_t			CHG_Status=NotRdy;  //observed values 0 when not charging , 1 and transition to 2 when commanded to charge. only 4 bits used.
+												//seems to control led colour.
+volatile	uint8_t			CHG_Req=EndCharge;  //observed values 0 when not charging , 1 when requested to charge. only 1 bit used in logs so far.
+volatile	uint8_t			CHG_Ready=ChargeNotRdy;  //indicator to the LIM that we are ready to charge. observed values 0 when not charging , 1 when commanded to charge. only 2 bits used.
+volatile	uint8_t			CONT_Ctrl=0;  //4 bits with DC ccs contactor command.
+volatile	uint8_t			CCSI_Spnt=0;
+volatile	uint16_t		CCS_V_Avail = 0;
+volatile	uint16_t		CCS_I_Avail = 0;
 
 //CAN messages for LIM
 volatile	can_frame_t		BMS_112_message	= {.can_id = 0x112, .can_dlc = 8, .data = {0xF9,0x1F,0x8B,0x0E,0xA6,0x71,0x65,0x5D}};
@@ -346,13 +323,13 @@ void ControlCharge(void)
 
         case 0:
         {
-			Chg_Phase=ChargePhase::Standby;
+			Chg_Phase=Standby;
 			CONT_Ctrl=0x0; //dc contactor mode control required in DC
 			FC_Cur=0;//ccs current request from web ui for now.
 			EOC_Time=0x00;//end of charge timer
-			CHG_Status=ChargeStatus::Init;
-			CHG_Req=ChargeRequest::Charge;
-			CHG_Ready=ChargeReady::NotRdy;
+			CHG_Status=Init;
+			CHG_Req=Charge;
+			CHG_Ready=ChargeNotRdy;
 			CHG_Pwr=0;//0 power
 			CCSI_Spnt=0;//No current
 			//if(CP_Mode==0x4 && opmode==MOD_CHARGE) lim_state++;
@@ -369,13 +346,13 @@ void ControlCharge(void)
         case 1:
         {
         //uint16_t I_avail_tmp=Param::GetInt(Param::CCS_I_Avail);
-        Chg_Phase=ChargePhase::Initialisation;
+        Chg_Phase=Initialisation;
         CONT_Ctrl=0x0; //dc contactor mode control required in DC
         FC_Cur=0;//ccs current request from web ui for now.
         EOC_Time=0x00;//end of charge timer
-        CHG_Status=ChargeStatus::Init;
-        CHG_Req=ChargeRequest::Charge;
-        CHG_Ready=ChargeReady::NotRdy;
+        CHG_Status=Init;
+        CHG_Req=Charge;
+        CHG_Ready=ChargeNotRdy;
         CHG_Pwr=0;//0 power
         CCSI_Spnt=0;//No current
         if(CP_Mode==0x6) lim_state=0; //Reset to state 0 if we get a static pilot
@@ -394,7 +371,7 @@ void ControlCharge(void)
         case 2:
         {
         //
-        Chg_Phase=ChargePhase::CableTest;
+        Chg_Phase=CableTest;
         CONT_Ctrl=0x0; //dc contactor mode control required in DC
         FC_Cur=0;//ccs current request from web ui for now.
         EOC_Time=0x1E;//end of charge timer 30 mins
@@ -402,9 +379,9 @@ void ControlCharge(void)
         Full_SOCt=2400; //Set full SOC timer to 40 minutes.
         Timer_1Sec=5;   //Load the 1 second loop counter. 5 loops=1sec.
         Timer_60Sec=60;   //Load the 60 second loop counter. 5 loops=1sec.
-        CHG_Status=ChargeStatus::Init;
-        CHG_Req=ChargeRequest::Charge;
-        CHG_Ready=ChargeReady::Rdy;
+        CHG_Status=Init;
+        CHG_Req=Charge;
+        CHG_Ready=ChargeRdy;
         CHG_Pwr=44000/25;//44kw approx power
         CCSI_Spnt=0;//No current
         if(Cont_Volts>0)lim_state++; //we wait for the contactor voltage to rise before hitting next state.
@@ -415,13 +392,13 @@ void ControlCharge(void)
         case 3:
         {
         //I don't like this state CableTest here. Should it remain in Initialisation ....
-        Chg_Phase=ChargePhase::CableTest;
+        Chg_Phase=CableTest;
         CONT_Ctrl=0x0; //dc contactor mode control required in DC
         FC_Cur=0;//ccs current request from web ui for now.
 // EOC_Time=0x1E;//end of charge timer
-        CHG_Status=ChargeStatus::Init;
-        CHG_Req=ChargeRequest::Charge;
-        CHG_Ready=ChargeReady::Rdy;
+        CHG_Status=Init;
+        CHG_Req=Charge;
+        CHG_Ready=ChargeRdy;
         CHG_Pwr=44000/25;//39kw approx power
         CCSI_Spnt=0;//No current
 
@@ -437,17 +414,17 @@ void ControlCharge(void)
 
         case 4:
         {
-			Chg_Phase = ChargePhase::Subpoena; //precharge phase in this state
+			Chg_Phase = Subpoena; //precharge phase in this state
 			CONT_Ctrl = 0x0;                   //dc contactor mode control required in DC
 			FC_Cur = 0;                        //ccs current request from web ui for now.
 			// EOC_Time=0x1E;//end of charge timer
-			CHG_Status = ChargeStatus::Init;
-			CHG_Req = ChargeRequest::Charge;
-			CHG_Ready = ChargeReady::Rdy;
+			CHG_Status = Init;
+			CHG_Req = Charge;
+			CHG_Ready = ChargeRdy;
 			CHG_Pwr = 44000 / 25; //49kw approx power
 			CCSI_Spnt = 0;        //No current
 
-			if ((Param::GetInt(Param::udc) - Cont_Volts) < 20)
+			if ((LBC_voltage - Cont_Volts) < 20)
 			{
 				lim_stateCnt++; //we wait for the contactor voltage to be 20v or less diff to main batt v
 			}
@@ -468,13 +445,13 @@ void ControlCharge(void)
         case 5:
         {
 			//precharge phase in this state but voltage close enough to close contactors
-			Chg_Phase = ChargePhase::Subpoena;
+			Chg_Phase = Subpoena;
 			CONT_Ctrl = 0x2;                   //dc contactor closed
 			FC_Cur = 0;                        //ccs current request from web ui for now.
 			// EOC_Time=0x1E;//end of charge timer
-			CHG_Status = ChargeStatus::Init;
-			CHG_Req = ChargeRequest::Charge;
-			CHG_Ready = ChargeReady::Rdy;
+			CHG_Status = Init;
+			CHG_Req = Charge;
+			CHG_Ready = ChargeRdy;
 			CHG_Pwr = 44000 / 25; //49kw approx power
 			CCSI_Spnt = 0;        //No current
 
@@ -488,20 +465,20 @@ void ControlCharge(void)
 
         case 6:
         {
-			Chg_Phase=ChargePhase::EnergyTransfer;
+			Chg_Phase=EnergyTransfer;
 			CONT_Ctrl=0x2; //dc contactor to close mode
 			//FC_Cur=Param::GetInt(Param::CCS_ICmd);//ccs manual control
 			FC_Cur=CCSI_Spnt;//Param::GetInt(Param::CCS_ICmd);//ccs auto ramp
 			CCS_Pwr_Con(); //CCS power control subroutine
 			Chg_Timers();   //Handle remaining time timers.
 		//  EOC_Time=0x1E;//end of charge timer
-			CHG_Status=ChargeStatus::Rdy;
-			CHG_Req=ChargeRequest::Charge;
-			CHG_Ready=ChargeReady::Rdy;
+			CHG_Status=Rdy;
+			CHG_Req=Charge;
+			CHG_Ready=ChargeRdy;
 			CHG_Pwr=44000/25;//49kw approx power
 			//we chill out here charging.
 
-			if(Internal_Charger_Status==0x02)//if we have a request to terminate from the EVSE then move to next state.
+			if(CCS_IntStat==0x02)//if we have a request to terminate from the EVSE then move to next state.
 			{ //Dala, note, sketchy rewrite of above line
 				FC_Cur=0;//set current to 0
 				lim_state++; //move to state 7 (shutdown)
@@ -512,13 +489,13 @@ void ControlCharge(void)
 
         case 7:    //shutdown state
         {
-			Chg_Phase=ChargePhase::Shutdown;
+			Chg_Phase=Shutdown;
 			CONT_Ctrl=0x2; //dc contactor to close mode
 			FC_Cur=0;//current command to 0
 			EOC_Time=0x1E;//end of charge timer
-			CHG_Status=ChargeStatus::Init;
-			CHG_Req=ChargeRequest::Charge;
-			CHG_Ready=ChargeReady::Rdy;
+			CHG_Status=Init;
+			CHG_Req=Charge;
+			CHG_Ready=Rdy;
 			CHG_Pwr=44000/25;//49kw approx power
 			lim_stateCnt++;
 			if(lim_stateCnt>10) //wait 2 seconds
@@ -531,13 +508,13 @@ void ControlCharge(void)
 
         case 8:    //shutdown state
         {
-			Chg_Phase=ChargePhase::Shutdown;
+			Chg_Phase=Shutdown;
 			CONT_Ctrl=0x1; //dc contactor to open with diag mode
 			FC_Cur=0;//current command to 0
 			EOC_Time=0x1E;//end of charge timer
-			CHG_Status=ChargeStatus::Init;
-			CHG_Req=ChargeRequest::Charge;
-			CHG_Ready=ChargeReady::NotRdy;
+			CHG_Status=Init;
+			CHG_Req=Charge;
+			CHG_Ready=ChargeNotRdy;
 			CHG_Pwr=44000/25;//49kw approx power
 			lim_stateCnt++;
 			if(Cont_Volts==0)lim_stateCnt++; //we wait for the contactor voltage to return to 0 to indicate contactors open
@@ -552,13 +529,13 @@ void ControlCharge(void)
 
         case 9:    //shutdown state
         {
-			Chg_Phase=ChargePhase::Standby;
+			Chg_Phase=Standby;
 			CONT_Ctrl=0x0; //dc contactor to open mode
 			FC_Cur=0;//current command to 0
 			EOC_Time=0x1E;//end of charge timer
-			CHG_Status=ChargeStatus::Init;
-			CHG_Req=ChargeRequest::EndCharge;
-			CHG_Ready=ChargeReady::NotRdy;
+			CHG_Status=Init;
+			CHG_Req=EndCharge;
+			CHG_Ready=ChargeNotRdy;
 			CHG_Pwr=0;//0 power
         }
         break;
@@ -568,27 +545,27 @@ void ControlCharge(void)
 
 
 
-    if (!Param::GetBool(Param::PlugDet))  //if we remove plug, shut down
+    if (!PP_Status)  //if we remove plug, shut down
     {
         lim_state=0;//return to state 0
         //Param::SetInt(Param::CCS_State,lim_state);
-        Chg_Phase=ChargePhase::Standby;
+        Chg_Phase=Standby;
         CONT_Ctrl=0x0; //dc contactor mode 0 in off
         FC_Cur=0;//ccs current request zero
         EOC_Time=0x00;
-        CHG_Status=ChargeStatus::NotRdy;
-        CHG_Req=ChargeRequest::EndCharge;
-        CHG_Ready=ChargeReady::NotRdy;
+        CHG_Status=NotRdy;
+        CHG_Req=EndCharge;
+        CHG_Ready=ChargeNotRdy;
         CHG_Pwr=0;
     }
 }
 
 void CCS_Pwr_Con(void)    //here we control CCS charging during state 6.
 {
-	uint16_t Tmp_Vbatt=Param::GetInt(Param::udc);//Actual measured battery voltage by isa shunt
-	uint16_t Tmp_Vbatt_Spnt=Param::GetInt(Param::Voltspnt);
-	uint16_t Tmp_ICCS_Lim=Param::GetInt(Param::CCS_ILim);
-	uint16_t Tmp_ICCS_Avail=Param::GetInt(Param::CCS_I_Avail);
+	uint16_t Tmp_Vbatt = LBC_voltage;//Actual measured battery voltage by LBC
+	uint16_t Tmp_Vbatt_Spnt = Voltspnt; //Target voltage
+	uint16_t Tmp_ICCS_Lim = CCS_Ilim;
+	uint16_t Tmp_ICCS_Avail = CCS_I_Avail;
 	//int16_t Tmp_Ibatt=Param::GetInt(Param::idc);
 
 	if(CCSI_Spnt>Tmp_ICCS_Lim)CCSI_Spnt=Tmp_ICCS_Lim; //clamp setpoint to current lim paramater.
@@ -604,7 +581,7 @@ void CCS_Pwr_Con(void)    //here we control CCS charging during state 6.
 	if(CCSI_Spnt>=Tmp_ICCS_Avail)CCSI_Spnt=Tmp_ICCS_Avail; //never exceed available current
 	if(CCSI_Spnt>Tmp_ICCS_Lim)CCSI_Spnt=Tmp_ICCS_Lim; //clamp setpoint to current lim paramater.
 
-	Param::SetInt(Param::CCS_Ireq,CCSI_Spnt);
+	//Param::SetInt(Param::CCS_Ireq,CCSI_Spnt); //uncommented, webui?
 }
 
 void Chg_Timers(void)
@@ -771,8 +748,8 @@ void can_handler(uint8_t can_bus){
 		
 		switch(frame.can_id){
 			case 0x1DB:
-				voltage = (frame.data[2] << 2) | ((frame.data[3] & 0xC0) >> 6);	//extract voltage
-				voltage = (voltage/2);
+				LBC_voltage = (frame.data[2] << 2) | ((frame.data[3] & 0xC0) >> 6);	//extract voltage
+				LBC_voltage = (LBC_voltage/2);
 				
 				temp_amps = ((frame.data[2] & 0x07) << 8) + frame.data[3];		//extract motor current from frame data
 				if(temp_amps > 1024)
@@ -789,11 +766,13 @@ void can_handler(uint8_t can_bus){
 				stateOfCharge /= 10; //Remove decimals
 			break;
 			case 0x3B4: //LIM message
-				Pilot_AC_Current = frame.data[0];
-				Cable_Current = frame.data[1];
+				Pilot_AC_Current = frame.data[0]; //PilotLim in CCS code
+				Cable_Current = frame.data[1];	//CalbeLim in CCS code
 				PP_Status = (frame.data[2] & 0x01);
-				CP_Mode = (frame.data[4] & 0x0F); //Pilot_Status in DBC file
 				ChargeType = frame.data[6];
+				CP_Mode = (frame.data[4] & 0x07); //Pilot_Status in DBC file
+				Cont_Volts = (frame.data[7] * 2);
+				
 				break;
 			case 0x337: //LIM message
 				Hook_Pos = (frame.data[0] & 0x03);
@@ -805,29 +784,27 @@ void can_handler(uint8_t can_bus){
 				ChargeFlap_Status = (frame.data[2] & 0x03);
 			break;
 			case 0x29E: //LIM message (only during fastcharging)
-				Weld_Det_Enabled = (frame.data[0] & 0x03);
-				Internal_Charger_Status = ((frame.data[0] & 0x3C) >> 2);
-				Isolation_Status = ((frame.data[0] & 0xC0) >> 6);
-				V_Avail = (frame.data[1] | frame.data[2]);
-				I_Available = (frame.data[3] | frame.data[4]);
-				Thresh_V = (frame.data[5] | frame.data[6]);
-				CCS_Protocol = frame.data[7];
+// 				I_Available = (frame.data[3] | frame.data[4]);
+				CCS_V_Avail = ((frame.data[1] << 8) | frame.data[2]); //V_Avail in DBC
+				CCS_I_Avail = ((frame.data[3] << 8) | frame.data[4]); //I_Available in dbc
+				CCS_Iso = ((frame.data[0] & 0xC0) >> 6); //Iso_Status in dbc
+				CCS_IntStat = ((frame.data[0] & 0x3C) >> 2); //Internal_Charger_Status in dbc
 				break;
 			case 0x2B2: //LIM message (only during fastcharging)
-				CHG_Volts = (frame.data[0] & 0x03);
-				CHG_Amps = (frame.data[0] & 0x3C);
-				Battery_Compatability = (frame.data[0] & 0xC0);
-				CCS_Malf = (frame.data[1] | frame.data[2]);
-				Charge_Status = (frame.data[3] | frame.data[4]);
-				V_Limit = (frame.data[5] | frame.data[6]);
-				I_Limit = frame.data[7];
-				DC_Chg_Stop = (frame.data[5] | frame.data[6]);
-				Batt_Malf = frame.data[7];
+				CHG_Volts = ((frame.data[0] << 8) | frame.data[1]);
+				CHG_Amps = ((frame.data[2] << 8) | frame.data[3]); //TODO, signed! (but unused?)
+
+				CCS_Ilim = (frame.data[5]>>4) & 0x03;	//I_Limit
+				CCS_Vlim = (frame.data[5]>>6) & 0x03;	//V_Limit
+				CCS_Stat = frame.data[4] & 0x03;		//Charge_Status
+				CCS_Malf = (frame.data[4]>>2) & 0x03;	
+				CCS_Bmalf = frame.data[5] & 0x03;
+				CCS_Stop = (frame.data[5]>>2) & 0x03;	//DC_Chg_Stop
 				break;
 			case 0x2EF: //LIM message
 				Min_V_Avail = (frame.data[0] | frame.data[1]);
 				Min_I_Avail = (frame.data[2] | (frame.data[3] & 0x0F)); //Did bits go correct here?
-				Power_Limit = (frame.data[6] & 0x30);
+				Power_Limit = ((frame.data[6] & 0x30)) >> 4;
 				Energy_Transmitted = frame.data[7];
 				break;
 			default:

@@ -31,6 +31,9 @@ void ProcessCDCCommand(void);
 void check_can1(void);
 void check_can2(void);
 void check_can3(void);
+void CCS_Pwr_Con(void);
+void Chg_Timers(void);
+void ControlCharge(void);
 
 
 //defines
