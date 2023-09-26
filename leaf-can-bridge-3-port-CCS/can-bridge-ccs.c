@@ -1,4 +1,3 @@
-
 /*
 CCS ADD-ON FIRMWARE
 When fitted between the LIM Powertrain CAN and QC-CAN, this firmware allows for CCS charging.
@@ -1092,4 +1091,3 @@ void check_can3(void){
 			}
 		}
 	}
-}
